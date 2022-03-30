@@ -338,7 +338,9 @@ MonoBehaviour:
   jumpStartSpeed: 8
   jumpAbortFactor: 0.5
   jumpBufferTime: 0.3
+  coyoteTime: 0.06
   dashEnabled: 1
+  dashControlMode: 0
   onDashStart:
     m_PersistentCalls:
       m_Calls:
@@ -385,6 +387,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   dashDistance: 5
+  stopDashOnCollision: 1
   dashStartDelay: 0.2
   dashEndDelay: 0.2
   dashFrames: 10

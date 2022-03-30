@@ -20,13 +20,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Min(0)] private float jumpStartSpeed = 5;
     [SerializeField, Range(0, 1)] private float jumpAbortFactor = 0.6f;
     [SerializeField, Range(0, 1)] private float jumpBufferTime = 0.15f;
+    [SerializeField, Range(0, 0.3f)] private float coyoteTime = 0.08f;
 
     [Header("Dash properties")]
     [SerializeField] private bool dashEnabled = true;
+    [SerializeField] private DashControlMode dashControlMode = DashControlMode.Mouse;
     [SerializeField] private UnityEvent<float> onDashStart;
     [SerializeField] private UnityEvent<float> onDashEnd;
     [SerializeField] private UnityEvent<Vector2> onDashFrameStart;
     [SerializeField, Min(0)] private float dashDistance = 3f;
+    [SerializeField] private bool stopDashOnCollision = true;
     [SerializeField, Min(0)] private float dashStartDelay = 0.1f;
     [SerializeField, Min(0)] private float dashEndDelay = 0.1f;
     [SerializeField, Min(1)] private int dashFrames = 7;
@@ -58,17 +61,32 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool debugFeaturesEnabled = true;
 
     private bool _isGrounded;
-    private Vector2 _lastNonZeroInput;
     private float _moveInput;
     private Vector2 _velocity;
     private bool _isDashing;
     private RaycastHit2D[] _contacts;
+    private Vector2 _awakePosition;
+    private Vector2 _lastNonZeroInput;
 
     private readonly TimedTrigger _jumpWaitTrigger = new TimedTrigger();
     private readonly Trigger _jumpAbortTrigger = new Trigger();
-    private readonly TimedTrigger _dashReloading = new TimedTrigger();
+    private readonly TimedTrigger _coyoteTimeTrigger = new TimedTrigger();
+    private readonly TimedTrigger _dashReloadingTrigger = new TimedTrigger();
 
-    private Vector2 _awakePosition;
+    private enum CameraFollowMode
+    {
+        Raw, Lerp, DoNotFollow
+    }
+
+    private enum ContactCheckDirection
+    {
+        Up, Down
+    }
+
+    private enum DashControlMode
+    {
+        Mouse, Keyboard
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -77,7 +95,6 @@ public class PlayerController : MonoBehaviour
         {
             _lastNonZeroInput = input;
         }
-
         _moveInput = input.x;
     }
 
@@ -103,21 +120,41 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        var dashDirection = _lastNonZeroInput;
-        //TODO: Get a world position of mouse
-        if (context.action.IsPressed() && _dashReloading.IsFree)
+
+        if (!context.action.IsPressed() || _dashReloadingTrigger.IsSet)
         {
-            Dash(dashDirection);
+            return;
         }
+
+        Vector2 dashDirection;
+        switch (dashControlMode)
+        {
+            case DashControlMode.Mouse:
+                var mousePosition = GetWorldMousePosition();
+                dashDirection = (mousePosition - playerRigidbody.position).normalized;
+                break;
+            case DashControlMode.Keyboard:
+                dashDirection = _lastNonZeroInput;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        Dash(dashDirection);
+    }
+
+    private Vector2 GetWorldMousePosition()
+    {
+        var screenPosition = Mouse.current.position.ReadValue();
+        return playerCamera.ScreenToWorldPoint(screenPosition);
     }
 
     private void Dash(Vector2 direction)
     {
         IEnumerator DashCoroutine()
         {
-            _dashReloading.Set();
-
+            _dashReloadingTrigger.Set();
             _isDashing = true;
+
             _velocity.y = 0;
             playerRigidbody.velocity = Vector2.zero;
 
@@ -127,20 +164,49 @@ public class PlayerController : MonoBehaviour
 
             for (int i = 1; i <= dashFrames; i++)
             {
-                var position = playerRigidbody.position;
-                onDashFrameStart?.Invoke(position);
-                playerRigidbody.MovePosition(position + direction * dashDistance / dashFrames);
+                var startPosition = playerRigidbody.position;
+                onDashFrameStart?.Invoke(startPosition);
+
+                var distance = dashDistance / dashFrames;
+                var expectedEndPosition = startPosition + direction * distance;
+                if (stopDashOnCollision)
+                {
+                    var hit = Physics2D.BoxCast(startPosition, GetActualColliderBounds().size, 0, direction, distance, contactCheckMask);
+                    if (hit)
+                    {
+                        expectedEndPosition = hit.centroid;
+                    }
+                }
+
+                playerRigidbody.MovePosition(expectedEndPosition);
                 yield return new WaitForFixedUpdate();
+
+                const float maxDistanceError = 0.1f;
+                if (stopDashOnCollision && Vector2.Distance(startPosition, playerRigidbody.position) < distance - maxDistanceError)
+                {
+                    break;
+                }
             }
 
             onDashEnd?.Invoke(dashEndDelay);
             yield return new WaitForSeconds(dashEndDelay);
-            _isDashing = false;
 
-            _dashReloading.ResetIn(dashReloadTime);
+            _isDashing = false;
+            _dashReloadingTrigger.ResetIn(dashReloadTime);
         }
 
         StartCoroutine(DashCoroutine());
+    }
+
+    private Bounds GetActualColliderBounds()
+    {
+        var rawBounds = playerCollider.bounds;
+        if (playerCollider is BoxCollider2D boxCollider)
+        {
+            return new Bounds(rawBounds.center, rawBounds.size + Vector3.one * (boxCollider.edgeRadius * 2));
+        }
+
+        return rawBounds;
     }
 
     private void Awake()
@@ -149,7 +215,7 @@ public class PlayerController : MonoBehaviour
         {
             playerCamera = Camera.main;
         }
-        
+
         _awakePosition = playerRigidbody.position;
         _contacts = new RaycastHit2D[contactsBufferSize];
     }
@@ -170,7 +236,8 @@ public class PlayerController : MonoBehaviour
         }
 
         _jumpWaitTrigger.Step(Time.fixedDeltaTime);
-        _dashReloading.Step(Time.fixedDeltaTime);
+        _coyoteTimeTrigger.Step(Time.fixedDeltaTime);
+        _dashReloadingTrigger.Step(Time.fixedDeltaTime);
     }
 
     private void LateUpdate()
@@ -210,23 +277,13 @@ public class PlayerController : MonoBehaviour
         Walk(_moveInput);
     }
 
-    private enum ContactCheckDirection
-    {
-        Up, Down
-    }
-
     private bool CheckBoundsContact(ContactCheckDirection direction)
     {
-        var bounds = playerCollider.bounds;
+        var bounds = GetActualColliderBounds();
         var castOrigin = direction == ContactCheckDirection.Down ?
             new Vector2(bounds.min.x + bounds.extents.x, bounds.min.y) :
             new Vector2(bounds.max.x - bounds.extents.x, bounds.max.y);
         var castDirection = direction == ContactCheckDirection.Down ? Vector2.down : Vector2.up;
-
-        if (playerCollider is BoxCollider2D boxCollider)
-        {
-            castOrigin += castDirection * boxCollider.edgeRadius;
-        }
 
         var contactCount = Physics2D.BoxCastNonAlloc(castOrigin,
             new Vector2(bounds.size.x, contactRaycastSizeAndDistance),
@@ -244,7 +301,13 @@ public class PlayerController : MonoBehaviour
     {
         if (_velocity.y < 0)
         {
-            _isGrounded = CheckBoundsContact(ContactCheckDirection.Down);
+            var hasContact = CheckBoundsContact(ContactCheckDirection.Down);
+            if (_isGrounded && !hasContact)
+            {
+                _coyoteTimeTrigger.SetFor(coyoteTime);
+            }
+
+            _isGrounded = hasContact;
             if (_isGrounded)
             {
                 _velocity.y = 0;
@@ -269,7 +332,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         Gizmos.color = _isGrounded ? Color.red : Color.green;
-        Gizmos.DrawCube(new Vector3(playerRigidbody.position.x, playerCollider.bounds.min.y, 0), new Vector3(0.3f, 0.05f, 0));
+        Gizmos.DrawCube(new Vector3(playerRigidbody.position.x, GetActualColliderBounds().min.y, 0), new Vector3(0.3f, 0.05f, 0));
     }
 
     private void ApplyGravity()
@@ -283,11 +346,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
         _velocity.y += gravity * Time.fixedDeltaTime;
-    }
-
-    private enum CameraFollowMode
-    {
-        Raw, Lerp, DoNotFollow
     }
 
     private void MoveCamera()
@@ -326,15 +384,19 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if (!_isGrounded)
+
+        if (_jumpWaitTrigger.IsFree)
         {
             return;
         }
 
-        if (!_jumpWaitTrigger.CheckAndReset())
+        if (!_isGrounded && _coyoteTimeTrigger.IsFree)
         {
             return;
         }
+
+        _jumpWaitTrigger.Reset();
+        _coyoteTimeTrigger.Reset();
 
         Jump();
         if (_jumpAbortTrigger.CheckAndReset())
