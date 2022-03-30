@@ -1,4 +1,5 @@
 using System.Collections;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,22 +8,29 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Player properties")]
+    [Header("Velocity properties")] 
+    [SerializeField] private bool gravityEnabled = true;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float minVerticalVelocity = -20f;
     [SerializeField, Min(0)] private float speed = 4f;
     [SerializeField, Range(0, 1)] private float airAccelerationFactor = 0.6f;
+    
+    [Header("Jump properties")] 
+    [SerializeField] private bool jumpEnabled = true;
     [SerializeField, Min(0)] private float jumpStartSpeed = 5;
     [SerializeField, Range(0, 1)] private float jumpAbortFactor = 0.6f;
     [SerializeField, Range(0, 1)] private float jumpBufferTime = 0.15f;
-    [SerializeField] private bool isInitiallyFlipped;
 
-    [Header("Dash properties")] 
+    [Header("Dash properties")]
+    [SerializeField] private bool dashEnabled = true;
     [SerializeField] private UnityEvent<float> onDashStart;
     [SerializeField] private UnityEvent<float> onDashEnd;
+    [SerializeField] private UnityEvent<Vector2> onDashFrameStart;
     [SerializeField, Min(0)] private float dashDistance = 3f;
     [SerializeField, Min(0)] private float dashStartDelay = 0.1f;
     [SerializeField, Min(0)] private float dashEndDelay = 0.1f;
+    [SerializeField, Min(1)] private int dashFrames = 7;
+    [SerializeField, Min(0)] private float dashReloadTime = 0.2f;
 
     [Space]
     [Header("Ground/Ceil/Wall checking properties")]
@@ -43,6 +51,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
 
+    [Space]
+    [Header("Other")]
+    [SerializeField] private bool isSpriteInitiallyFlipped;
+    [SerializeField] private bool debugFeaturesEnabled = true;
+
     private bool _isWaitingForJump;
     private bool _shouldAbortJumpLater;
     private bool _isGrounded;
@@ -51,8 +64,11 @@ public class PlayerController : MonoBehaviour
     private Vector2 _velocity;
     private float _jumpWaitTimePassed;
     private bool _isDashing;
-
     private RaycastHit2D[] _contacts;
+
+    private readonly TimedGate _dashReloading = new TimedGate();
+
+    private Vector2 _awakePosition;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -67,6 +83,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (!jumpEnabled)
+        {
+            return;
+        }
         if (context.action.IsPressed())
         {
             InitiateJump();
@@ -79,9 +99,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.action.IsPressed() && !_isDashing)
+        if (!dashEnabled)
         {
-            Dash(_lastNonZeroInput.normalized);
+            return;
+        }
+        if (context.action.IsPressed() && _dashReloading.IsUnlocked)
+        {
+            Dash(_lastNonZeroInput);
         }
     }
 
@@ -89,27 +113,31 @@ public class PlayerController : MonoBehaviour
     {
         IEnumerator DashCoroutine()
         {
+            _dashReloading.Lock();
+
             _isDashing = true;
             _velocity.y = 0;
             playerRigidbody.velocity = Vector2.zero;
-            var startPosition = playerRigidbody.position;
-            var targetPosition = startPosition + direction * dashDistance;
-            
+
             onDashStart?.Invoke(dashStartDelay);
 
             yield return new WaitForSeconds(dashStartDelay);
 
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= dashFrames; i++)
             {
-                playerRigidbody.MovePosition(startPosition + direction * dashDistance / 10 * i);
+                var position = playerRigidbody.position;
+                onDashFrameStart?.Invoke(position);
+                playerRigidbody.MovePosition(position + direction * dashDistance / dashFrames);
                 yield return new WaitForFixedUpdate();
             }
 
             onDashEnd?.Invoke(dashEndDelay);
             yield return new WaitForSeconds(dashEndDelay);
             _isDashing = false;
+
+            _dashReloading.Unlock(dashReloadTime);
         }
-        
+
         StartCoroutine(DashCoroutine());
     }
 
@@ -120,17 +148,43 @@ public class PlayerController : MonoBehaviour
             playerCamera = Camera.main;
         }
 
+        _awakePosition = playerRigidbody.position;
         _contacts = new RaycastHit2D[contactsBufferSize];
     }
 
     private void FixedUpdate()
     {
+        HandledDebugging();
+
         HandleBoundsContacts();
         ApplyMoveInput();
         ApplyGravity();
         HandleJumping();
         ApplyVelocityToRigidbody();
+
         FocusCamera();
+
+        _dashReloading.Step(Time.fixedDeltaTime);
+    }
+
+    private void HandledDebugging()
+    {
+        if (!debugFeaturesEnabled)
+        {
+            return;
+        }
+
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            playerRigidbody.position = _awakePosition;
+        }
+
+#if UNITY_EDITOR
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+#endif
     }
 
     private void ApplyMoveInput()
@@ -147,13 +201,20 @@ public class PlayerController : MonoBehaviour
         Up, Down
     }
 
-    private bool IsBoundsContact(ContactCheckDirection direction)
+    private bool CheckBoundsContact(ContactCheckDirection direction)
     {
         var bounds = playerCollider.bounds;
         var castOrigin = direction == ContactCheckDirection.Down ?
             new Vector2(bounds.min.x + bounds.extents.x, bounds.min.y) :
             new Vector2(bounds.max.x - bounds.extents.x, bounds.max.y);
         var castDirection = direction == ContactCheckDirection.Down ? Vector2.down : Vector2.up;
+
+        if (playerCollider is BoxCollider2D boxCollider)
+        {
+            // Почему-то этот радиус не входит в расчет границ
+            castOrigin += castDirection * boxCollider.edgeRadius;
+        }
+
         var contactCount = Physics2D.BoxCastNonAlloc(castOrigin,
             new Vector2(bounds.size.x, contactRaycastSizeAndDistance),
             0, castDirection,
@@ -170,7 +231,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_velocity.y < 0)
         {
-            _isGrounded = IsBoundsContact(ContactCheckDirection.Down);
+            _isGrounded = CheckBoundsContact(ContactCheckDirection.Down);
             if (_isGrounded)
             {
                 _velocity.y = 0;
@@ -182,7 +243,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (IsBoundsContact(ContactCheckDirection.Up))
+        if (CheckBoundsContact(ContactCheckDirection.Up))
         {
             _velocity.y = 0;
         }
@@ -200,6 +261,10 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyGravity()
     {
+        if (!gravityEnabled)
+        {
+            return;
+        }
         if (_isDashing)
         {
             return;
@@ -241,7 +306,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         _jumpWaitTimePassed += Time.fixedDeltaTime;
-        if (!_isGrounded || !(_jumpWaitTimePassed <= jumpBufferTime))
+        if (!_isGrounded || _jumpWaitTimePassed > jumpBufferTime)
         {
             return;
         }
@@ -299,6 +364,6 @@ public class PlayerController : MonoBehaviour
 
     private void LookTo(float direction)
     {
-        playerSpriteRenderer.flipX = (direction > 0) != isInitiallyFlipped;
+        playerSpriteRenderer.flipX = (direction > 0) != isSpriteInitiallyFlipped;
     }
 }

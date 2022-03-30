@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 164278031}
   - component: {fileID: 164278030}
   - component: {fileID: 164278029}
+  - component: {fileID: 608612598}
   m_Layer: 0
   m_Name: DashEffectController
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 164278028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.8879, y: 2.8879, z: 2.8879}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1433470049122286983}
   m_RootOrder: 0
@@ -39,7 +40,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164278028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -95,9 +96,118 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157ca4f062e37f14cb22d8c42c763bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScale: 3
-  endScale: 1.4
+  popAnimationEnabled: 1
+  startScale: 1.5
+  endScale: 0.4
+  trailEnabled: 1
+  maxLinePointsPerFrame: 6
   animationRenderer: {fileID: 164278030}
+  lineRenderer: {fileID: 608612598}
+--- !u!120 &608612598
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164278028}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions: []
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 0.47395015
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.20441736
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0.4844039, g: 0.086507656, b: 0.6792453, a: 1}
+      key1: {r: 0.49585676, g: 0.1067989, b: 0.68637013, a: 1}
+      key2: {r: 1, g: 1, b: 1, a: 1}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 30840
+      ctime2: 65535
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 65535
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 3
+      m_NumAlphaKeys: 2
+    numCornerVertices: 3
+    numCapVertices: 2
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
 --- !u!1 &1433470049122287004
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +222,7 @@ GameObject:
   - component: {fileID: 1433470049122286979}
   - component: {fileID: 1433470049122286982}
   - component: {fileID: 5202243290565539435}
-  - component: {fileID: 2013585285}
+  - component: {fileID: 672640705}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -129,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 1433470049122287004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.08788526, y: 0.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 164278031}
   m_Father: {fileID: 0}
@@ -257,9 +367,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDashFrameStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 164278029}
+        m_TargetAssemblyTypeName: DashEffectController, Assembly-CSharp
+        m_MethodName: OnDashFrameStart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   dashDistance: 5
   dashStartDelay: 0.2
   dashEndDelay: 0.2
+  dashFrames: 10
+  dashReloadTime: 0.2
   contactCheckMask:
     serializedVersion: 2
     m_Bits: 256
@@ -270,7 +397,7 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   followSmoothness: 0.25
   playerRigidbody: {fileID: 1433470049122286977}
-  playerCollider: {fileID: 2013585285}
+  playerCollider: {fileID: 672640705}
   playerSpriteRenderer: {fileID: 1433470049122286976}
 --- !u!114 &1433470049122286982
 MonoBehaviour:
@@ -406,8 +533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cff84ecf27190439e42300554c208c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!70 &2013585285
-CapsuleCollider2D:
+--- !u!61 &672640705
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -415,10 +542,20 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1433470049122287004}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d7eaf29c1a6502045b6f28e7de126f57, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 9.2, y: 8.17}
-  m_Direction: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.92, y: 0.817}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 1
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.88, y: 0.78}
+  m_EdgeRadius: 0.02
