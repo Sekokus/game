@@ -55,18 +55,17 @@ public class PlayerController : MonoBehaviour
     [Header("Other")]
     [SerializeField] private bool isSpriteInitiallyFlipped;
     [SerializeField] private bool debugFeaturesEnabled = true;
-
-    private bool _isWaitingForJump;
-    private bool _shouldAbortJumpLater;
+    
     private bool _isGrounded;
     private Vector2 _lastNonZeroInput;
     private float _moveInput;
     private Vector2 _velocity;
-    private float _jumpWaitTimePassed;
     private bool _isDashing;
     private RaycastHit2D[] _contacts;
 
-    private readonly TimedGate _dashReloading = new TimedGate();
+    private readonly TimedTrigger _jumpWaitTrigger = new TimedTrigger();
+    private readonly Trigger _jumpAbortTrigger = new Trigger();
+    private readonly TimedTrigger _dashReloading = new TimedTrigger();
 
     private Vector2 _awakePosition;
 
@@ -103,7 +102,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if (context.action.IsPressed() && _dashReloading.IsUnlocked)
+        if (context.action.IsPressed() && _dashReloading.IsFree)
         {
             Dash(_lastNonZeroInput);
         }
@@ -113,7 +112,7 @@ public class PlayerController : MonoBehaviour
     {
         IEnumerator DashCoroutine()
         {
-            _dashReloading.Lock();
+            _dashReloading.Set();
 
             _isDashing = true;
             _velocity.y = 0;
@@ -135,7 +134,7 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(dashEndDelay);
             _isDashing = false;
 
-            _dashReloading.Unlock(dashReloadTime);
+            _dashReloading.ResetIn(dashReloadTime);
         }
 
         StartCoroutine(DashCoroutine());
@@ -164,6 +163,7 @@ public class PlayerController : MonoBehaviour
 
         FocusCamera();
 
+        _jumpWaitTrigger.Step(Time.fixedDeltaTime);
         _dashReloading.Step(Time.fixedDeltaTime);
     }
 
@@ -301,31 +301,27 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if (!_isWaitingForJump)
+        if (!_isGrounded)
         {
             return;
         }
-        _jumpWaitTimePassed += Time.fixedDeltaTime;
-        if (!_isGrounded || _jumpWaitTimePassed > jumpBufferTime)
+
+        if (!_jumpWaitTrigger.CheckAndReset())
         {
             return;
         }
 
         Jump();
-        if (_shouldAbortJumpLater)
+        if (_jumpAbortTrigger.CheckAndReset())
         {
             AbortJump();
-            _shouldAbortJumpLater = false;
         }
-        _jumpWaitTimePassed = 0;
-        _isWaitingForJump = false;
     }
 
     private void InitiateJump()
     {
-        _jumpWaitTimePassed = 0;
-        _shouldAbortJumpLater = false;
-        _isWaitingForJump = true;
+        _jumpWaitTrigger.SetFor(jumpBufferTime);
+        _jumpAbortTrigger.Reset();
     }
 
     private void AbortJump()
@@ -333,12 +329,11 @@ public class PlayerController : MonoBehaviour
         if (_velocity.y > 0)
         {
             _velocity.y *= jumpAbortFactor;
-            _jumpWaitTimePassed = 0;
-            _isWaitingForJump = false;
+            _jumpWaitTrigger.Reset();
         }
         else
         {
-            _shouldAbortJumpLater = true;
+            _jumpAbortTrigger.Set();
         }
     }
 
