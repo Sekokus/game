@@ -329,14 +329,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e04bbd3628e23349a6eeb80b51bc600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityEnabled: 1
   gravity: -10
   minVerticalVelocity: -20
   speed: 5
   airAccelerationFactor: 0.7
+  jumpEnabled: 1
   jumpStartSpeed: 8
   jumpAbortFactor: 0.5
   jumpBufferTime: 0.3
-  isInitiallyFlipped: 0
+  dashEnabled: 1
   onDashStart:
     m_PersistentCalls:
       m_Calls:
@@ -395,10 +397,13 @@ MonoBehaviour:
   contactPositionEpsilon: 0.025
   contactsBufferSize: 6
   playerCamera: {fileID: 0}
+  cameraFollowMode: 1
   followSmoothness: 0.25
   playerRigidbody: {fileID: 1433470049122286977}
   playerCollider: {fileID: 672640705}
   playerSpriteRenderer: {fileID: 1433470049122286976}
+  isSpriteInitiallyFlipped: 0
+  debugFeaturesEnabled: 1
 --- !u!114 &1433470049122286982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,5 +562,5 @@ BoxCollider2D:
     adaptiveTiling: 1
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.88, y: 0.78}
-  m_EdgeRadius: 0.02
+  m_Size: {x: 0.84, y: 0.734}
+  m_EdgeRadius: 0.04

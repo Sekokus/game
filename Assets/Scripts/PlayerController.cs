@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,14 +8,14 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Velocity properties")] 
+    [Header("Velocity properties")]
     [SerializeField] private bool gravityEnabled = true;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float minVerticalVelocity = -20f;
     [SerializeField, Min(0)] private float speed = 4f;
     [SerializeField, Range(0, 1)] private float airAccelerationFactor = 0.6f;
-    
-    [Header("Jump properties")] 
+
+    [Header("Jump properties")]
     [SerializeField] private bool jumpEnabled = true;
     [SerializeField, Min(0)] private float jumpStartSpeed = 5;
     [SerializeField, Range(0, 1)] private float jumpAbortFactor = 0.6f;
@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     [Space]
     [Header("Camera settings")]
     [SerializeField] private Camera playerCamera;
+    [SerializeField] private CameraFollowMode cameraFollowMode;
     [SerializeField, Range(0, 1)] private float followSmoothness;
 
     [Space]
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
     [Header("Other")]
     [SerializeField] private bool isSpriteInitiallyFlipped;
     [SerializeField] private bool debugFeaturesEnabled = true;
-    
+
     private bool _isGrounded;
     private Vector2 _lastNonZeroInput;
     private float _moveInput;
@@ -146,7 +147,7 @@ public class PlayerController : MonoBehaviour
         {
             playerCamera = Camera.main;
         }
-
+        
         _awakePosition = playerRigidbody.position;
         _contacts = new RaycastHit2D[contactsBufferSize];
     }
@@ -161,10 +162,21 @@ public class PlayerController : MonoBehaviour
         HandleJumping();
         ApplyVelocityToRigidbody();
 
-        FocusCamera();
+        if (cameraFollowMode == CameraFollowMode.Lerp)
+        {
+            MoveCamera();
+        }
 
         _jumpWaitTrigger.Step(Time.fixedDeltaTime);
         _dashReloading.Step(Time.fixedDeltaTime);
+    }
+
+    private void LateUpdate()
+    {
+        if (cameraFollowMode != CameraFollowMode.Lerp)
+        {
+            MoveCamera();
+        }
     }
 
     private void HandledDebugging()
@@ -211,7 +223,6 @@ public class PlayerController : MonoBehaviour
 
         if (playerCollider is BoxCollider2D boxCollider)
         {
-            // Почему-то этот радиус не входит в расчет границ
             castOrigin += castDirection * boxCollider.edgeRadius;
         }
 
@@ -272,13 +283,25 @@ public class PlayerController : MonoBehaviour
         _velocity.y += gravity * Time.fixedDeltaTime;
     }
 
-    private void FocusCamera()
+    private enum CameraFollowMode
+    {
+        Raw, Lerp, DoNotFollow
+    }
+
+    private void MoveCamera()
     {
         var player = playerRigidbody.position;
         var cameraTransform = playerCamera.transform;
         var cameraPosition = cameraTransform.position;
         var target = new Vector3(player.x, player.y, cameraPosition.z);
-        cameraTransform.position = Vector3.Lerp(cameraPosition, target, followSmoothness);
+
+        cameraTransform.position = cameraFollowMode switch
+        {
+            CameraFollowMode.Raw => target,
+            CameraFollowMode.Lerp => Vector3.Lerp(cameraPosition, target, followSmoothness),
+            CameraFollowMode.DoNotFollow => cameraPosition,
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 
     private void ApplyVelocityToRigidbody()
