@@ -103,9 +103,11 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        var dashDirection = _lastNonZeroInput;
+        //TODO: Get a world position of mouse
         if (context.action.IsPressed() && _dashReloading.IsFree)
         {
-            Dash(_lastNonZeroInput);
+            Dash(dashDirection);
         }
     }
 
