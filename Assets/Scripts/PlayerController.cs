@@ -98,9 +98,12 @@ public class PlayerController : MonoBehaviour
             onDashStart?.Invoke(dashStartDelay);
 
             yield return new WaitForSeconds(dashStartDelay);
-            playerRigidbody.MovePosition(targetPosition);
 
-            yield return new WaitForFixedUpdate();
+            for (int i = 1; i <= 10; i++)
+            {
+                playerRigidbody.MovePosition(startPosition + direction * dashDistance / 10 * i);
+                yield return new WaitForFixedUpdate();
+            }
 
             onDashEnd?.Invoke(dashEndDelay);
             yield return new WaitForSeconds(dashEndDelay);
