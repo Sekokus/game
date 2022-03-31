@@ -20,8 +20,8 @@ public class AttackScript : MonoBehaviour
 
     void Start()
     {
-        AddAction("<Mouse>/leftButton", "hold(duration=2)", ()=>print("StartAnim"), ()=> Attack(Attacks.Medium, Radius.Long), () => print("StopAnim"));
-        AddAction("<Mouse>/rightButton", "hold(duration=5)", ()=>print("StartAnim"), ()=> Attack(Attacks.Strong, Radius.Short), () => print("StopAnim"));
+        AddAction("<Mouse>/leftButton", "hold(duration=0.01)", ()=>print("StartAnim"), ()=> Attack(Attacks.Medium, Radius.Long), () => print("StopAnim"));
+        AddAction("<Mouse>/rightButton", "hold(duration=2)", ()=>print("StartAnim"), ()=> Attack(Attacks.Strong, Radius.Short), () => print("StopAnim"));
 
         Rend = GetComponent<SpriteRenderer>();
     }
@@ -58,7 +58,8 @@ public class AttackScript : MonoBehaviour
                 escr.TakeDamage(10);
                 break;
             case Attacks.Strong:
-                escr.TakeDamage(20);
+                escr.TakeDamage(30);
+                en.GetComponent<Rigidbody2D>().AddForce(Mathf.Sign(transform.forward.x)*Vector2.right*800);
                 break;
         }
     }

@@ -9,6 +9,7 @@ public class EnemyScript : MonoBehaviour
 
     private SpriteRenderer SpriteRenderer { get; set; }
 
+    private TimedTrigger _painTrigger = new TimedTrigger();
     //private Rigidbody2D Rigidbody { get; set; }
     //private float Speed { get; set; }
 
@@ -28,11 +29,14 @@ public class EnemyScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        _painTrigger.Step(Time.fixedDeltaTime);
         var dx = (PlayerTransform.position - transform.position).x;
         if (dx < 0)
             SpriteRenderer.flipX = false; // due to original flip of test asset. To be inverted.
         if (dx > 0)
             SpriteRenderer.flipX = true; // due to original flip of test asset. To be inverted.
+
+        SpriteRenderer.color = _painTrigger.IsSet ? Color.red : Color.white;
     }
 
     public void TakeDamage(float dmg)
@@ -41,5 +45,8 @@ public class EnemyScript : MonoBehaviour
         print($"{gameObject.name} was set to {CurrHP} hp.");
         if (CurrHP==0)
             Destroy(gameObject);
+        else
+            _painTrigger.SetFor(0.25f);
+
     }
 }
