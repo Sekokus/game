@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 
 public class AttackScript : MonoBehaviour
 {
-    private SpriteRenderer Rend { get; set; }
-    
+
     private enum Attacks
     {
         Medium,
@@ -22,8 +21,6 @@ public class AttackScript : MonoBehaviour
     {
         AddAction("<Mouse>/leftButton", "hold(duration=0.01)", ()=>print("StartAnim"), ()=> Attack(Attacks.Medium, Radius.Long), () => print("StopAnim"));
         AddAction("<Mouse>/rightButton", "hold(duration=2)", ()=>print("StartAnim"), ()=> Attack(Attacks.Strong, Radius.Short), () => print("StopAnim"));
-
-        Rend = GetComponent<SpriteRenderer>();
     }
 
     private void AddAction(string path, string interactions, Action start, Action perform, Action end)
@@ -44,7 +41,7 @@ public class AttackScript : MonoBehaviour
         //EnemyScript en;
         var en = GameObject
             .FindGameObjectsWithTag("Enemy")
-            .Where(go => Rend.flipX
+            .Where(go => transform.eulerAngles.y == 180
                 ? go.transform.position.x >= transform.position.x
                 : go.transform.position.x <= transform.position.x)
             .OrderBy(go => (go.transform.position - transform.position).magnitude)
