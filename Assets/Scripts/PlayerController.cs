@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
@@ -29,7 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private UnityEvent<float> onDashEnd;
     [SerializeField] private UnityEvent<Vector2> onDashFrameStart;
     [SerializeField, Min(0)] private float dashDistance = 3f;
-    [SerializeField] private bool stopDashOnCollision = true;
+    [SerializeField] private DashCollisionResolvingMode dashCollisionMode = DashCollisionResolvingMode.Stop;
+    [SerializeField, Range(0, 90)] private float maxDashChangeDirectionAngle = 40f;
     [SerializeField, Min(0)] private float dashStartDelay = 0.1f;
     [SerializeField, Min(0)] private float dashEndDelay = 0.1f;
     [SerializeField, Min(1)] private int dashFrames = 7;
@@ -53,7 +56,6 @@ public class PlayerController : MonoBehaviour
     [Header("Player components")]
     [SerializeField] private Rigidbody2D playerRigidbody;
     [SerializeField] private Collider2D playerCollider;
-    [SerializeField] private SpriteRenderer playerSpriteRenderer;
 
     [Space]
     [Header("Other")]
@@ -67,6 +69,9 @@ public class PlayerController : MonoBehaviour
     private RaycastHit2D[] _contacts;
     private Vector2 _awakePosition;
     private Vector2 _lastNonZeroInput;
+
+    public bool IsGrounded => _isGrounded;
+    public bool IsDashing => _isDashing;
 
     private readonly TimedTrigger _jumpWaitTrigger = new TimedTrigger();
     private readonly Trigger _jumpAbortTrigger = new Trigger();
@@ -86,6 +91,11 @@ public class PlayerController : MonoBehaviour
     private enum DashControlMode
     {
         Mouse, Keyboard
+    }
+
+    private enum DashCollisionResolvingMode
+    {
+        Stop, Ignore, ChangeDirection
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -169,20 +179,46 @@ public class PlayerController : MonoBehaviour
 
                 var distance = dashDistance / dashFrames;
                 var expectedEndPosition = startPosition + direction * distance;
-                if (stopDashOnCollision)
+                var hit = Physics2D.BoxCast(startPosition, 
+                    GetActualColliderBounds().size, 0, direction, distance, contactCheckMask);
+                bool stopIfNotMoved = false;
+
+                switch (dashCollisionMode)
                 {
-                    var hit = Physics2D.BoxCast(startPosition, GetActualColliderBounds().size, 0, direction, distance, contactCheckMask);
-                    if (hit)
-                    {
-                        expectedEndPosition = hit.centroid;
-                    }
+                    case DashCollisionResolvingMode.Stop:
+                        if (hit)
+                        {
+                            expectedEndPosition = hit.centroid;
+                            stopIfNotMoved = true;
+                        }
+                        break;
+                    case DashCollisionResolvingMode.Ignore:
+                        break;
+                    case DashCollisionResolvingMode.ChangeDirection:
+                        if (hit)
+                        {
+                            expectedEndPosition = hit.centroid;
+                            var maxChangeDirectionAngleCos = Mathf.Cos(maxDashChangeDirectionAngle * Mathf.Deg2Rad);
+                            var angleCos = Vector2.Dot(hit.normal, -direction);
+                            if (angleCos > maxChangeDirectionAngleCos)
+                            {
+                                stopIfNotMoved = true;
+                                break;
+                            }
+                            var unsignedDirection = new Vector2(-hit.normal.y, hit.normal.x);
+                            direction = Mathf.Sign(Vector2.Dot(unsignedDirection, direction)) * unsignedDirection;
+                        }
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
 
                 playerRigidbody.MovePosition(expectedEndPosition);
                 yield return new WaitForFixedUpdate();
-
+                
                 const float maxDistanceError = 0.1f;
-                if (stopDashOnCollision && Vector2.Distance(startPosition, playerRigidbody.position) < distance - maxDistanceError)
+                if (stopIfNotMoved && Vector2.Distance(startPosition, playerRigidbody.position) <
+                    distance - maxDistanceError)
                 {
                     break;
                 }
@@ -446,6 +482,8 @@ public class PlayerController : MonoBehaviour
 
     private void LookTo(float direction)
     {
-        playerSpriteRenderer.flipX = (direction > 0) != isSpriteInitiallyFlipped;
+        Vector3 euler = transform.eulerAngles;
+        euler.y = (direction > 0) != isSpriteInitiallyFlipped ? 180 : 0;
+        transform.eulerAngles = euler;
     }
 }
