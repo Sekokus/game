@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class AttackScript : MonoBehaviour
 {
+    private Animator _strikeAnimator;
+    private static readonly int Strike = Animator.StringToHash("Strike");
+
     private enum Attacks
     {
         Medium,
@@ -25,10 +28,11 @@ public class AttackScript : MonoBehaviour
 
     void Start()
     {
-        AddAction("<Mouse>/leftButton", "hold(duration=0.01)", () => print("StartAnim"),
+        AddAction("<Mouse>/leftButton", "hold(duration=0.01)", StartAnim,
             () => Attack(Attacks.Medium, Radius.Long), () => print("StopAnim"));
         AddAction("<Mouse>/rightButton", "hold(duration=2)", () => print("StartAnim"),
             () => Attack(Attacks.Strong, Radius.Short), () => print("StopAnim"));
+        _strikeAnimator = GetComponentInChildren<Animator>();
     }
 
     private void AddAction(string path, string interactions, Action start, Action perform, Action end)
@@ -42,6 +46,11 @@ public class AttackScript : MonoBehaviour
         action.canceled += _ => end();
 
         action.Enable();
+    }
+
+    private void StartAnim()
+    {
+        _strikeAnimator.SetTrigger(Strike);
     }
 
     private void Attack(Attacks type, Radius rad)
