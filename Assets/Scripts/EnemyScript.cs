@@ -10,8 +10,6 @@ public class EnemyScript : MonoBehaviour
     private SpriteRenderer SpriteRenderer { get; set; }
 
     private TimedTrigger _painTrigger = new TimedTrigger();
-    //private Rigidbody2D Rigidbody { get; set; }
-    //private float Speed { get; set; }
 
     private float CurrHP { get; set; }
     private float MaxHP { get; set; }
@@ -23,8 +21,6 @@ public class EnemyScript : MonoBehaviour
         SpriteRenderer = GetComponent<SpriteRenderer>();
         MaxHP = 100;
         CurrHP = MaxHP;
-        //Rigidbody = GetComponent<Rigidbody2D>();
-        //Speed = 6f;
     }
 
     void FixedUpdate()

@@ -5,28 +5,36 @@ using UnityEngine.InputSystem;
 
 public class AttackScript : MonoBehaviour
 {
-
     private enum Attacks
     {
         Medium,
         Strong
     }
+
     private enum Radius
     {
         Short = 2,
-        Long= 4
+        Long = 4
+    }
+
+    private enum AreaType
+    {
+        Circle,
+        Ellipse
     }
 
     void Start()
     {
-        AddAction("<Mouse>/leftButton", "hold(duration=0.01)", ()=>print("StartAnim"), ()=> Attack(Attacks.Medium, Radius.Long), () => print("StopAnim"));
-        AddAction("<Mouse>/rightButton", "hold(duration=2)", ()=>print("StartAnim"), ()=> Attack(Attacks.Strong, Radius.Short), () => print("StopAnim"));
+        AddAction("<Mouse>/leftButton", "hold(duration=0.01)", () => print("StartAnim"),
+            () => Attack(Attacks.Medium, Radius.Long), () => print("StopAnim"));
+        AddAction("<Mouse>/rightButton", "hold(duration=2)", () => print("StartAnim"),
+            () => Attack(Attacks.Strong, Radius.Short), () => print("StopAnim"));
     }
 
     private void AddAction(string path, string interactions, Action start, Action perform, Action end)
     {
         var action = new InputAction();
-        
+
         action.AddBinding(path).WithInteractions(interactions);
 
         action.started += _ => start();
@@ -41,11 +49,11 @@ public class AttackScript : MonoBehaviour
         //EnemyScript en;
         var en = GameObject
             .FindGameObjectsWithTag("Enemy")
-            .Where(go => transform.eulerAngles.y == 180
-                ? go.transform.position.x >= transform.position.x
-                : go.transform.position.x <= transform.position.x)
+            .Where(go => transform.eulerAngles.y == 0
+                ? go.transform.position.x <= transform.position.x
+                : go.transform.position.x >= transform.position.x)
             .OrderBy(go => (go.transform.position - transform.position).magnitude)
-            .FirstOrDefault(go => (go.transform.position - transform.position).magnitude < (int)rad);
+            .FirstOrDefault(go => Intersect(go, rad));
         if (!en)
             return;
         var escr = en.GetComponent<EnemyScript>();
@@ -56,8 +64,24 @@ public class AttackScript : MonoBehaviour
                 break;
             case Attacks.Strong:
                 escr.TakeDamage(30);
-                en.GetComponent<Rigidbody2D>().AddForce(Mathf.Sign(transform.forward.x)*Vector2.right*800);
+                var dir = Mathf.Abs(transform.eulerAngles.y) < 1 ? -1 : 1;
+                en.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 800 * dir);
                 break;
         }
+    }
+
+    private bool Intersect(GameObject go, Radius rad, AreaType type=AreaType.Circle)
+    {
+        var delta = go.transform.position - transform.position;
+        switch (type)
+        {
+            case AreaType.Circle:
+                return delta.magnitude < (int) rad;
+            case AreaType.Ellipse:
+                return delta.x + 2 * delta.y < (int) rad;
+            
+        }
+
+        return false;
     }
 }
