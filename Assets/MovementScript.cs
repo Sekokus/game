@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class MovementScript : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _renderer;
+    public Animator animator;
 
     void Start()
     {
@@ -20,6 +22,8 @@ public class MovementScript : MonoBehaviour
         var horizontal = Input.GetAxis("Horizontal");
         if (horizontal > 0) _renderer.flipX = false;
         if (horizontal < 0) _renderer.flipX = true;
+        
+        animator.SetFloat("Speed", Math.Abs(horizontal));
 
         _rigidbody.velocity += new Vector2(horizontal*0.5f, 0);
         if (horizontal == 0) _rigidbody.velocity = new Vector2(_rigidbody.velocity.x / 2, _rigidbody.velocity.y);
