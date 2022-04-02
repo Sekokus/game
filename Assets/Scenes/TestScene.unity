@@ -881,6 +881,25 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1433470049122287004, guid: 8a025c4c0201b1a4595b9392e14df89d, type: 3}
   m_PrefabInstance: {fileID: 1433470049173079667}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1592310384
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592310383}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 182b7678ec3445645ba71e861f46f255, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1592310390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1433470049122286983, guid: 8a025c4c0201b1a4595b9392e14df89d, type: 3}
@@ -898,6 +917,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ba1dc79b2cb414aae379bd2124914e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  attackPoint: {fileID: 0}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1718116699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1031,7 @@ PrefabInstance:
     - target: {fileID: 1433470049122286976, guid: 8a025c4c0201b1a4595b9392e14df89d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4f6e7c40fa5668f4a95e4159c18968bc, type: 3}
+      objectReference: {fileID: 21300000, guid: f43be3356247eeb4bbc8e37608a012b3, type: 3}
     - target: {fileID: 1433470049122286979, guid: 8a025c4c0201b1a4595b9392e14df89d, type: 3}
       propertyPath: dashCollisionMode
       value: 2

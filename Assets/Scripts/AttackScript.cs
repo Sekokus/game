@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class AttackScript : MonoBehaviour
 {
-    private Animator _strikeAnimator;
-    private static readonly int Strike = Animator.StringToHash("Strike");
+    private Animator _animator;
+    private PlayerController _controller;
 
     private enum Attacks
     {
@@ -29,10 +29,11 @@ public class AttackScript : MonoBehaviour
     void Start()
     {
         AddAction("<Mouse>/leftButton", "hold(duration=0.01)", StartAnim,
-            () => Attack(Attacks.Medium, Radius.Long), () => print("StopAnim"));
+            () => Attack(Attacks.Medium, Radius.Long), StopAnim);
         AddAction("<Mouse>/rightButton", "hold(duration=2)", () => print("StartAnim"),
             () => Attack(Attacks.Strong, Radius.Short), () => print("StopAnim"));
-        _strikeAnimator = GetComponentInChildren<Animator>();
+        _animator = GetComponent<Animator>();
+        _controller = GetComponent<PlayerController>();
     }
 
     private void AddAction(string path, string interactions, Action start, Action perform, Action end)
@@ -50,7 +51,14 @@ public class AttackScript : MonoBehaviour
 
     private void StartAnim()
     {
-        _strikeAnimator.SetTrigger(Strike);
+        _animator.SetBool("Attack", true);
+        print("StartAnim");
+    }
+    
+    private void StopAnim()
+    {
+        _animator.SetBool("Attack", false);
+        print("StopAnim");
     }
 
     private void Attack(Attacks type, Radius rad)
@@ -58,7 +66,7 @@ public class AttackScript : MonoBehaviour
         //EnemyScript en;
         var en = GameObject
             .FindGameObjectsWithTag("Enemy")
-            .Where(go => transform.eulerAngles.y == 0
+            .Where(go => _controller.LookDirection == PlayerController.Direction.Left
                 ? go.transform.position.x <= transform.position.x
                 : go.transform.position.x >= transform.position.x)
             .OrderBy(go => (go.transform.position - transform.position).magnitude)

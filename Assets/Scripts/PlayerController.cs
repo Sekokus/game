@@ -69,15 +69,22 @@ public class PlayerController : MonoBehaviour
     private RaycastHit2D[] _contacts;
     private Vector2 _awakePosition;
     private Vector2 _lastNonZeroInput;
+    private Animator _animator;
 
     public bool IsGrounded => _isGrounded;
     public bool IsDashing => _isDashing;
+    public Direction LookDirection => (transform.eulerAngles.y == 0) != isSpriteInitiallyFlipped ? Direction.Left : Direction.Right;
 
     private readonly TimedTrigger _jumpWaitTrigger = new TimedTrigger();
     private readonly Trigger _jumpAbortTrigger = new Trigger();
     private readonly TimedTrigger _coyoteTimeTrigger = new TimedTrigger();
     private readonly TimedTrigger _dashReloadingTrigger = new TimedTrigger();
 
+    public enum Direction
+    {
+        Right, Left
+    }
+    
     private enum CameraFollowMode
     {
         Raw, Lerp, DoNotFollow
@@ -98,6 +105,11 @@ public class PlayerController : MonoBehaviour
         Stop, Ignore, ChangeDirection
     }
 
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         var input = context.ReadValue<Vector2>();
@@ -106,6 +118,7 @@ public class PlayerController : MonoBehaviour
             _lastNonZeroInput = input;
         }
         _moveInput = input.x;
+        _animator.SetFloat("Speed", input.magnitude);
     }
 
     public void OnJump(InputAction.CallbackContext context)
