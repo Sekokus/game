@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -9,12 +7,12 @@ public class EnemyScript : MonoBehaviour
 
     private SpriteRenderer SpriteRenderer { get; set; }
 
-    private TimedTrigger _painTrigger = new TimedTrigger();
+    private readonly TimedTrigger _painTrigger = new TimedTrigger();
 
     private float CurrHP { get; set; }
     private float MaxHP { get; set; }
 
-    void Start()
+    private void Start()
     {
         Player = GameObject.FindWithTag("Player");
         PlayerTransform = Player.transform;
@@ -23,7 +21,7 @@ public class EnemyScript : MonoBehaviour
         CurrHP = MaxHP;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         _painTrigger.Step(Time.fixedDeltaTime);
         var dx = (PlayerTransform.position - transform.position).x;
@@ -37,9 +35,9 @@ public class EnemyScript : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        CurrHP = Mathf.Max(CurrHP- dmg, 0);
-        print($"{gameObject.name} was set to {CurrHP} hp.");
-        if (CurrHP==0)
+        CurrHP = Mathf.Max(CurrHP - dmg, 0);
+        //print($"{gameObject.name} was set to {CurrHP} hp.");
+        if (CurrHP == 0)
             Destroy(gameObject);
         else
             _painTrigger.SetFor(0.25f);
