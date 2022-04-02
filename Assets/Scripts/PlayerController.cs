@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Linq;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
@@ -27,9 +25,6 @@ public class PlayerController : MonoBehaviour
     [Header("Dash properties")]
     [SerializeField] private bool dashEnabled = true;
     [SerializeField] private DashControlMode dashControlMode = DashControlMode.Mouse;
-    [SerializeField] private UnityEvent<float> onDashStart;
-    [SerializeField] private UnityEvent<float> onDashEnd;
-    [SerializeField] private UnityEvent<Vector2> onDashFrameStart;
     [SerializeField, Min(0)] private float dashDistance = 3f;
     [SerializeField] private DashCollisionResolvingMode dashCollisionMode = DashCollisionResolvingMode.Stop;
     [SerializeField, Range(0, 90)] private float maxDashChangeDirectionAngle = 40f;
@@ -37,6 +32,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Min(0)] private float dashEndDelay = 0.1f;
     [SerializeField, Min(1)] private int dashFrames = 7;
     [SerializeField, Min(0)] private float dashReloadTime = 0.2f;
+    [SerializeField] private UnityEvent<float> onDashStart;
+    [SerializeField] private UnityEvent<float> onDashEnd;
+    [SerializeField] private UnityEvent<Vector2> onDashFrameStart;
 
     [Space]
     [Header("Ground/Ceil/Wall checking properties")]
@@ -56,6 +54,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player components")]
     [SerializeField] private Rigidbody2D playerRigidbody;
     [SerializeField] private Collider2D playerCollider;
+    [SerializeField] private Animator animator;
 
     [Space]
     [Header("Other")]
@@ -69,22 +68,44 @@ public class PlayerController : MonoBehaviour
     private RaycastHit2D[] _contacts;
     private Vector2 _awakePosition;
     private Vector2 _lastNonZeroInput;
-    private Animator _animator;
 
     public bool IsGrounded => _isGrounded;
     public bool IsDashing => _isDashing;
-    public Direction LookDirection => (transform.eulerAngles.y == 0) != isSpriteInitiallyFlipped ? Direction.Left : Direction.Right;
+
+    public bool GravityEnabled
+    {
+        get => gravityEnabled;
+        set => gravityEnabled = value;
+    }
+
+    public Direction LookDirection => (Mathf.Abs(transform.eulerAngles.y) < 1e-5f) != isSpriteInitiallyFlipped ? Direction.Left : Direction.Right;
+
+    public bool JumpEnabled
+    {
+        get => jumpEnabled;
+        set => jumpEnabled = value;
+    }
+
+    public bool DashEnabled
+    {
+        get => dashEnabled;
+        set => dashEnabled = value;
+    }
+
+    public Rigidbody2D Rigidbody => playerRigidbody;
 
     private readonly TimedTrigger _jumpWaitTrigger = new TimedTrigger();
     private readonly Trigger _jumpAbortTrigger = new Trigger();
     private readonly TimedTrigger _coyoteTimeTrigger = new TimedTrigger();
     private readonly TimedTrigger _dashReloadingTrigger = new TimedTrigger();
 
+    private static readonly int AnimatorSpeed = Animator.StringToHash("Speed");
+
     public enum Direction
     {
         Right, Left
     }
-    
+
     private enum CameraFollowMode
     {
         Raw, Lerp, DoNotFollow
@@ -107,7 +128,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
+        if (Keyboard.current == null)
+        {
+            Debug.LogWarning("Клавиатура не найдена");
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -118,7 +142,7 @@ public class PlayerController : MonoBehaviour
             _lastNonZeroInput = input;
         }
         _moveInput = input.x;
-        _animator.SetFloat("Speed", input.magnitude);
+        animator.SetFloat(AnimatorSpeed, _moveInput);
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -192,7 +216,7 @@ public class PlayerController : MonoBehaviour
 
                 var distance = dashDistance / dashFrames;
                 var expectedEndPosition = startPosition + direction * distance;
-                var hit = Physics2D.BoxCast(startPosition, 
+                var hit = Physics2D.BoxCast(startPosition,
                     GetActualColliderBounds().size, 0, direction, distance, contactCheckMask);
                 bool stopIfNotMoved = false;
 
@@ -228,7 +252,7 @@ public class PlayerController : MonoBehaviour
 
                 playerRigidbody.MovePosition(expectedEndPosition);
                 yield return new WaitForFixedUpdate();
-                
+
                 const float maxDistanceError = 0.1f;
                 if (stopIfNotMoved && Vector2.Distance(startPosition, playerRigidbody.position) <
                     distance - maxDistanceError)
@@ -300,6 +324,11 @@ public class PlayerController : MonoBehaviour
     private void HandledDebugging()
     {
         if (!debugFeaturesEnabled)
+        {
+            return;
+        }
+
+        if (Keyboard.current == null)
         {
             return;
         }
@@ -495,7 +524,7 @@ public class PlayerController : MonoBehaviour
 
     private void LookTo(float direction)
     {
-        Vector3 euler = transform.eulerAngles;
+        var euler = transform.eulerAngles;
         euler.y = (direction > 0) != isSpriteInitiallyFlipped ? 180 : 0;
         transform.eulerAngles = euler;
     }

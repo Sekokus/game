@@ -8,6 +8,14 @@ public class AttackScript : MonoBehaviour
     private Animator _animator;
     private PlayerController _controller;
 
+    [SerializeField] private bool attackEnabled;
+
+    public bool AttackEnabled
+    {
+        get => attackEnabled;
+        set => attackEnabled = value;
+    }
+
     private enum Attacks
     {
         Medium,
@@ -26,7 +34,7 @@ public class AttackScript : MonoBehaviour
         Ellipse
     }
 
-    void Start()
+    private void Start()
     {
         AddAction("<Mouse>/leftButton", "hold(duration=0.01)", StartAnim,
             () => Attack(Attacks.Medium, Radius.Long), StopAnim);
@@ -51,52 +59,59 @@ public class AttackScript : MonoBehaviour
 
     private void StartAnim()
     {
+        if (!attackEnabled)
+        {
+            return;
+        }
         _animator.SetBool("Attack", true);
-        print("StartAnim");
     }
-    
+
     private void StopAnim()
     {
+        if (!attackEnabled)
+        {
+            return;
+        }
         _animator.SetBool("Attack", false);
-        print("StopAnim");
     }
 
     private void Attack(Attacks type, Radius rad)
     {
-        //EnemyScript en;
-        var en = GameObject
-            .FindGameObjectsWithTag("Enemy")
+        if (!attackEnabled)
+        {
+            return;
+        }
+        var en = FindObjectsOfType<EnemyScript>()
             .Where(go => _controller.LookDirection == PlayerController.Direction.Left
                 ? go.transform.position.x <= transform.position.x
                 : go.transform.position.x >= transform.position.x)
             .OrderBy(go => (go.transform.position - transform.position).magnitude)
-            .FirstOrDefault(go => Intersect(go, rad));
+            .FirstOrDefault(go => Intersect(go.gameObject, rad));
         if (!en)
             return;
-        var escr = en.GetComponent<EnemyScript>();
         switch (type)
         {
             case Attacks.Medium:
-                escr.TakeDamage(10);
+                en.TakeDamage(10);
                 break;
             case Attacks.Strong:
-                escr.TakeDamage(30);
-                var dir = Mathf.Abs(transform.eulerAngles.y) < 1 ? -1 : 1;
+                en.TakeDamage(30);
+                var dir = _controller.LookDirection == PlayerController.Direction.Right ? 1 : -1;
                 en.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 800 * dir);
                 break;
         }
     }
 
-    private bool Intersect(GameObject go, Radius rad, AreaType type=AreaType.Circle)
+    private bool Intersect(GameObject go, Radius rad, AreaType type = AreaType.Circle)
     {
         var delta = go.transform.position - transform.position;
         switch (type)
         {
             case AreaType.Circle:
-                return delta.magnitude < (int) rad;
+                return delta.magnitude < (int)rad;
             case AreaType.Ellipse:
-                return delta.x + 2 * delta.y < (int) rad;
-            
+                return delta.x + 2 * delta.y < (int)rad;
+
         }
 
         return false;
