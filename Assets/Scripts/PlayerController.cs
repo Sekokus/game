@@ -295,7 +295,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        HandledDebugging();
+        HandleOptionalInput();
 
         HandleBoundsContacts();
         ApplyMoveInput();
@@ -321,14 +321,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandledDebugging()
+    private void HandleOptionalInput()
     {
-        if (!debugFeaturesEnabled)
+        if (Keyboard.current == null)
         {
             return;
         }
 
-        if (Keyboard.current == null)
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
+
+        if (!debugFeaturesEnabled)
         {
             return;
         }
@@ -338,12 +347,6 @@ public class PlayerController : MonoBehaviour
             playerRigidbody.position = _awakePosition;
         }
 
-#if UNITY_EDITOR
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
-        }
-#endif
     }
 
     private void ApplyMoveInput()
