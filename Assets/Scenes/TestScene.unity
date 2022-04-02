@@ -925,6 +925,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1433470049122286979, guid: 8a025c4c0201b1a4595b9392e14df89d, type: 3}
+      propertyPath: isSpriteInitiallyFlipped
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433470049122286979, guid: 8a025c4c0201b1a4595b9392e14df89d, type: 3}
       propertyPath: maxDashChangeDirectionAngle
       value: 40
       objectReference: {fileID: 0}
