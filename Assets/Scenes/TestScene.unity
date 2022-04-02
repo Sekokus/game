@@ -3012,6 +3012,10 @@ PrefabInstance:
       value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 1433470049122286979, guid: 8a025c4c0201b1a4595b9392e14df89d, type: 3}
+      propertyPath: dashControlMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433470049122286979, guid: 8a025c4c0201b1a4595b9392e14df89d, type: 3}
       propertyPath: dashCollisionMode
       value: 2
       objectReference: {fileID: 0}
@@ -3029,7 +3033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1433470049122286983, guid: 8a025c4c0201b1a4595b9392e14df89d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -69.27
+      value: 2.05
       objectReference: {fileID: 0}
     - target: {fileID: 1433470049122286983, guid: 8a025c4c0201b1a4595b9392e14df89d, type: 3}
       propertyPath: m_LocalPosition.y

@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private DashControlMode dashControlMode = DashControlMode.Mouse;
     [SerializeField, Min(0)] private float dashDistance = 3f;
     [SerializeField] private DashCollisionResolvingMode dashCollisionMode = DashCollisionResolvingMode.Stop;
-    [SerializeField, Range(0, 90)] private float maxDashChangeDirectionAngle = 40f;
     [SerializeField, Min(0)] private float dashStartDelay = 0.1f;
     [SerializeField, Min(0)] private float dashEndDelay = 0.1f;
     [SerializeField, Min(1)] private int dashFrames = 7;
@@ -132,6 +131,8 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogWarning("Клавиатура не найдена");
         }
+
+        Cursor.visible = false;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -197,6 +198,7 @@ public class PlayerController : MonoBehaviour
 
     private void Dash(Vector2 direction)
     {
+        direction = direction.normalized;
         IEnumerator DashCoroutine()
         {
             _dashReloadingTrigger.Set();
@@ -235,9 +237,9 @@ public class PlayerController : MonoBehaviour
                         if (hit)
                         {
                             expectedEndPosition = hit.centroid;
-                            var maxChangeDirectionAngleCos = Mathf.Cos(maxDashChangeDirectionAngle * Mathf.Deg2Rad);
+                            var cos45 = Mathf.Cos(45f * Mathf.Deg2Rad);
                             var angleCos = Vector2.Dot(hit.normal, -direction);
-                            if (angleCos > maxChangeDirectionAngleCos)
+                            if (angleCos > cos45)
                             {
                                 stopIfNotMoved = true;
                                 break;
