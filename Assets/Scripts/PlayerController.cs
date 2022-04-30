@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Min(0)] private float dashEndDelay = 0.1f;
     [SerializeField, Min(1)] private int dashFrames = 7;
     [SerializeField, Min(0)] private float dashReloadTime = 0.2f;
+    [SerializeField, Min(0)] private float dashRegenerationSpeed = 0.3f;
     [SerializeField] private UnityEvent<float> onDashStart;
     [SerializeField] private UnityEvent<float> onDashEnd;
     [SerializeField] private UnityEvent<Vector2> onDashFrameStart;
@@ -70,6 +71,37 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded => _isGrounded;
     public bool IsDashing => _isDashing;
+
+    private CharacterResource _healthResource;
+    private CharacterResource _dashResource;
+
+    public CharacterResource HealthResource
+    {
+        get
+        {
+            if (_healthResource == null)
+            {
+                const float hearts = 4f;
+                _healthResource = new CharacterResource(hearts);
+            }
+
+            return _healthResource;
+        }
+    }
+
+    public CharacterResource DashResource
+    {
+        get
+        {
+            if (_dashResource == null)
+            {
+                const float dashes = 4f;
+                _dashResource = new CharacterResource(dashes);
+            }
+
+            return _dashResource;
+        }
+    }
 
     public bool GravityEnabled
     {
@@ -174,6 +206,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if (DashResource.Value < 1)
+        {
+            return;
+        }
+
         Vector2 dashDirection;
         switch (dashControlMode)
         {
@@ -198,7 +235,9 @@ public class PlayerController : MonoBehaviour
 
     private void Dash(Vector2 direction)
     {
+        DashResource.Spend(1);
         direction = direction.normalized;
+
         IEnumerator DashCoroutine()
         {
             _dashReloadingTrigger.Set();
@@ -305,6 +344,8 @@ public class PlayerController : MonoBehaviour
         HandleJumping();
         ApplyVelocityToRigidbody();
 
+        RegenerateDashCharges();
+
         if (cameraFollowMode == CameraFollowMode.Lerp)
         {
             MoveCamera();
@@ -313,6 +354,11 @@ public class PlayerController : MonoBehaviour
         _jumpWaitTrigger.Step(Time.fixedDeltaTime);
         _coyoteTimeTrigger.Step(Time.fixedDeltaTime);
         _dashReloadingTrigger.Step(Time.fixedDeltaTime);
+    }
+
+    private void RegenerateDashCharges()
+    {
+        DashResource.Restore(Time.fixedDeltaTime * dashRegenerationSpeed);
     }
 
     private void LateUpdate()
@@ -328,15 +374,6 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current == null)
         {
             return;
-        }
-
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
         }
 
         if (!debugFeaturesEnabled)
