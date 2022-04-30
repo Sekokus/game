@@ -6,6 +6,8 @@ namespace UI
 {
     public class DashChargesBar : WombImageResourceBar
     {
+        [SerializeField] private Color rechargingColor = Color.gray;
+
         protected override CharacterResource GetResource(PlayerController player)
         {
             return player.DashResource;
@@ -13,12 +15,7 @@ namespace UI
 
         protected override void OnWombFillChanged(float fillAmount, int wombIndex, IReadOnlyList<Image> wombImages)
         {
-            if (!Mathf.Approximately(fillAmount, 1))
-            {
-                return;
-            }
-
-            // TODO: сделать эффект чтобы классно
+            wombImages[wombIndex].color = Mathf.Approximately(fillAmount, 1) ? Color.white : rechargingColor;
         }
     }
 }
