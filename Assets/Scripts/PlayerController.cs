@@ -163,8 +163,6 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogWarning("Клавиатура не найдена");
         }
-
-        Cursor.visible = false;
     }
 
     public void OnMove(InputAction.CallbackContext context)
