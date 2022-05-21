@@ -1,3 +1,4 @@
+using Sekokus;
 using UnityEngine;
 
 namespace UI
@@ -28,7 +29,7 @@ namespace UI
             resource.OnValueChanged -= OnValueChanged;
         }
 
-        protected abstract CharacterResource GetResource(PlayerController player);
+        protected abstract CharacterResource GetResource(PlayerCore player);
 
         protected abstract void OnValueChanged(CharacterResource resource);
     }

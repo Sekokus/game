@@ -1,10 +1,11 @@
+using Sekokus;
 using UnityEngine;
 
 public class PortalTrigger : PlayerTriggerZone
 {
     [SerializeField] private Vector2 destination;
 
-    protected override void OnEnter(PlayerController player)
+    protected override void OnEnter(PlayerCore player)
     {
         player.Rigidbody.position = destination;
     }

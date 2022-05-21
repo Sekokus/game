@@ -1,3 +1,4 @@
+using Sekokus;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
@@ -11,7 +12,7 @@ public class PlayerTriggerZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        var player = col.GetComponent<PlayerController>();
+        var player = col.GetComponent<PlayerCore>();
         if (player != null)
         {
             OnEnter(player);
@@ -20,18 +21,18 @@ public class PlayerTriggerZone : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        var player = col.GetComponent<PlayerController>();
+        var player = col.GetComponent<PlayerCore>();
         if (player != null)
         {
             OnExit(player);
         }
     }
 
-    protected virtual void OnEnter(PlayerController player)
+    protected virtual void OnEnter(PlayerCore player)
     {
     }
 
-    protected virtual void OnExit(PlayerController player)
+    protected virtual void OnExit(PlayerCore player)
     {
     }
 

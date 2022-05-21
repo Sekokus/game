@@ -1,14 +1,16 @@
-﻿public class PlayerManager : Singleton<PlayerManager>
-{
-    private PlayerController _player;
+﻿using Sekokus;
 
-    public PlayerController Player
+public class PlayerManager : Singleton<PlayerManager>
+{
+    private PlayerCore _player;
+
+    public PlayerCore Player
     {
         get
         {
             if (_player == null)
             {
-                _player = FindObjectOfType<PlayerController>();
+                _player = FindObjectOfType<PlayerCore>();
             }
 
             return _player;

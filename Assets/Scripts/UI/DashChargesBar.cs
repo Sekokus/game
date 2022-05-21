@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sekokus;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,9 @@ namespace UI
     {
         [SerializeField] private Color rechargingColor = Color.gray;
 
-        protected override CharacterResource GetResource(PlayerController player)
+        protected override CharacterResource GetResource(PlayerCore player)
         {
-            return player.DashResource;
+            return player.Resources.DashCharges;
         }
 
         protected override void OnWombFillChanged(float fillAmount, int wombIndex, IReadOnlyList<Image> wombImages)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sekokus;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -28,6 +29,11 @@ public class DashEffectController : MonoBehaviour
     {
         animationRenderer.enabled = false;
         _linePositions = new Queue<Vector3>(maxLinePointsPerFrame);
+
+        var dashModule = GetComponentInParent<DashModule>();
+        dashModule.DashStarted += OnDashStarted;
+        dashModule.DashFrameStart += OnDashFrameStart;
+        dashModule.DashEnded += OnDashEnded;
     }
 
     private void InterruptActiveAnimation()
@@ -38,13 +44,13 @@ public class DashEffectController : MonoBehaviour
         }
     }
 
-    public void OnDashStart(float animationTime)
+    public void OnDashStarted(float animationTime)
     {
         InterruptActiveAnimation();
         _activeAnimationCoroutine = StartCoroutine(AnimationCoroutine(animationTime));
     }
 
-    public void OnDashEnd(float animationTime)
+    public void OnDashEnded(float animationTime)
     {
         lineRenderer.positionCount = 0;
         _linePositions.Clear();
