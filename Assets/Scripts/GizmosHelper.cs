@@ -1,18 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sekokus
 {
     public static class GizmosHelper
     {
-        public static void DrawWithColor(Color color, Action drawAction)
+        private static readonly Stack<Color> ColorHistory = new Stack<Color>();
+        private static readonly Stack<Matrix4x4> MatrixHistory = new Stack<Matrix4x4>();
+
+        public static void PushColor(Color color)
         {
-            var previousColor = Gizmos.color;
+            ColorHistory.Push(Gizmos.color);
             Gizmos.color = color;
-
-            drawAction();
-
-            Gizmos.color = previousColor;
+        }
+        
+        public static void PushMatrix(Matrix4x4 matrix)
+        {
+            MatrixHistory.Push(Gizmos.matrix);
+            Gizmos.matrix = matrix;
+        }
+        
+        public static void PopColor()
+        {
+            Gizmos.color = ColorHistory.Pop();
+        }
+        
+        public static void PopMatrix()
+        {
+            Gizmos.matrix = MatrixHistory.Pop();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Sekokus.Player;
+﻿using System;
+using Sekokus.Player;
 using UnityEngine;
 
 namespace Sekokus
@@ -6,27 +7,16 @@ namespace Sekokus
     [DefaultExecutionOrder(-1)]
     public class LevelBootstrap : MonoBehaviour
     {
-        [SerializeField]
-        private LevelStartCountdown countdown;
-
         private LevelFactory _levelFactory;
-
         private PlayerMarker _playerMarker;
         
         private void Start()
         {
-            Time.timeScale = 0;
-            countdown.CountdownEnded += OnCountdownEnded;
+            FindMarkers();
             
             _levelFactory = Container.Get<LevelFactory>();
-            
-            FindMarkers();
-            _levelFactory.CreateLevel(_playerMarker);
-        }
-
-        private void OnCountdownEnded()
-        {
-            Time.timeScale = 1;
+            var levelEntry = _levelFactory.CreateLevel(_playerMarker);
+            levelEntry.StartLevel();
         }
 
         private void FindMarkers()

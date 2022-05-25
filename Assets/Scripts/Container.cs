@@ -50,6 +50,11 @@ namespace Sekokus
 
         static Container()
         {
+            InitializeSceneLoader();
+        }
+
+        private static void InitializeSceneLoader()
+        {
             Add<SceneLoader>(ServiceLifetime.Singleton);
             var sceneLoader = Get<SceneLoader>();
             sceneLoader.SceneLoaded += _ => SetPerSceneServicesDirty();

@@ -20,10 +20,11 @@ namespace Sekokus
         [SerializeField] private TextMeshProUGUI textMesh;
 
         private CoroutineRunner _coroutineRunner;
+        private PauseService _pauseService;
         private InputBindings _bindings;
 
         private bool _countdownStarted;
-        private PauseService _pauseService;
+        private bool _canStartCountdown;
 
         private void Start()
         {
@@ -61,7 +62,7 @@ namespace Sekokus
 
         private void OnUIClick(InputAction.CallbackContext obj)
         {
-            if (_countdownStarted)
+            if (!_canStartCountdown || _countdownStarted)
             {
                 return;
             }
@@ -104,6 +105,11 @@ namespace Sekokus
             _pauseService.Unpause(PauseSource.LevelCountdown);
             
             CountdownEnded?.Invoke();
+        }
+
+        public void AllowCountdownStart()
+        {
+            _canStartCountdown = true;
         }
     }
 }

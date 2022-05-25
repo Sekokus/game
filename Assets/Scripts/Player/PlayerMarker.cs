@@ -8,10 +8,9 @@ namespace Sekokus.Player
 
         private void OnDrawGizmos()
         {
-            GizmosHelper.DrawWithColor(Color.blue, () =>
-            {
-                Gizmos.DrawSphere(Location, 0.6f);
-            });
+            GizmosHelper.PushColor(Color.blue);
+
+            Gizmos.DrawSphere(Location, 0.5f);
         }
     }
 }

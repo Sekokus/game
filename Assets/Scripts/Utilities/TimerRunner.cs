@@ -8,9 +8,12 @@ namespace Sekokus.Utilities
     {
         private readonly List<Timer> _timers = new List<Timer>();
         
-        public Timer CreateTimer(Action timeout = null)
+        public Timer CreateTimer(Action timeout = null, bool repeating = false)
         {
-            var timer = new Timer();
+            var timer = new Timer()
+            {
+                Repeating = repeating
+            };
             if (timeout != null)
             {
                 timer.Timeout += timeout;

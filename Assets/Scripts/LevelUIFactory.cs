@@ -2,22 +2,22 @@
 
 namespace Sekokus
 {
-    public class UIFactory
+    public class LevelUIFactory
     {
         private const string LevelUI = "LevelUI";
-        private GameObject _uiPrefab;
+        private LevelEntry _uiPrefab;
         
-        public UIFactory()
+        public LevelUIFactory()
         {
             LoadResources();
         }
 
         private void LoadResources()
         {
-            _uiPrefab = Resources.Load<GameObject>(LevelUI);
+            _uiPrefab = Resources.Load<LevelEntry>(LevelUI);
         }
 
-        public GameObject CreateUI()
+        public LevelEntry CreateUI()
         {
             return Object.Instantiate(_uiPrefab);
         }

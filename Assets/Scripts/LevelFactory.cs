@@ -5,19 +5,19 @@ namespace Sekokus
     public class LevelFactory
     {
         private readonly PlayerFactory _playerFactory;
-        private readonly UIFactory _uiFactory;
+        private readonly LevelUIFactory _levelUIFactory;
 
-        public LevelFactory(PlayerFactory playerFactory, UIFactory uiFactory)
+        public LevelFactory(PlayerFactory playerFactory, LevelUIFactory levelUIFactory)
         {
             _playerFactory = playerFactory;
-            _uiFactory = uiFactory;
+            _levelUIFactory = levelUIFactory;
         }
 
-        public void CreateLevel(PlayerMarker playerMarker)
+        public LevelEntry CreateLevel(PlayerMarker playerMarker)
         {
-            _uiFactory.CreateUI();
-            
+            var entry = _levelUIFactory.CreateUI();
             _playerFactory.CreatePlayer(playerMarker.Location);
+            return entry;
         }
     }
 }

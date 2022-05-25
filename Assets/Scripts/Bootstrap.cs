@@ -1,4 +1,5 @@
-﻿using Sekokus.Player;
+﻿using Sekokus.Enemies;
+using Sekokus.Player;
 using Sekokus.Utilities;
 using UnityEngine;
 
@@ -7,42 +8,57 @@ namespace Sekokus
     [DefaultExecutionOrder(-100)]
     public class Bootstrap : MonoBehaviour
     {
-        [SerializeField] private bool loadSceneOnStart;
         [SerializeField] private string afterLoadScene;
 
-        public void Awake()
+        private void Awake()
         {
             Initialize();
         }
 
         private void Start()
         {
-            if (!loadSceneOnStart)
-            {
-                return;
-            }
-
             var sceneLoader = Container.Get<SceneLoader>();
             sceneLoader.LoadScene(afterLoadScene);
+
+            SceneLoader.SetActive(afterLoadScene);
         }
 
         private void Initialize()
         {
-            CreateFactories();
-            CreatePauseService();
+            BindPlayerFactory();
+            BindUIFactory();
+            BindBulletFactory();
+            BindBulletPool();
+            BindLevelFactory();
+
+            BindPauseService();
+
+            BindPlayerBindings();
 
             AddTimerRunner();
             AddCoroutineRunner();
-
-            CreatePlayerBindings();
         }
 
-        private void CreatePauseService()
+        private static void BindBulletPool()
+        {
+            Container.Add(() =>
+            {
+                var bulletFactory = Container.Get<BulletFactory>();
+                return new BulletPool(bulletFactory);
+            }, ServiceLifetime.PerScene);
+        }
+
+        private static void BindBulletFactory()
+        {
+            Container.Add<BulletFactory>(ServiceLifetime.Singleton);
+        }
+
+        private void BindPauseService()
         {
             Container.Add<PauseService>(ServiceLifetime.Singleton);
         }
 
-        private void CreatePlayerBindings()
+        private void BindPlayerBindings()
         {
             Container.Add<PlayerBindings>(ServiceLifetime.Singleton);
         }
@@ -63,17 +79,24 @@ namespace Sekokus
             Container.AddSingletonInstance(monoBehaviour);
         }
 
-        private void CreateFactories()
+        private static void BindLevelFactory()
         {
-            Container.Add<PlayerFactory>(ServiceLifetime.PerScene);
-            Container.Add<UIFactory>(ServiceLifetime.PerScene);
-
             Container.Add(() =>
             {
                 var playerFactory = Container.Get<PlayerFactory>();
-                var uiFactory = Container.Get<UIFactory>();
+                var uiFactory = Container.Get<LevelUIFactory>();
                 return new LevelFactory(playerFactory, uiFactory);
             }, ServiceLifetime.PerScene);
+        }
+
+        private static void BindUIFactory()
+        {
+            Container.Add<LevelUIFactory>(ServiceLifetime.Singleton);
+        }
+
+        private static void BindPlayerFactory()
+        {
+            Container.Add<PlayerFactory>(ServiceLifetime.PerScene);
         }
     }
 }
