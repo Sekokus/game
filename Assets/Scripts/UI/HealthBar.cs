@@ -1,10 +1,10 @@
-using Sekokus;
+using Sekokus.Player;
 
 namespace UI
 {
     public class HealthBar : WombImageResourceBar
     {
-        protected override CharacterResource GetResource(PlayerCore player)
+        protected override Resource GetResource(PlayerCore player)
         {
             return player.Resources.Health;
         }

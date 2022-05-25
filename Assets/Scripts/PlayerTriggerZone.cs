@@ -1,4 +1,4 @@
-using Sekokus;
+using Sekokus.Player;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]

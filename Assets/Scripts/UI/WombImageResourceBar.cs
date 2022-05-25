@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sekokus.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ namespace UI
     {
         [SerializeField] private Image[] wombs;
 
-        protected override void OnValueChanged(CharacterResource resource)
+        protected override void OnValueChanged(Resource resource)
         {
             var value = resource.Value;
 

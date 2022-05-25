@@ -1,36 +1,43 @@
 using Sekokus;
+using Sekokus.Player;
 using UnityEngine;
 
 namespace UI
 {
     public abstract class ResourceBar : MonoBehaviour
     {
-        private void OnEnable()
-        {
-            var player = PlayerManager.Instance.Player;
-            if (player == null)
-            {
-                return;
-            }
+        private PlayerCore _player;
 
-            var resource = GetResource(player);
+        private void Awake()
+        {
+            var playerFactory = Container.Get<PlayerFactory>();
+            playerFactory.WhenPlayerAvailable(
+                player =>
+                {
+                    _player = player;
+                    Initialize();
+                });
+        }
+
+        private void Initialize()
+        {
+            var resource = GetResource(_player);
             resource.OnValueChanged += OnValueChanged;
         }
 
         private void OnDisable()
         {
-            var player = PlayerManager.Instance.Player;
-            if (player == null)
+            if (!_player)
             {
                 return;
             }
 
-            var resource = GetResource(player);
+            var resource = GetResource(_player);
             resource.OnValueChanged -= OnValueChanged;
         }
 
-        protected abstract CharacterResource GetResource(PlayerCore player);
+        protected abstract Resource GetResource(PlayerCore player);
 
-        protected abstract void OnValueChanged(CharacterResource resource);
+        protected abstract void OnValueChanged(Resource resource);
     }
 }

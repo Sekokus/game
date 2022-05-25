@@ -1,4 +1,4 @@
-using Sekokus;
+using Sekokus.Player;
 using UnityEngine;
 
 public class PortalTrigger : PlayerTriggerZone

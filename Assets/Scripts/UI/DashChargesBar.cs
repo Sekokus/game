@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Sekokus;
+using Sekokus.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +9,7 @@ namespace UI
     {
         [SerializeField] private Color rechargingColor = Color.gray;
 
-        protected override CharacterResource GetResource(PlayerCore player)
+        protected override Resource GetResource(PlayerCore player)
         {
             return player.Resources.DashCharges;
         }
