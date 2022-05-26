@@ -7,7 +7,6 @@ namespace Sekokus
     public class MovementModule : PlayerModule
     {
         [Header("Velocity properties")]
-        [SerializeField] private bool gravityEnabled = true;
         [SerializeField] private float gravity = -9.81f;
         [SerializeField] private float minVerticalVelocity = -20f;
         [SerializeField, Min(0)] private float speed = 4f;
@@ -47,9 +46,14 @@ namespace Sekokus
         private void FixedUpdate()
         {
             CheckContacts();
-            ApplyMoveInput();
-            ApplyGravity();
-            ApplyVelocityToRigidbody();
+
+            if (Core.CanPerform(PlayerActionType.Move))
+            {
+                ApplyMoveInput();
+                ApplyGravity();
+                ApplyVelocityToRigidbody();
+            }
+
             MoveCamera();
         }
 
@@ -64,34 +68,16 @@ namespace Sekokus
 
         private void ApplyMoveInput()
         {
-            if (Core.Dash.IsDashing)
-            {
-                return;
-            }
             Walk(Core.Input.MoveInput.x);
         }
 
         private void ApplyGravity()
         {
-            if (!gravityEnabled)
-            {
-                return;
-            }
-            if (Core.Dash.IsDashing)
-            {
-                return;
-            }
-
             Core.Velocity.y += gravity * Time.fixedDeltaTime;
         }
 
         private void ApplyVelocityToRigidbody()
         {
-            if (Core.Dash.IsDashing)
-            {
-                return;
-            }
-
             if (Core.Velocity.y < minVerticalVelocity)
             {
                 Core.Velocity.y = minVerticalVelocity;

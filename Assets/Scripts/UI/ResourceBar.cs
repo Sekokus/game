@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace UI
 {
+    [DefaultExecutionOrder(2)]
     public abstract class ResourceBar : MonoBehaviour
     {
         private void OnEnable()

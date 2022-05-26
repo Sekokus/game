@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using UnityEngine;
 
 namespace Sekokus
@@ -20,7 +19,6 @@ namespace Sekokus
         public int MaxJumpCount { get; private set; }
 
         private int _availableJumpCount = 0;
-        private ActionState _jumpActionState = ActionState.None;
 
         private Timer _coyoteTimer;
 
@@ -55,7 +53,19 @@ namespace Sekokus
 
         private void OnJumpAction(bool pressed)
         {
-            _jumpActionState = pressed ? ActionState.Pressed : ActionState.Released;
+            if (!Core.CanPerform(PlayerActionType.Jump))
+            {
+                return;
+            }
+
+            if (HasAvailableJumps && pressed)
+            {
+                Jump();
+            }
+            else if (_currentJump != null && !pressed)
+            {
+                AbortJump();
+            }
         }
 
         private void OnLanded()
@@ -78,20 +88,6 @@ namespace Sekokus
             {
                 _isFalling = Core.Velocity.y < 0;
             }
-
-            var jumpPressed = _jumpActionState == ActionState.Pressed;
-            var jumpReleased = _jumpActionState == ActionState.Released;
-
-            if (HasAvailableJumps && jumpPressed)
-            {
-                Jump();
-            }
-            else if (_currentJump != null && jumpReleased)
-            {
-                AbortJump();
-            }
-
-            _jumpActionState = ActionState.None;
         }
 
         private bool HasAvailableJumps => _availableJumpCount > 0;

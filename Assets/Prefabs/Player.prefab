@@ -219,7 +219,6 @@ GameObject:
   - component: {fileID: 1433470049122286983}
   - component: {fileID: 1433470049122286976}
   - component: {fileID: 1433470049122286977}
-  - component: {fileID: 1433470049122286979}
   - component: {fileID: 1433470049122286982}
   - component: {fileID: 5202243290565539435}
   - component: {fileID: 672640705}
@@ -317,96 +316,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1433470049122286979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433470049122287004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e04bbd3628e23349a6eeb80b51bc600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravityEnabled: 1
-  gravity: -10
-  minVerticalVelocity: -20
-  speed: 5
-  airAccelerationFOnDashStarted
-  jumpEnabled: 1
-  jumpStartSpeed: 8
-  jumpAbortFactor: 0.5
-  jumpBufferTime: 0.3
-  coyoteTime: 0.06
-  dashEnabled: 1
-  dashControlMode: 0
-  onDashStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 164278029}
-        m_TargetAssemblyTypeName: DashEffectController, Assembly-CSharp
-        m_MethodName: OnDashStart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:OnDashEndedine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDashEnd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 164278029}
-        m_TargetAssemblyTypeName: DashEffectController, Assembly-CSharp
-        m_MethodName: OnDashEnd
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDashFrameStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 164278029}
-        m_TargetAssemblyTypeName: DashEffectController, Assembly-CSharp
-        m_MethodName: OnDashFrameStart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  dashDistance: 5
-  stopDashOnCollision: 1
-  dashStartDelay: 0.2
-  dashEndDelay: 0.2
-  dashFrames: 10
-  dashReloadTime: 0.2
-  contactCheckMask:
-    serializedVersion: 2
-    m_Bits: 256
-  minContactAngle: 0.7
-  contactRaycastSizeAndDistance: 0.05
-  contactPositionEpsilon: 0.025
-  contactsBufferSize: 6
-  playerCamera: {fileID: 0}
-  cameraFollowMode: 1
-  followSmoothness: 0.25
-  playerRigidbody: {fileID: 1433470049122286977}
-  playerCollider: {fileID: 672640705}
-  playerSpriteRenderer: {fileID: 1433470049122286976}
-  isSpriteInitiallyFlipped: 0
-  debugFeaturesEnabled: 1
 --- !u!114 &1433470049122286982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,7 +343,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1433470049122286979}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -494,7 +403,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1433470049122286979}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -510,7 +419,7 @@ MonoBehaviour:
     m_ActionName: Player/Space[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1433470049122286979}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnDash
         m_Mode: 0
@@ -524,6 +433,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0f29c449-5b21-42b0-8623-1fb46d99b81f
     m_ActionName: Player/Dash[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab52b30c-ea9e-4810-ae08-342d3fac07bb
+    m_ActionName: UI/Menu[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 944478ba-147c-46e2-a79e-dbfc45032f06
+    m_ActionName: UI/Inventory[/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player

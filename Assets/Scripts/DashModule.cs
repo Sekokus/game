@@ -28,8 +28,6 @@ namespace Sekokus
             return false;
         }
 
-        public bool IsDashing { get; private set; }
-
         private void Start()
         {
             Core.Input.DashAction += OnDashAction;
@@ -37,7 +35,7 @@ namespace Sekokus
 
         private void OnDashAction(bool pressed)
         {
-            if (IsDashing || !pressed)
+            if (!pressed || !Core.CanPerform(PlayerActionType.Dash))
             {
                 return;
             }
@@ -59,8 +57,7 @@ namespace Sekokus
 
         private IEnumerator DashCoroutine(Vector2 direction)
         {
-            //_dashReloadingTrigger.Set();
-            IsDashing = true;
+            PushRestrictions(PlayerActionType.Move, PlayerActionType.Attack, PlayerActionType.Jump, PlayerActionType.Dash);
 
             Core.Velocity.y = 0;
             Core.Rigidbody.velocity = Vector2.zero;
@@ -79,20 +76,13 @@ namespace Sekokus
 
                 Core.Rigidbody.MovePosition(expectedEndPosition);
                 yield return new WaitForFixedUpdate();
-
-                //const float maxDistanceError = 0.1f;
-                //if (stopIfNotMoved && Vector2.Distance(startPosition, playerRigidbody.position) <
-                //    distance - maxDistanceError)
-                //{
-                //    break;
-                //}
             }
 
             DashEnded?.Invoke(dashEndDelay);
             yield return new WaitForSeconds(dashEndDelay);
 
-            IsDashing = false;
-            //_dashReloadingTrigger.ResetIn(dashReloadTime);
+
+            PopRestrictions();
         }
     }
 }
