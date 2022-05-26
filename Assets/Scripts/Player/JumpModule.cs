@@ -112,6 +112,7 @@ namespace Player
             _availableJumpCount--;
 
             Core.Velocity.y = _currentJump.StartVelocity;
+            Core.Animator.SetTrigger("jump");
         }
 
         private void AbortJump()

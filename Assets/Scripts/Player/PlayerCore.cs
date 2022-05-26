@@ -7,8 +7,8 @@ namespace Player
     [DefaultExecutionOrder(-2)]
     public class PlayerCore : MonoBehaviour
     {
-        public BoxCollider2D Collider { get; private set; }
-        public Animator Animator { get; private set; }
+        [SerializeField] private Animator animator;
+        public Animator Animator => animator;
         public Transform Transform { get; private set; }
         public Rigidbody2D Rigidbody { get; private set; }
         public MovementModule Movement { get; private set; }
@@ -27,8 +27,6 @@ namespace Player
             Movement = GetComponent<MovementModule>();
             Jump = GetComponent<JumpModule>();
             Dash = GetComponent<DashModule>();
-            Collider = GetComponent<BoxCollider2D>();
-            Animator = GetComponent<Animator>();
             Input = GetComponent<InputModule>();
             Attack = GetComponent<AttackModule>();
             Resources = GetComponent<ResourcesModule>();

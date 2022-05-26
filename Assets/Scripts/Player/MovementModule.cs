@@ -21,6 +21,8 @@ namespace Player
         [Space] [Header("Contact checking properties")] [SerializeField]
         private LayerMask contactCheckMask;
 
+        [SerializeField] private BoxCollider2D contactCollider;
+
         [SerializeField] [Range(0, 1)] private float minContactAngle = 0.7f;
         [SerializeField] [Range(0, 0.2f)] private float contactRaycastSizeAndDistance = 0.05f;
         [SerializeField] [Range(0, 0.2f)] private float contactPositionEpsilon = 0.025f;
@@ -92,10 +94,19 @@ namespace Player
                 ApplyMoveInput();
             }
 
-            ApplyVelocityToRigidbody();
             DampenHorizontalVelocity();
-
+            ApplyVelocityToRigidbody();
+            
+            UpdateAnimatorValues();
+            
             MoveCamera();
+        }
+
+        private void UpdateAnimatorValues()
+        {
+            Core.Animator.SetBool("is-grounded", IsGrounded);
+            Core.Animator.SetFloat("vertical-velocity", Core.Velocity.y);
+            Core.Animator.SetBool("is-walking", Mathf.Abs(Core.Input.MoveInput.x) > 0);
         }
 
         private void DampenHorizontalVelocity()
@@ -197,8 +208,8 @@ namespace Player
 
         private Bounds GetActualColliderBounds()
         {
-            var rawBounds = Core.Collider.bounds;
-            return new Bounds(rawBounds.center, rawBounds.size + Vector3.one * (Core.Collider.edgeRadius * 2));
+            var rawBounds = contactCollider.bounds;
+            return new Bounds(rawBounds.center, rawBounds.size + Vector3.one * (contactCollider.edgeRadius * 2));
         }
 
         private bool CheckBoundsContact(ContactCheckDirection direction)
