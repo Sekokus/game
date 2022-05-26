@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ namespace UI
     {
         [SerializeField] private Image[] wombs;
 
-        protected override void OnValueChanged(CharacterResource resource)
+        protected override void OnValueChanged(Resource resource)
         {
             var value = resource.Value;
 
@@ -17,7 +18,7 @@ namespace UI
 
             var wombCount = wombs.Length;
 
-            int i = 0;
+            var i = 0;
             for (; i < Mathf.Min(wombCount, fullyFilledWombs); i++)
             {
                 SetWombFillAmount(1, i);

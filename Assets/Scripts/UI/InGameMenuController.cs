@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Player;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace UI
@@ -9,13 +10,22 @@ namespace UI
         [SerializeField] private AbstractMenu rootInventoryMenu;
 
         private AbstractMenu _activeMenu;
+        private InputBindings _bindings;
+        private PauseService _pauseService;
 
-        private void OnEnable()
+        private void Awake()
         {
-            var actions = PlayerBindingsProxy.Instance.InputBindings;
-            actions.UI.Enable();
-            actions.UI.Menu.performed += OnMenu;
-            actions.UI.Inventory.performed += OnInventory;
+            Construct();
+        }
+
+        private void Construct()
+        {
+            _pauseService = Container.Get<PauseService>();
+            
+            _bindings = Container.Get<PlayerBindings>().GetBindings();
+            _bindings.UI.Enable();
+            _bindings.UI.Menu.performed += OnMenu;
+            _bindings.UI.Inventory.performed += OnInventory;
 
             var menus = GetComponentsInChildren<AbstractMenu>();
             foreach (var menu in menus)
@@ -24,11 +34,10 @@ namespace UI
             }
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
-            var actions = PlayerBindingsProxy.Instance.InputBindings;
-            actions.UI.Menu.performed -= OnMenu;
-            actions.UI.Inventory.performed -= OnInventory;
+            _bindings.UI.Menu.performed -= OnMenu;
+            _bindings.UI.Inventory.performed -= OnInventory;
         }
 
         private void OnMenu(InputAction.CallbackContext context)
@@ -55,11 +64,11 @@ namespace UI
         {
             if (_activeMenu == null)
             {
-                Time.timeScale = 0f;
+                _pauseService.Pause(PauseSource.MenuOpened);
             }
             else if (menu == null)
             {
-                Time.timeScale = 1f;
+                _pauseService.Unpause(PauseSource.MenuOpened);
             }
 
             _activeMenu = menu;

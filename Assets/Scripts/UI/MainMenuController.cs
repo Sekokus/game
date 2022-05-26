@@ -1,4 +1,5 @@
 ﻿using System;
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,12 +10,17 @@ namespace UI
         [SerializeField] private AbstractMenu startMenu;
 
         private AbstractMenu _activeMenu;
+        private InputBindings _bindings;
+
+        private void Start()
+        {
+            _bindings = Container.Get<PlayerBindings>().GetBindings();
+        }
 
         private void OnEnable()
         {
-            var actions = PlayerBindingsProxy.Instance.InputBindings;
-            actions.UI.Enable();
-            actions.UI.Menu.performed += OnMenu;
+            _bindings.UI.Enable();
+            _bindings.UI.Menu.performed += OnMenu;
 
             var menus = GetComponentsInChildren<AbstractMenu>();
             foreach (var menu in menus)
@@ -25,8 +31,7 @@ namespace UI
 
         private void OnDisable()
         {
-            var actions = PlayerBindingsProxy.Instance.InputBindings;
-            actions.UI.Menu.performed -= OnMenu;
+            _bindings.UI.Menu.performed -= OnMenu;
         }
 
         private void OnMenu(InputAction.CallbackContext context)

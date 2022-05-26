@@ -2,41 +2,40 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Sekokus
+public class Hurtbox : MonoBehaviour
 {
-    public class Hurtbox : MonoBehaviour
+    [SerializeField] private float disableOnHitTime;
+    private Collider2D _collider;
+
+    public float DisableOnHitTime => disableOnHitTime;
+
+    private void Awake()
     {
-        [SerializeField] private float disableOnHitTime;
-        private Collider2D _collider;
+        _collider = GetComponent<Collider2D>();
+    }
 
-        public float DisableOnHitTime => disableOnHitTime;
+    public event Action<Hitbox> HitReceived;
 
-        private void Awake()
+    public bool ReceiveHit(Hitbox hitbox)
+    {
+        if (!IsEnabled)
         {
-            _collider = GetComponent<Collider2D>();
+            return false;
         }
 
-        public event Action<Hitbox> HitReceived;
+        HitReceived?.Invoke(hitbox);
+        StartCoroutine(DisableOnHitRoutine(disableOnHitTime));
+        return true;
+    }
 
-        public bool ReceiveHit(Hitbox hitbox)
-        {
-            if (!_collider.enabled)
-            {
-                return false;
-            }
+    private bool IsEnabled => _collider.enabled;
 
-            HitReceived?.Invoke(hitbox);
-            StartCoroutine(DisableOnHitRoutine(disableOnHitTime));
-            return true;
-        }
+    private IEnumerator DisableOnHitRoutine(float time)
+    {
+        _collider.enabled = false;
 
-        private IEnumerator DisableOnHitRoutine(float time)
-        {
-            _collider.enabled = false;
+        yield return new WaitForSeconds(time);
 
-            yield return new WaitForSeconds(time);
-
-            _collider.enabled = true;
-        }
+        _collider.enabled = true;
     }
 }

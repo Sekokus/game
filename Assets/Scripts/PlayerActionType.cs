@@ -1,7 +1,7 @@
-﻿namespace Sekokus
+﻿public enum PlayerActionType
 {
-    public enum PlayerActionType
-    {
-        Dash, Attack, Move, Jump
-    }
+    Dash,
+    Attack,
+    Move,
+    Jump
 }

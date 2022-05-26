@@ -2,53 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sekokus
+public class Hitbox : MonoBehaviour
 {
-    public class Hitbox : MonoBehaviour
+    [SerializeField] private Collider2D[] ignored;
+    [SerializeField] private BoxOverlapTester overlapTester;
+    private HashSet<Collider2D> _ignored;
+
+    public BoxOverlapTester OverlapTester => overlapTester;
+    
+    private void Awake()
     {
-        private readonly HashSet<Hurtbox> _hits = new HashSet<Hurtbox>();
-        private Collider2D _collider;
-        private Hurtbox _parent;
+        _ignored = new HashSet<Collider2D>(ignored);
+        overlapTester.Overlap += OnOverlap;
+    }
 
-        private void Awake()
+    private void OnOverlap(IReadOnlyList<Collider2D> overlaps)
+    {
+        if (!enabled)
         {
-            _collider = GetComponent<Collider2D>();
-            _parent = GetComponentInParent<Hurtbox>();
+            return;
         }
 
-        public void Enable()
+        foreach (var overlap in overlaps)
         {
-            _collider.enabled = true;
+            ProcessOverlap(overlap);
+        }
+    }
+
+    public event Action<Hurtbox> HitDamageable;
+    public event Action<Collider2D> HitNonDamageable;
+
+    private void ProcessOverlap(Collider2D overlap)
+    {
+        if (_ignored.Contains(overlap))
+        {
+            return;
         }
 
-        public void Disable()
+        if (!overlap.TryGetComponent(out Hurtbox hurtbox))
         {
-            _hits.Clear();
-            _collider.enabled = false;
+            HitNonDamageable?.Invoke(overlap);
+            return;
         }
 
-        public event Action<Hurtbox> HitInflicted;
-
-        private void OnTriggerEnter2D(Collider2D col)
+        var inflicted = hurtbox.ReceiveHit(this);
+        if (!inflicted)
         {
-            if (!col.TryGetComponent<Hurtbox>(out var hurtbox))
-            {
-                return;
-            }
-
-            if (hurtbox == _parent || !_hits.Contains(hurtbox))
-            {
-                return;
-            }
-
-            var inflicted = hurtbox.ReceiveHit(this);
-            if (!inflicted)
-            {
-                return;
-            }
-
-            _hits.Add(hurtbox);
-            HitInflicted?.Invoke(hurtbox);
+            return;
         }
+
+        HitDamageable?.Invoke(hurtbox);
     }
 }
