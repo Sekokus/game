@@ -39,12 +39,14 @@ namespace Player
         {
             PushRestrictions(PlayerActionType.Jump, PlayerActionType.Dash, PlayerActionType.Attack);
 
+            Core.Animator.SetTrigger("attack");
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForSeconds(0.1f);
+            
             hitbox.enabled = true;
             sprite.SetActive(true);
             yield return new WaitForFixedUpdate();
             yield return new WaitForSeconds(0.1f);
-
-            // TODO: тут анимация типа
 
             sprite.SetActive(false);
             hitbox.enabled = false;
