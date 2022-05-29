@@ -10,6 +10,7 @@ public class BoxOverlapTester : MonoBehaviour
     [SerializeField] private int overlapBufferSize = 8;
     [SerializeField] private bool autoTest = true;
     [SerializeField] private Color debugColor = Color.green;
+    [SerializeField] private Color debugColorWhenDisabled = Color.green;
 
     private Collider2D[] _overlapBuffer;
     private int _overlapCount;
@@ -39,10 +40,11 @@ public class BoxOverlapTester : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        GizmosHelper.PushColor(debugColor);
+        var color = enabled ? debugColor : debugColorWhenDisabled;
+        GizmosHelper.PushColor(color);
         GizmosHelper.PushMatrix(transform.localToWorldMatrix);
 
-        Gizmos.DrawWireCube(Vector3.zero, colliderSize);
+        Gizmos.DrawCube(Vector3.zero, colliderSize);
 
         GizmosHelper.PopColor();
         GizmosHelper.PopMatrix();

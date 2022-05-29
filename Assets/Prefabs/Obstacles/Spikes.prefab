@@ -64,7 +64,8 @@ MonoBehaviour:
     m_Bits: 2048
   overlapBufferSize: 8
   autoTest: 1
-  debugColor: {r: 1, g: 0.08688849, b: 0, a: 1}
+  debugColor: {r: 1, g: 0.08688849, b: 0, a: 0.1764706}
+  debugColorWhenDisabled: {r: 0.5943396, g: 0.30999988, b: 0.28315237, a: 0.29803923}
 --- !u!1 &7611537596317161697
 GameObject:
   m_ObjectHideFlags: 0

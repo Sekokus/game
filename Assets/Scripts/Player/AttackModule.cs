@@ -1,17 +1,28 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Player
 {
     public class AttackModule : PlayerModule
     {
         [SerializeField] private Hitbox hitbox;
-        [SerializeField] private GameObject sprite;
 
-        private void Start()
+        private void OnEnable()
         {
             Core.Input.AttackAction += OnAttackAction;
             hitbox.HitDamageable += OnHitDamageable;
+            Core.AnimationEvents.AttackDisableFrame += OnAttackDisableFrame;
+        }
+
+        private void OnDisable()
+        {
+            Core.Input.AttackAction -= OnAttackAction;
+            hitbox.HitDamageable -= OnHitDamageable;
+            Core.AnimationEvents.AttackDisableFrame -= OnAttackDisableFrame;
+        }
+
+        private void OnAttackDisableFrame()
+        {
+            PopRestrictions();
         }
 
         private void OnHitDamageable(Hurtbox obj)
@@ -32,26 +43,9 @@ namespace Player
 
         private void Attack()
         {
-            StartCoroutine(AttackRoutine());
-        }
-
-        private IEnumerator AttackRoutine()
-        {
             PushRestrictions(PlayerActionType.Jump, PlayerActionType.Dash, PlayerActionType.Attack);
 
             Core.Animator.SetTrigger("attack");
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForSeconds(0.1f);
-            
-            hitbox.enabled = true;
-            sprite.SetActive(true);
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForSeconds(0.1f);
-
-            sprite.SetActive(false);
-            hitbox.enabled = false;
-
-            PopRestrictions();
         }
     }
 }

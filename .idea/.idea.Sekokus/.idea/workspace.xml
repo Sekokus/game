@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2933933-0626-4f85-9300-11e1500e327a" name="Changes" comment="" />
+    <list default="true" id="c2933933-0626-4f85-9300-11e1500e327a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Sekokus/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sekokus/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Obstacles/Chainsaw.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Obstacles/Chainsaw.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Obstacles/Spikes.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Obstacles/Spikes.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayerAvatar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayerAvatar.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/attack.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/attack.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/run.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/run.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Bullets/DefaultBullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Bullets/DefaultBullet.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Boot.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Boot.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level_1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BoxOverlapTester.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BoxOverlapTester.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hitbox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hitbox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/AttackModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/AttackModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/JumpModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/JumpModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCore.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/ded.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/ded.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/player/fall.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/player/fall.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/player/idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/player/idle.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/player/jump.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/player/jump.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/player/palyer.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/player/palyer.controller" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,7 +32,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db7f68c084e842d98504c53b2b4dd3db13ca00/24/ca30bab5/ResourcesAPI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db7f68c084e842d98504c53b2b4dd3db13ca00/81/73489271/Resources.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db7f68c084e842d98504c53b2b4dd3db13ca00/e4/ee55ba80/Object.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Resource.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -46,7 +66,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2020.3.33f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\matve\Sekokus -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\matve\Sekokus" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -63,10 +83,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="9308">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="9308" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -85,7 +105,7 @@
       <workItem from="1653477418476" duration="1337000" />
       <workItem from="1653478782731" duration="230000" />
       <workItem from="1653479450143" duration="21178000" />
-      <workItem from="1653827981314" duration="927000" />
+      <workItem from="1653827981314" duration="5535000" />
     </task>
     <servers />
   </component>
@@ -112,6 +132,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerAnimationEvents.cs</url>
+          <line>15</line>
+          <properties documentPath="C:\Users\matve\Sekokus\Assets\Scripts\Player\PlayerAnimationEvents.cs" initialLine="15" containingFunctionPresentation="method 'OnJumpFrame'">
+            <startOffsets>
+              <option value="367" />
+            </startOffsets>
+            <endOffsets>
+              <option value="387" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

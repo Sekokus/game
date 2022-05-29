@@ -31,15 +31,37 @@ namespace Player
 
         private JumpInfo _currentJump;
         private bool _isFalling;
+        private bool _waitingForAnimationFrame;
 
         private void Start()
         {
             MaxJumpCount = jumpInfo.Length;
+            
+            _coyoteTimer = new Timer();
+            _coyoteTimer.Timeout += OnCoyoteTimerTimeout;
+        }
+
+        private void OnEnable()
+        {
             Core.Movement.Landed += OnLanded;
             Core.Movement.TookOffGround += OnTookOffGround;
             Core.Input.JumpAction += OnJumpAction;
-            _coyoteTimer = new Timer();
-            _coyoteTimer.Timeout += OnCoyoteTimerTimeout;
+            Core.AnimationEvents.JumpFrame += OnJumpFrame;
+        }
+
+        private void OnDisable()
+        {
+            Core.Movement.Landed -= OnLanded;
+            Core.Movement.TookOffGround -= OnTookOffGround;
+            Core.Input.JumpAction -= OnJumpAction;
+            Core.AnimationEvents.JumpFrame -= OnJumpFrame;
+        }
+
+        private void OnJumpFrame()
+        {
+            Core.Velocity.y = _currentJump.StartVelocity;
+            _waitingForAnimationFrame = false;
+            Core.Animator.SetBool("waiting-for-jump-frame", false);
         }
 
         private void OnCoyoteTimerTimeout()
@@ -60,6 +82,11 @@ namespace Player
 
         private void OnJumpAction(bool pressed)
         {
+            if (_waitingForAnimationFrame)
+            {
+                return;
+            }
+            
             if (!Core.CanPerform(PlayerActionType.Jump))
             {
                 return;
@@ -108,11 +135,11 @@ namespace Player
         {
             _currentJump = GetNextJump();
             _isFalling = false;
+            _waitingForAnimationFrame = true;
 
             _availableJumpCount--;
-
-            Core.Velocity.y = _currentJump.StartVelocity;
-            Core.Animator.SetTrigger("jump");
+            //Core.Animator.SetTrigger("jump");
+            Core.Animator.SetBool("waiting-for-jump-frame", true);
         }
 
         private void AbortJump()

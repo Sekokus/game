@@ -16,13 +16,23 @@ public class Hitbox : MonoBehaviour
         overlapTester.Overlap += OnOverlap;
     }
 
+    private void OnDisable()
+    {
+        overlapTester.enabled = false;
+    }
+
+    private void OnEnable()
+    {
+        overlapTester.enabled = true;
+    }
+
+    private void OnValidate()
+    {
+        overlapTester.enabled = enabled;
+    }
+
     private void OnOverlap(IReadOnlyList<Collider2D> overlaps)
     {
-        if (!enabled)
-        {
-            return;
-        }
-
         foreach (var overlap in overlaps)
         {
             ProcessOverlap(overlap);
