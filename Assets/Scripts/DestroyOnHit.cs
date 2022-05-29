@@ -1,14 +1,18 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Hurtbox))]
 public class DestroyOnHit : MonoBehaviour
 {
+    [SerializeField] private Hurtbox hurtbox;
     [SerializeField] private float destroyDelay = 0.5f;
     private bool _hitReceived;
 
+    private void Reset()
+    {
+        hurtbox = GetComponentInChildren<Hurtbox>();
+    }
+
     private void Awake()
     {
-        var hurtbox = GetComponent<Hurtbox>();
         hurtbox.HitReceived += OnHitReceived;
     }
 

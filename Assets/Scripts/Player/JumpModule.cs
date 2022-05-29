@@ -32,6 +32,7 @@ namespace Player
         private JumpInfo _currentJump;
         private bool _isFalling;
         private bool _waitingForAnimationFrame;
+        private bool _waitingForJumpAbort;
 
         private void Start()
         {
@@ -59,7 +60,10 @@ namespace Player
 
         private void OnJumpFrame()
         {
-            Core.Velocity.y = _currentJump.StartVelocity;
+            if (_currentJump != null)
+            {
+                Core.Velocity.y = _currentJump.StartVelocity;
+            }
             _waitingForAnimationFrame = false;
             Core.Animator.SetBool("waiting-for-jump-frame", false);
         }
@@ -82,12 +86,17 @@ namespace Player
 
         private void OnJumpAction(bool pressed)
         {
-            if (_waitingForAnimationFrame)
+            if (!Core.CanPerform(PlayerActionType.Jump))
             {
                 return;
             }
+
+            if (_currentJump != null && !pressed)
+            {
+                _waitingForJumpAbort = true;
+            }
             
-            if (!Core.CanPerform(PlayerActionType.Jump))
+            if (_waitingForAnimationFrame)
             {
                 return;
             }
@@ -95,10 +104,6 @@ namespace Player
             if (HasAvailableJumps && pressed)
             {
                 Jump();
-            }
-            else if (_currentJump != null && !pressed)
-            {
-                AbortJump();
             }
         }
 
@@ -122,6 +127,12 @@ namespace Player
             {
                 _isFalling = Core.Velocity.y < 0;
             }
+
+            if (!_waitingForAnimationFrame && _waitingForJumpAbort)
+            {
+                _waitingForJumpAbort = false;
+                AbortJump();
+            }
         }
 
         private bool HasAvailableJumps => _availableJumpCount > 0;
@@ -144,11 +155,6 @@ namespace Player
 
         private void AbortJump()
         {
-            if (_isFalling)
-            {
-                return;
-            }
-
             Core.Velocity.y *= _currentJump.AbortFactor;
         }
     }

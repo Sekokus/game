@@ -18,11 +18,9 @@ namespace Player
             LoadResources();
         }
 
-        public PlayerCore CreatePlayer(Vector3 position) => CreatePlayer(position, Quaternion.identity);
-
-        public PlayerCore CreatePlayer(Vector3 position, Quaternion rotation)
+        public PlayerCore CreatePlayerFromMarker(Marker marker)
         {
-            _player = Object.Instantiate(_playerCorePrefab, position, rotation);
+            _player = Object.Instantiate(_playerCorePrefab, marker.Location, marker.Rotation);
             PlayerCreated?.Invoke(_player);
             return _player;
         }

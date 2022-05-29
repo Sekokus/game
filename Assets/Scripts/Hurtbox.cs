@@ -5,13 +5,13 @@ using UnityEngine;
 public class Hurtbox : MonoBehaviour
 {
     [SerializeField] private float disableOnHitTime;
-    private Collider2D _collider;
+    [SerializeField] private Collider2D attachedCollider;
 
     public float DisableOnHitTime => disableOnHitTime;
 
-    private void Awake()
+    private void Reset()
     {
-        _collider = GetComponent<Collider2D>();
+        attachedCollider = GetComponent<Collider2D>();
     }
 
     public event Action<Hitbox> HitReceived;
@@ -28,14 +28,14 @@ public class Hurtbox : MonoBehaviour
         return true;
     }
 
-    private bool IsEnabled => _collider.enabled;
+    private bool IsEnabled => attachedCollider.enabled;
 
     private IEnumerator DisableOnHitRoutine(float time)
     {
-        _collider.enabled = false;
+        attachedCollider.enabled = false;
 
         yield return new WaitForSeconds(time);
 
-        _collider.enabled = true;
+        attachedCollider.enabled = true;
     }
 }

@@ -1,22 +1,41 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class LevelUIFactory
 {
-    private const string LevelUI = "LevelUI";
-    private static GameObject _uiPrefab;
-        
-    public LevelUIFactory()
+    private const string KillAllUi = "KillAllUi";
+    private const string CollectAllUi = "CollectAllUi";
+    
+    private static GameObject _killAllUiPrefab;
+    private static GameObject _collectAllUiPrefab;
+
+    public GameObject CreateUi(LevelType levelType)
     {
-        LoadResources();
+        var prefab = GetUiPrefab(levelType);
+        return Object.Instantiate(prefab);
     }
 
-    private static void LoadResources()
+    private static GameObject GetUiPrefab(LevelType levelType)
     {
-        _uiPrefab ??= Resources.Load<GameObject>(LevelUI);
-    }
+        switch (levelType)
+        {
+            case LevelType.CollectAll:
+                if (_collectAllUiPrefab == null)
+                {
+                    _collectAllUiPrefab = Resources.Load<GameObject>(CollectAllUi);
+                }
 
-    public GameObject CreateUI()
-    {
-        return Object.Instantiate(_uiPrefab);
+                return _collectAllUiPrefab;
+            case LevelType.KillAll:
+                if (_killAllUiPrefab == null)
+                {
+                    _killAllUiPrefab = Resources.Load<GameObject>(KillAllUi);
+                }
+
+                return _killAllUiPrefab;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(levelType), levelType, null);
+        }
     }
 }

@@ -9,8 +9,8 @@ public class BoxOverlapTester : MonoBehaviour
     [Space] [SerializeField] private LayerMask collideWith;
     [SerializeField] private int overlapBufferSize = 8;
     [SerializeField] private bool autoTest = true;
-    [SerializeField] private Color debugColor = Color.green;
-    [SerializeField] private Color debugColorWhenDisabled = Color.green;
+    [SerializeField] private Color debugColor = new Color(0, 1, 0, 0.4f);
+    [SerializeField] private Color debugColorWhenDisabled = new Color(0, 1, 0, 0.4f);
 
     private Collider2D[] _overlapBuffer;
     private int _overlapCount;
