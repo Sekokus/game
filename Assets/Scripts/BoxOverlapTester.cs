@@ -9,7 +9,8 @@ public class BoxOverlapTester : MonoBehaviour
     [Space] [SerializeField] private LayerMask collideWith;
     [SerializeField] private int overlapBufferSize = 8;
     [SerializeField] private bool autoTest = true;
-    [SerializeField] private Color debugColor = Color.green;
+    [SerializeField] private Color debugColor = new Color(0, 1, 0, 0.4f);
+    [SerializeField] private Color debugColorWhenDisabled = new Color(0, 1, 0, 0.4f);
 
     private Collider2D[] _overlapBuffer;
     private int _overlapCount;
@@ -39,10 +40,11 @@ public class BoxOverlapTester : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        GizmosHelper.PushColor(debugColor);
+        var color = enabled ? debugColor : debugColorWhenDisabled;
+        GizmosHelper.PushColor(color);
         GizmosHelper.PushMatrix(transform.localToWorldMatrix);
 
-        Gizmos.DrawWireCube(Vector3.zero, colliderSize);
+        Gizmos.DrawCube(Vector3.zero, colliderSize);
 
         GizmosHelper.PopColor();
         GizmosHelper.PopMatrix();
@@ -65,7 +67,7 @@ public class BoxOverlapTester : MonoBehaviour
 
     public Vector2 GetScaledSize()
     {
-        var scale = transform.localScale;
+        var scale = transform.lossyScale;
         return new Vector2(colliderSize.x * scale.x, colliderSize.y * scale.y);
     }
 

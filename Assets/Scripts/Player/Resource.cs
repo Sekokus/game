@@ -12,8 +12,12 @@ namespace Player
             get => _value;
             set
             {
+                var prev = _value;
                 _value = Mathf.Clamp(value, 0, MaxValue);
-                OnValueChanged?.Invoke(this);
+                if (!Mathf.Approximately(_value, prev))
+                {
+                    OnValueChanged?.Invoke(this);
+                }
             }
         }
 

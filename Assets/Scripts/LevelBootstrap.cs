@@ -1,24 +1,26 @@
-﻿using System;
-using Player;
+﻿using DefaultNamespace;
+using Enemies;
 using UnityEngine;
 
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(10)]
 public class LevelBootstrap : MonoBehaviour
 {
     private LevelFactory _levelFactory;
-    private PlayerMarker _playerMarker;
-        
-    private void Start()
+    [SerializeField] private LevelType levelType;
+    [SerializeField] private Marker playerMarker;
+    [SerializeField] private EnemyMarker[] enemyMarkers;
+    [SerializeField] private Collectable[] collectables;
+    
+    private void Awake()
     {
-        FindMarkers();
-            
         _levelFactory = Container.Get<LevelFactory>();
-        var levelEntry = _levelFactory.CreateLevel(_playerMarker);
-        levelEntry.StartLevel();
+        var counter = Container.Get<LevelGoalCounter>();
+        counter.SetRequiredCount(collectables?.Length ?? 0);
     }
 
-    private void FindMarkers()
+    private void Start()
     {
-        _playerMarker = FindObjectOfType<PlayerMarker>();
+        var levelEntry = _levelFactory.CreateLevel(levelType, playerMarker, enemyMarkers);
+        levelEntry.StartLevel();
     }
 }

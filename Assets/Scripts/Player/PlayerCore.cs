@@ -17,6 +17,7 @@ namespace Player
         public InputModule Input { get; private set; }
         public AttackModule Attack { get; private set; }
         public ResourcesModule Resources { get; private set; }
+        public PlayerAnimationEvents AnimationEvents { get; private set; }
 
         [NonSerialized] public Vector2 Velocity;
 
@@ -30,6 +31,7 @@ namespace Player
             Input = GetComponent<InputModule>();
             Attack = GetComponent<AttackModule>();
             Resources = GetComponent<ResourcesModule>();
+            AnimationEvents = GetComponentInChildren<PlayerAnimationEvents>();
         }
 
         private readonly List<PlayerActionType> _restrictions = new List<PlayerActionType>();

@@ -6,7 +6,7 @@ namespace Enemies
     public class BulletFactory
     {
         private const string BulletsPath = "Bullets";
-        private readonly Dictionary<BulletType, Bullet> _bulletPrefabs = new Dictionary<BulletType, Bullet>();
+        private static readonly Dictionary<BulletType, Bullet> BulletPrefabs = new Dictionary<BulletType, Bullet>();
         private static bool _resourcesLoaded;
 
         public BulletFactory()
@@ -24,7 +24,7 @@ namespace Enemies
             var bulletVariants = Resources.LoadAll<Bullet>(BulletsPath);
             foreach (var bulletVariant in bulletVariants)
             {
-                _bulletPrefabs[bulletVariant.BulletType] = bulletVariant;
+                BulletPrefabs[bulletVariant.BulletType] = bulletVariant;
             }
 
             _resourcesLoaded = true;
@@ -32,7 +32,7 @@ namespace Enemies
 
         public Bullet CreateBullet(BulletType bulletType)
         {
-            var bulletPrefab = _bulletPrefabs[bulletType];
+            var bulletPrefab = BulletPrefabs[bulletType];
             return Object.Instantiate(bulletPrefab);
         }
     }

@@ -1,4 +1,5 @@
-﻿using Enemies;
+﻿using DefaultNamespace;
+using Enemies;
 using Player;
 using UnityEngine;
 using Utilities;
@@ -28,7 +29,9 @@ public class Bootstrap : MonoBehaviour
         BindBulletFactory();
         BindBulletPool();
         BindLevelFactory();
-
+        BindEnemyFactory();
+        BindCollectableAccumulator();
+        
         BindPauseService();
 
         BindPlayerBindings();
@@ -36,6 +39,16 @@ public class Bootstrap : MonoBehaviour
         AddApplicationEvents();
         AddTimerRunner();
         AddCoroutineRunner();
+    }
+
+    private static void BindCollectableAccumulator()
+    {
+        Container.Add<LevelGoalCounter>(ServiceLifetime.PerScene);
+    }
+
+    private static void BindEnemyFactory()
+    {
+        Container.Add<EnemyFactory>(ServiceLifetime.PerScene);
     }
 
     private void AddApplicationEvents() => AddSingletonFromScene<ApplicationEvents>();
@@ -51,7 +64,7 @@ public class Bootstrap : MonoBehaviour
 
     private static void BindBulletFactory()
     {
-        Container.Add<BulletFactory>(ServiceLifetime.Singleton);
+        Container.Add<BulletFactory>(ServiceLifetime.PerScene);
     }
 
     private void BindPauseService()
@@ -86,13 +99,14 @@ public class Bootstrap : MonoBehaviour
         {
             var playerFactory = Container.Get<PlayerFactory>();
             var uiFactory = Container.Get<LevelUIFactory>();
-            return new LevelFactory(playerFactory, uiFactory);
+            var enemyFactory = Container.Get<EnemyFactory>();
+            return new LevelFactory(playerFactory, enemyFactory, uiFactory);
         }, ServiceLifetime.PerScene);
     }
 
     private static void BindUIFactory()
     {
-        Container.Add<LevelUIFactory>(ServiceLifetime.Singleton);
+        Container.Add<LevelUIFactory>(ServiceLifetime.PerScene);
     }
 
     private static void BindPlayerFactory()

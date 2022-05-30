@@ -3,37 +3,34 @@ using UnityEngine;
 
 namespace UI
 {
-    [DefaultExecutionOrder(2)]
     public abstract class ResourceBar : MonoBehaviour
     {
-        private PlayerCore _player;
+        private Resource _resource;
+        private PlayerFactory _playerFactory;
 
         private void Awake()
         {
-            var playerFactory = Container.Get<PlayerFactory>();
-            playerFactory.WhenPlayerAvailable(
-                player =>
-                {
-                    _player = player;
-                    Initialize();
-                });
+            _playerFactory = Container.Get<PlayerFactory>();
+            _playerFactory.WhenPlayerAvailable(OnPlayerCreated);
         }
 
-        private void Initialize()
+        private void OnPlayerCreated(PlayerCore player)
         {
-            var resource = GetResource(_player);
-            resource.OnValueChanged += OnValueChanged;
+            _resource = GetResource(player);
+            _resource.OnValueChanged += OnValueChanged;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
-            if (!_player)
+            if (_resource != null)
             {
-                return;
+                _resource.OnValueChanged -= OnValueChanged;
             }
 
-            var resource = GetResource(_player);
-            resource.OnValueChanged -= OnValueChanged;
+            if (_playerFactory != null)
+            {
+                _playerFactory.PlayerCreated -= OnPlayerCreated;
+            }
         }
 
         protected abstract Resource GetResource(PlayerCore player);

@@ -126,5 +126,10 @@ namespace Player
             _coroutineRunner.RunAfter(PopRestrictions, dashEndDelay);
             _dashRoutine = null;
         }
+
+        private void OnDisable()
+        {
+            _dashRoutine?.Stop();
+        }
     }
 }

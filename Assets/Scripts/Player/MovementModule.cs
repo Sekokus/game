@@ -189,11 +189,12 @@ namespace Player
                 }
             }
 
-            if (Core.Velocity.y < 0)
+            if (Core.Velocity.y <= 0)
             {
                 return;
             }
 
+            IsGrounded = false;
             if (CheckBoundsContact(ContactCheckDirection.Up))
             {
                 Core.Velocity.y = 0;
