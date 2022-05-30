@@ -3612,6 +3612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2052950834}
   - component: {fileID: 2052950835}
+  - component: {fileID: 2052950836}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -3627,7 +3628,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052950833}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.68, y: 5.9, z: -2.4463}
+  m_LocalPosition: {x: 14, y: 18, z: -2.4463}
   m_LocalScale: {x: 0.5058, y: 0.5058, z: 0.5058}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3648,6 +3649,19 @@ MonoBehaviour:
   bulletType: 0
   bulletSpeed: 5
   shootInterval: 0.5
+--- !u!114 &2052950836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052950833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1f32d23c86c8645a63c6b9f77fe43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
 --- !u!4 &2085540805 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6782613073286703329, guid: 80f0a40ffb40950439000209e0b7551a, type: 3}

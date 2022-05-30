@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ed070c14624954848a690623c19c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  afterLoadScene: Test_Level_1
+  afterLoadScene: Level_1
 --- !u!1 &1118853700
 GameObject:
   m_ObjectHideFlags: 0
