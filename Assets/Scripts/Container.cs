@@ -55,7 +55,7 @@ public static class Container
     {
         Add<SceneLoader>(ServiceLifetime.Singleton);
         var sceneLoader = Get<SceneLoader>();
-        sceneLoader.SceneLoaded += _ => SetPerSceneServicesDirty();
+        sceneLoader.SceneUnloaded += _ => SetPerSceneServicesDirty();
     }
 
     private static void SetPerSceneServicesDirty()

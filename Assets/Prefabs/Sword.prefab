@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Bits: 2048
   overlapBufferSize: 8
   autoTest: 1
-  debugColor: {r: 1, g: 0.6925574, b: 0.07075471, a: 0.23529412}
+  debugColor: {r: 1, g: 0, b: 0.15308905, a: 0.5254902}
   debugColorWhenDisabled: {r: 0.42397296, g: 0.4339623, b: 0.30909577, a: 0.23529412}
 --- !u!1 &7205749101543184017
 GameObject:
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6519497561767882497}
   m_Bounds:
-    m_Center: {x: 2.843085, y: -0.004405737, z: 0}
-    m_Extent: {x: 3.3186247, y: 0.4186803, z: 0}
+    m_Center: {x: 2.8184674, y: -0.0075591803, z: 0}
+    m_Extent: {x: 3.3188853, y: 0.41500038, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1

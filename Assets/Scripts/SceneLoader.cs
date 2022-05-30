@@ -6,6 +6,7 @@ public class SceneLoader
 {
     private const string ScenesPath = "Scenes";
 
+    public event Action<string> SceneUnloaded;
     public event Action<string> SceneLoaded;
     public string CurrentScene { get; private set; }
 
@@ -38,7 +39,11 @@ public class SceneLoader
     public void UnloadScene(string name, Action completed)
     {
         var operation = SceneManager.UnloadSceneAsync(name);
-        operation.completed += _ => completed();
+        operation.completed += _ =>
+        {
+            SceneUnloaded?.Invoke(name);
+            completed();
+        };
     }
 
     public void ReplaceLastScene(string name)

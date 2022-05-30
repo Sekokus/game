@@ -3,13 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="21f050de-0d50-4738-aa30-9d6e9680cc91" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Sekokus/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sekokus/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Boot.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Boot.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level_1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bootstrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bootstrap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ChangeLevelOnReachingGoal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ChangeLevelOnReachingGoal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelBootstrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelBootstrap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Sword.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Sword.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/attack.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/attack.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/run.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/run.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Enemies/Default.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Enemies/Default.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test_Level_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test_Level_1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test_Level_2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test_Level_2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BoxOverlapTester.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BoxOverlapTester.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/DashModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/DashModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Resource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Resource.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ResourceBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ResourceBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/player/fall.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/player/fall.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/player/idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/player/idle.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/player/jump.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/player/jump.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/player/palyer.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/player/palyer.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,9 +36,30 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b492836710f1493ca0190fe9374a37da26800/f5/33cf2fde/Animator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b70370f7c0e548a9ac87525f3abd0ef93ea30/36/b96be40e/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db7f68c084e842d98504c53b2b4dd3db13ca00/8e/02d679a1/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/cc/5edbd5c8/Delegate.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db7f68c084e842d98504c53b2b4dd3db13ca00/24/ca30bab5/ResourcesAPI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db7f68c084e842d98504c53b2b4dd3db13ca00/81/73489271/Resources.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db7f68c084e842d98504c53b2b4dd3db13ca00/84/5c02e04d/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db7f68c084e842d98504c53b2b4dd3db13ca00/e4/ee55ba80/Object.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="29gV6slT3amX9V6yKGyzTsqUTQp" />
   <component name="ProjectLevelVcsManager">
@@ -70,10 +98,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="18704">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="26384">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="18704" />
+      <option name="pid" value="26384" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -110,7 +138,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -130,9 +157,67 @@
               <option value="766" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/DestroyOnHit.cs</url>
+          <line>20</line>
+          <properties documentPath="C:\Users\matve\Sekokus\Assets\Scripts\DestroyOnHit.cs" initialLine="20" containingFunctionPresentation="method 'OnHitReceived'">
+            <startOffsets>
+              <option value="430" />
+            </startOffsets>
+            <endOffsets>
+              <option value="447" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/UI/ResourceBar.cs</url>
+          <line>18</line>
+          <properties documentPath="C:\Users\matve\Sekokus\Assets\Scripts\UI\ResourceBar.cs" initialLine="18" containingFunctionPresentation="method 'OnPlayerCreated'">
+            <startOffsets>
+              <option value="446" />
+            </startOffsets>
+            <endOffsets>
+              <option value="478" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerFactory.cs</url>
+          <line>22</line>
+          <properties documentPath="C:\Users\matve\Sekokus\Assets\Scripts\Player\PlayerFactory.cs" initialLine="22" containingFunctionPresentation="method 'CreatePlayerFromMarker'">
+            <startOffsets>
+              <option value="491" />
+            </startOffsets>
+            <endOffsets>
+              <option value="573" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerFactory.cs</url>
+          <line>29</line>
+          <properties documentPath="C:\Users\matve\Sekokus\Assets\Scripts\Player\PlayerFactory.cs" initialLine="29" containingFunctionPresentation="method 'WhenPlayerAvailable'">
+            <startOffsets>
+              <option value="746" />
+            </startOffsets>
+            <endOffsets>
+              <option value="758" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
+        <watch expression="Scene path" />
+        <watch expression="this.gameObject.name" language="C#" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

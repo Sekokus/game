@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtbox: {fileID: 2288144436821442762}
-  destroyDelay: 0.5
+  destroyDelay: 0
 --- !u!1 &4355147031785969217
 GameObject:
   m_ObjectHideFlags: 0

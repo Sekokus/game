@@ -67,7 +67,7 @@ public class BoxOverlapTester : MonoBehaviour
 
     public Vector2 GetScaledSize()
     {
-        var scale = transform.localScale;
+        var scale = transform.lossyScale;
         return new Vector2(colliderSize.x * scale.x, colliderSize.y * scale.y);
     }
 
