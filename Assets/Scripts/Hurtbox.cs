@@ -6,6 +6,9 @@ public class Hurtbox : MonoBehaviour
 {
     [SerializeField] private float disableOnHitTime;
     [SerializeField] private Collider2D attachedCollider;
+    [SerializeField] private Team team;
+
+    public Team Team => team;
 
     public float DisableOnHitTime => disableOnHitTime;
 

@@ -8,6 +8,8 @@ namespace Enemies
         [SerializeField] private BulletType bulletType;
         [SerializeField] [Min(0)] private float lifeTime = 5;
         [SerializeField] private Hitbox hitbox;
+        [SerializeField] private GameObject destroyParticles;
+
         public BulletType BulletType => bulletType;
 
         private PauseService _pauseService;
@@ -22,11 +24,7 @@ namespace Enemies
             _destroyTimer = new Timer();
             _destroyTimer.Timeout += Destroy;
 
-            hitbox.HitDamageable += hurtbox =>
-            {
-                hurtbox.ReceiveHit(hitbox);
-                Destroy();
-            };
+            hitbox.HitDamageable += _ => Destroy();
             hitbox.HitNonDamageable += _ => Destroy();
 
             Construct();
@@ -82,6 +80,10 @@ namespace Enemies
 
         private void Destroy()
         {
+            var particles = Instantiate(destroyParticles, transform.position, transform.rotation, null);
+            particles.SetActive(true);
+            Destroy(particles, 1);
+
             _bulletPool.Add(this);
         }
 

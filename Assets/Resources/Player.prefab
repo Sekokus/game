@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disableOnHitTime: 2
   attachedCollider: {fileID: 2488477347834039772}
+  team: 0
 --- !u!61 &2488477347834039772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -604,10 +605,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.81
   minVerticalVelocity: -20
-  speed: 5
+  speed: 7
   airAccelerationFactor: 0.6
-  pushTime: 0.7
-  pushForce: 8
+  pushTime: 0.4
+  pushForce: 6
   dampening: 0.15
   contactCheckMask:
     serializedVersion: 2
@@ -687,6 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitbox: {fileID: 1927317104266185964}
+  inputWaitTime: 0.3
 --- !u!1 &7160953147164352163
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +805,22 @@ PrefabInstance:
     - target: {fileID: 1814166980534752086, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.9848662
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933787013053708579, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -0.19376194
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933787013053708579, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: 2.8008487
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933787013053708579, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: m_Bounds.m_Extent.x
+      value: 0.5826082
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933787013053708579, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: m_Bounds.m_Extent.y
+      value: 3.3020132
       objectReference: {fileID: 0}
     - target: {fileID: 2641866241172988301, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
       propertyPath: m_RootOrder

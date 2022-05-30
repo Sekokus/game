@@ -1,10 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Utilities;
 
 namespace Player
 {
     public class AttackModule : PlayerModule
     {
         [SerializeField] private Hitbox hitbox;
+
+        private readonly TimedTrigger _inputTrigger = new TimedTrigger();
+        [SerializeField] private float inputWaitTime = 1;
 
         private void OnEnable()
         {
@@ -33,12 +38,19 @@ namespace Player
 
         private void OnAttackAction(bool pressed)
         {
-            if (!pressed || !Core.CanPerform(PlayerActionType.Attack))
+            if (!pressed)
             {
                 return;
             }
 
-            Attack();
+            if (Core.CanPerform(PlayerActionType.Attack))
+            {
+                Attack();
+            }
+            else
+            {
+                _inputTrigger.SetFor(inputWaitTime);
+            }
         }
 
         private void Attack()
@@ -46,6 +58,17 @@ namespace Player
             PushRestrictions(PlayerActionType.Jump, PlayerActionType.Dash, PlayerActionType.Attack);
 
             Core.Animator.SetTrigger("attack");
+        }
+
+        private void Update()
+        {
+            if (Core.CanPerform(PlayerActionType.Attack) && _inputTrigger.IsSet)
+            {
+                Attack();
+                _inputTrigger.Reset();
+            }
+            
+            _inputTrigger.Tick(Time.deltaTime);
         }
     }
 }

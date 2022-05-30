@@ -129,7 +129,7 @@ namespace Player
         private void OnDashEnded()
         {
             DashEnded?.Invoke(dashEndDelay);
-            _coroutineRunner.RunAfter(PopRestrictions, dashEndDelay);
+            PopRestrictions();
             _dashRoutine = null;
         }
 

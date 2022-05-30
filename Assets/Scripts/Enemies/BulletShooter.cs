@@ -24,6 +24,9 @@ namespace Enemies
         {
             _shootTimer = _timerRunner.CreateTimer(Shot, true);
             _shootTimer.Start(shootInterval);
+            
+            var offset = Random.Range(0, shootInterval);
+            _shootTimer.Tick(offset);
         }
 
         private void OnDestroy()

@@ -64,6 +64,12 @@ namespace Player
             {
                 Core.Velocity.y = _currentJump.StartVelocity;
             }
+
+            ResetWaitingForJumpFrame();
+        }
+
+        private void ResetWaitingForJumpFrame()
+        {
             _waitingForAnimationFrame = false;
             Core.Animator.SetBool("waiting-for-jump-frame", false);
         }
@@ -112,6 +118,7 @@ namespace Player
             _availableJumpCount = MaxJumpCount;
             _coyoteTimer.Reset();
             _currentJump = null;
+            ResetWaitingForJumpFrame();
         }
 
         public void RestoreOneJump()

@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Team
+{
+    Player,
+    Enemy
+}
+
 public class Hitbox : MonoBehaviour
 {
     [SerializeField] private Collider2D[] ignored;
     [SerializeField] private BoxOverlapTester overlapTester;
+    [SerializeField] private Team team;
+
+    public Team Team => team;
+
     private HashSet<Collider2D> _ignored;
 
     public BoxOverlapTester OverlapTester => overlapTester;
@@ -55,6 +65,10 @@ public class Hitbox : MonoBehaviour
             return;
         }
 
+        if (hurtbox.Team == Team)
+        {
+            return;
+        }
         var inflicted = hurtbox.ReceiveHit(this);
         if (!inflicted)
         {

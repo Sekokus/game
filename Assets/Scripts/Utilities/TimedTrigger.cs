@@ -47,7 +47,7 @@ namespace Utilities
             return _trigger.CheckAndReset();
         }
 
-        public void Step(float timeStep)
+        public void Tick(float timeStep)
         {
             StepReset(timeStep);
             StepSet(timeStep);
