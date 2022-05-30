@@ -83,8 +83,26 @@ namespace Player
             _coroutineRunner.RunAfter(PopRestrictions, pushTime);
         }
 
+        private bool _paused = false;
+        
         private void FixedUpdate()
         {
+            if (PauseObserver.IsPaused)
+            {
+                if (!_paused)
+                {
+                    Core.Rigidbody.Sleep();
+                    _paused = true;
+                }
+                return;
+            }
+
+            if (_paused)
+            {
+                _paused = false;
+                Core.Rigidbody.WakeUp();
+            }
+            
             CheckContacts();
 
             ApplyGravity();

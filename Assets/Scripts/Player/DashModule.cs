@@ -16,6 +16,7 @@ namespace Player
 
         private CoroutineRunner _coroutineRunner;
         private CoroutineRunner.CoroutineContext _dashRoutine;
+        private PauseObserver _pauseObserver;
 
         public event Action<float> DashStarted;
         public event Action<float> DashEnded;
@@ -41,6 +42,7 @@ namespace Player
             hurtbox.HitReceived += OnHitReceived;
 
             _coroutineRunner = Container.Get<CoroutineRunner>();
+            _pauseObserver = Container.Get<PauseService>().GetObserver(PauseSource.Any);
         }
 
         private void OnHitReceived(Hitbox obj)
@@ -109,6 +111,10 @@ namespace Player
 
                 Core.Rigidbody.MovePosition(expectedEndPosition);
                 yield return new WaitForFixedUpdate();
+                if (_pauseObserver.IsPaused)
+                {
+                    yield return new WaitUntil(() => _pauseObserver.IsUnpaused);
+                }
             }
 
             OnDashEnded();

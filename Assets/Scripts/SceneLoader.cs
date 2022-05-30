@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader
 {
+    public static string InitialScene { get; set; }
+
     private const string ScenesPath = "Scenes";
 
     public event Action<string> SceneUnloaded;
@@ -39,10 +41,14 @@ public class SceneLoader
     public void UnloadScene(string name, Action completed)
     {
         var operation = SceneManager.UnloadSceneAsync(name);
+        if (operation == null)
+        {
+            return;
+        }
         operation.completed += _ =>
         {
             SceneUnloaded?.Invoke(name);
-            completed();
+            completed?.Invoke();
         };
     }
 
@@ -50,4 +56,6 @@ public class SceneLoader
     {
         UnloadScene(CurrentScene, () => LoadScene(name));
     }
+
+    public void ReloadLastScene() => ReplaceLastScene(CurrentScene);
 }

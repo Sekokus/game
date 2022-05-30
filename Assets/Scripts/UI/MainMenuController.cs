@@ -12,7 +12,7 @@ namespace UI
         private AbstractMenu _activeMenu;
         private InputBindings _bindings;
 
-        private void Start()
+        private void Awake()
         {
             _bindings = Container.Get<PlayerBindings>().GetBindings();
         }

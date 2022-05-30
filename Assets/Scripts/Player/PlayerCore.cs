@@ -17,12 +17,15 @@ namespace Player
         public InputModule Input { get; private set; }
         public AttackModule Attack { get; private set; }
         public ResourcesModule Resources { get; private set; }
+        public GameEvents GameEvents { get; private set; }
         public PlayerAnimationEvents AnimationEvents { get; private set; }
 
         [NonSerialized] public Vector2 Velocity;
 
         private void Awake()
         {
+            GameEvents = Container.Get<GameEvents>();
+            
             Transform = transform;
             Rigidbody = GetComponent<Rigidbody2D>();
             Movement = GetComponent<MovementModule>();

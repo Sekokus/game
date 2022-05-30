@@ -1,4 +1,5 @@
-﻿using DefaultNamespace;
+﻿using System;
+using DefaultNamespace;
 using Enemies;
 using Player;
 using UnityEngine;
@@ -8,7 +9,6 @@ using Utilities;
 public class Bootstrap : MonoBehaviour
 {
     [SerializeField] private string afterLoadScene;
-
     private void Awake()
     {
         Initialize();
@@ -18,7 +18,6 @@ public class Bootstrap : MonoBehaviour
     {
         var sceneLoader = Container.Get<SceneLoader>();
         sceneLoader.LoadScene(afterLoadScene);
-
         SceneLoader.SetActive(afterLoadScene);
     }
 
@@ -31,12 +30,12 @@ public class Bootstrap : MonoBehaviour
         BindLevelFactory();
         BindEnemyFactory();
         BindCollectableAccumulator();
-        
+
         BindPauseService();
 
         BindPlayerBindings();
 
-        AddApplicationEvents();
+        AddGameEvents();
         AddTimerRunner();
         AddCoroutineRunner();
     }
@@ -51,7 +50,7 @@ public class Bootstrap : MonoBehaviour
         Container.Add<EnemyFactory>(ServiceLifetime.PerScene);
     }
 
-    private void AddApplicationEvents() => AddSingletonFromScene<ApplicationEvents>();
+    private void AddGameEvents() => AddSingletonFromScene<GameEvents>();
 
     private static void BindBulletPool()
     {

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -12,6 +13,7 @@ namespace Player
         protected override void Awake()
         {
             base.Awake();
+            
             DashCharges = new Resource(4);
             Health = new Resource(4);
 
@@ -22,11 +24,25 @@ namespace Player
         private void OnHitReceived(Hitbox obj)
         {
             Health.Spend(1);
+            if (Health.IsDepleted)
+            {
+                Core.GameEvents.PostPlayerDied();
+            }
         }
 
         private void FixedUpdate()
         {
+            if (PauseObserver.IsPaused)
+            {
+                return;
+            }
+            
             DashCharges.Restore(dashPassiveRechargeSpeed * Time.fixedDeltaTime);
+            
+            if (Keyboard.current.pKey.wasPressedThisFrame)
+            {
+                Core.GameEvents.PostPlayerDied();
+            }
         }
     }
 }

@@ -8,7 +8,6 @@ using Utilities;
 
 public class LevelStartCountdown : MonoBehaviour
 {
-    [SerializeField] private bool skipCountdown = false;
     [Space] [SerializeField] private string preCountdownText = "Click to begin";
     [SerializeField] private int startTime = 3;
     [SerializeField] private int startTextHideTime = 2;
@@ -24,15 +23,10 @@ public class LevelStartCountdown : MonoBehaviour
     private bool _countdownStarted;
     private bool _canStartCountdown;
 
-    private void Start()
+    private void Awake()
     {
         Construct();
         SetPreCountdownState();
-
-        if (skipCountdown)
-        {
-            SkipCountdown();
-        }
     }
 
     private void SetPreCountdownState()
@@ -43,7 +37,7 @@ public class LevelStartCountdown : MonoBehaviour
         _pauseService.Pause(PauseSource.LevelCountdown);
     }
 
-    private void SkipCountdown()
+    public void SkipCountdown()
     {
         _countdownStarted = true;
         OnCountdownEnded();

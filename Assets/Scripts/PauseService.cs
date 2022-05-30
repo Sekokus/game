@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class PauseService
 {
@@ -45,5 +46,7 @@ public class PauseService
             .Select(pair => (int)pair.Key)
             .DefaultIfEmpty()
             .Max();
+
+        Time.timeScale = StrongestSource == 0 ? 1 : 0;
     }
 }

@@ -18,18 +18,17 @@ namespace DefaultNamespace
 
     public class ChangeLevelOnReachingGoal : MonoBehaviour
     {
-        private LevelGoalCounter _counter;
         private SceneLoader _sceneLoader;
 
         private void Awake()
         {
             Time.timeScale = 1;
             _sceneLoader = Container.Get<SceneLoader>();
-            _counter = Container.Get<LevelGoalCounter>();
-            _counter.ReachedRequiredCount += CounterOnReachedRequiredCount;
+            var gameEvents = Container.Get<GameEvents>();
+            gameEvents.PlayerGoalCompleted += OnReachedRequiredCount;
         }
 
-        private void CounterOnReachedRequiredCount()
+        private void OnReachedRequiredCount()
         {
             var currentLevel = _sceneLoader.CurrentScene;
             var currentIndex = LevelLibrary.GetLevelIndex(currentLevel);

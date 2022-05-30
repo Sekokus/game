@@ -5,6 +5,7 @@ namespace Player
     [RequireComponent(typeof(PlayerCore))]
     public abstract class PlayerModule : MonoBehaviour
     {
+        protected PauseObserver PauseObserver { get; private set; }
         protected PlayerCore Core { get; private set; }
 
         private PlayerActionType[] _restrictions;
@@ -29,6 +30,7 @@ namespace Player
         protected virtual void Awake()
         {
             Core = GetComponent<PlayerCore>();
+            PauseObserver = Container.Get<PauseService>().GetObserver(PauseSource.Any);
         }
     }
 }

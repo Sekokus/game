@@ -155,7 +155,10 @@ namespace Player
 
         private void AbortJump()
         {
-            Core.Velocity.y *= _currentJump.AbortFactor;
+            if (_currentJump != null)
+            {
+                Core.Velocity.y *= _currentJump.AbortFactor;
+            }
         }
     }
 }
