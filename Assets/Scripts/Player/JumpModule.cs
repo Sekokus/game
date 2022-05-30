@@ -21,6 +21,8 @@ namespace Player
         [Header("Jump properties")] [SerializeField] [Range(0, 0.3f)]
         private float coyoteTime = 0.08f;
 
+        [SerializeField] private float inputWaitTime = 1;
+        
         [SerializeField] private JumpInfo[] jumpInfo;
 
         public int MaxJumpCount { get; private set; }
@@ -28,6 +30,8 @@ namespace Player
         private int _availableJumpCount = 0;
 
         private Timer _coyoteTimer;
+
+        private TimedTrigger _inputWaitTrigger = new TimedTrigger();
 
         private JumpInfo _currentJump;
         private bool _isFalling;
@@ -92,24 +96,23 @@ namespace Player
 
         private void OnJumpAction(bool pressed)
         {
-            if (!Core.CanPerform(PlayerActionType.Jump))
-            {
-                return;
-            }
-
             if (_currentJump != null && !pressed)
             {
                 _waitingForJumpAbort = true;
             }
             
-            if (_waitingForAnimationFrame)
+            if (_waitingForAnimationFrame || !pressed)
             {
                 return;
             }
-
-            if (HasAvailableJumps && pressed)
+            
+            if (Core.CanPerform(PlayerActionType.Jump) && HasAvailableJumps)
             {
                 Jump();
+            }
+            else
+            {
+                _inputWaitTrigger.SetFor(inputWaitTime);
             }
         }
 
@@ -126,10 +129,18 @@ namespace Player
             _availableJumpCount = Mathf.Min(_availableJumpCount + 1, MaxJumpCount);
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            _coyoteTimer.Tick(Time.fixedDeltaTime);
+            _coyoteTimer.Tick(Time.deltaTime);
+            _inputWaitTrigger.Tick(Time.deltaTime);
 
+            if (_inputWaitTrigger.IsSet && HasAvailableJumps && Core.CanPerform(PlayerActionType.Jump))
+            {
+                Jump();
+                _inputWaitTrigger.Reset();
+                return;
+            }
+            
             if (_currentJump != null)
             {
                 _isFalling = Core.Velocity.y < 0;
