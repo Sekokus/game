@@ -7,8 +7,8 @@ namespace DefaultNamespace
     {
         private static readonly string[] Levels =
         {
-            "Level_1",
-            "Level_2"
+            "Test_Level_1",
+            "Test_Level_2"
         };
 
         public static int LevelCount => Levels.Length;
