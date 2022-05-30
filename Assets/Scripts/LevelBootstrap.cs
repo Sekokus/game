@@ -2,7 +2,7 @@
 using Enemies;
 using UnityEngine;
 
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(10)]
 public class LevelBootstrap : MonoBehaviour
 {
     private LevelFactory _levelFactory;

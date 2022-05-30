@@ -64,7 +64,7 @@ public class Bootstrap : MonoBehaviour
 
     private static void BindBulletFactory()
     {
-        Container.Add<BulletFactory>(ServiceLifetime.Singleton);
+        Container.Add<BulletFactory>(ServiceLifetime.PerScene);
     }
 
     private void BindPauseService()
@@ -106,7 +106,7 @@ public class Bootstrap : MonoBehaviour
 
     private static void BindUIFactory()
     {
-        Container.Add<LevelUIFactory>(ServiceLifetime.Singleton);
+        Container.Add<LevelUIFactory>(ServiceLifetime.PerScene);
     }
 
     private static void BindPlayerFactory()
