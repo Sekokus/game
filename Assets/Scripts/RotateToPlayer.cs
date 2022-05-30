@@ -17,10 +17,10 @@ public class RotateToPlayer : MonoBehaviour
 
     private void Rotate()
     {
-        Vector2 direction = player.Transform.position - transform.position;
+        Vector3 direction = player.Transform.position - transform.position;
         var euler = transform.eulerAngles;
         euler.z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.eulerAngles = euler;
+        transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (0, 0, euler.z), rotationSpeed * Time.deltaTime);
     }
 
     private void Update()
