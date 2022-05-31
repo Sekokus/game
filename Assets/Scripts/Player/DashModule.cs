@@ -99,8 +99,6 @@ namespace Player
 
             DashStarted?.Invoke(dashStartDelay);
 
-            yield return new WaitForSeconds(dashStartDelay);
-
             for (var i = 1; i <= dashFrames; i++)
             {
                 var startPosition = Core.Rigidbody.position;

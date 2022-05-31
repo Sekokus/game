@@ -3,5 +3,6 @@
     Dash,
     Attack,
     Move,
-    Jump
+    Jump,
+    Rotate
 }
