@@ -24,6 +24,7 @@ namespace Player
 
         [SerializeField] private BoxCollider2D contactCollider;
 
+        [SerializeField] private float slopeCheckDistance = 1;
         [SerializeField] [Range(0, 1)] private float minContactAngle = 0.7f;
         [SerializeField] [Range(0, 0.2f)] private float contactRaycastSizeAndDistance = 0.05f;
         [SerializeField] [Range(0, 0.2f)] private float contactPositionEpsilon = 0.025f;
@@ -72,10 +73,10 @@ namespace Player
         private void Push(Vector3 direction)
         {
             PushRestrictions(
-                PlayerActionType.Jump,
-                PlayerActionType.Attack,
-                PlayerActionType.Move,
-                PlayerActionType.Dash);
+                PlayerRestrictions.Jump,
+                PlayerRestrictions.Attack,
+                PlayerRestrictions.Move,
+                PlayerRestrictions.Dash);
 
             var pushForceVector = direction * pushForce;
             Core.Velocity.x = Core.Velocity.x * 0.4f + pushForceVector.x;
@@ -85,7 +86,8 @@ namespace Player
         }
 
         private bool _paused = false;
-        
+        [SerializeField, Range(0, 1)] private float slopeHorizontalDampening = 0.2f;
+
         private void FixedUpdate()
         {
             if (PauseObserver.IsPaused)
@@ -95,6 +97,7 @@ namespace Player
                     Core.Rigidbody.Sleep();
                     _paused = true;
                 }
+
                 return;
             }
 
@@ -103,11 +106,11 @@ namespace Player
                 _paused = false;
                 Core.Rigidbody.WakeUp();
             }
-            
+
             CheckContacts();
             ApplyGravity();
 
-            if (Core.CanPerform(PlayerActionType.Move))
+            if (Core.CanPerform(PlayerRestrictions.Move))
             {
                 ApplyMoveInput();
             }
@@ -115,15 +118,19 @@ namespace Player
             ApplySlopeCorrection();
             DampenHorizontalVelocity();
             ApplyVelocityToRigidbody();
-            
+
             UpdateAnimatorValues();
-            
+
             MoveCamera();
         }
 
         private void ApplySlopeCorrection()
         {
-            var slopeCheckDistance = 1;
+            if (!IsGrounded)
+            {
+                return;
+            }
+
             var hit = Physics2D.Raycast(Core.Rigidbody.position,
                 Vector2.down, slopeCheckDistance, contactCheckMask);
 
@@ -132,10 +139,10 @@ namespace Player
                 return;
             }
 
-            if (hit.normal.y < 1)
+            if (hit.normal.y < 1 && Core.Velocity.x * hit.normal.x >= 0)
             {
-                Core.Velocity.x += -hit.normal.x * 0.78f;
-                Core.Velocity.y = -hit.normal.y * 5;
+                Core.Velocity.y = Mathf.Abs(Core.Velocity.x) > 1e-1 ? -hit.normal.y * 5 : 0;
+                Core.Velocity.x *= 1 - slopeHorizontalDampening;
             }
         }
 
@@ -192,7 +199,7 @@ namespace Player
                 Core.Velocity.x *= airAccelerationFactor;
             }
 
-            if (Core.CanPerform(PlayerActionType.Rotate))
+            if (Core.CanPerform(PlayerRestrictions.Rotate))
             {
                 LookToCursor();
             }

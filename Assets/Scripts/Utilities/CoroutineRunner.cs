@@ -19,7 +19,10 @@ namespace Utilities
 
             public void Stop()
             {
-                _runner.StopCoroutine(_coroutine);
+                if (_coroutine != null && _runner != null)
+                {
+                    _runner.StopCoroutine(_coroutine);
+                }
             }
 
             public static implicit operator Coroutine(CoroutineContext context)

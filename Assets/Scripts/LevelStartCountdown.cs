@@ -22,6 +22,7 @@ public class LevelStartCountdown : MonoBehaviour
 
     private bool _countdownStarted;
     private bool _canStartCountdown;
+    private CoroutineRunner.CoroutineContext _routine;
 
     private void Awake()
     {
@@ -92,7 +93,8 @@ public class LevelStartCountdown : MonoBehaviour
     {
         textMesh.text = startText;
         screenDarkener.Disable();
-        _coroutineRunner.RunAfter(() => textMesh.enabled = false, startTextHideTime);
+        
+        _routine = _coroutineRunner.RunAfter(() => textMesh.enabled = false, startTextHideTime);
             
         _pauseService.Unpause(PauseSource.LevelCountdown);
             
@@ -102,5 +104,10 @@ public class LevelStartCountdown : MonoBehaviour
     public void AllowCountdownStart()
     {
         _canStartCountdown = true;
+    }
+
+    private void OnDestroy()
+    {
+        _routine.Stop();
     }
 }

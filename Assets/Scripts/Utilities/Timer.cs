@@ -9,14 +9,14 @@ namespace Utilities
         private float _duration;
         private float _timeRemained;
         private bool _isRunning;
-        public bool Repeating { get; set; }
+        public bool IsRepeating { get; set; }
 
         public void Start(float time, bool repeating = false)
         {
             _duration = time;
             _isRunning = true;
             _timeRemained = time;
-            Repeating = repeating;
+            IsRepeating = repeating;
         }
 
         public void Tick(float deltaTime)
@@ -37,7 +37,7 @@ namespace Utilities
         {
             Timeout?.Invoke();
 
-            _isRunning = !Repeating;
+            _isRunning = IsRepeating;
             _timeRemained = _duration;
         }
 

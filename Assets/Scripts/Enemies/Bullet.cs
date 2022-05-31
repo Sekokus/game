@@ -80,11 +80,11 @@ namespace Enemies
 
         private void Destroy()
         {
+            _bulletPool.Add(this);
+            
             var particles = Instantiate(destroyParticles, transform.position, transform.rotation, null);
             particles.SetActive(true);
             Destroy(particles, 1);
-
-            _bulletPool.Add(this);
         }
 
         private void OnDisable()

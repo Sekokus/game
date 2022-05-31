@@ -63,7 +63,7 @@ namespace Player
 
         private void OnDashAction(bool pressed)
         {
-            if (!pressed || !Core.CanPerform(PlayerActionType.Dash))
+            if (!pressed || !Core.CanPerform(PlayerRestrictions.Dash))
             {
                 return;
             }
@@ -92,8 +92,8 @@ namespace Player
 
         private IEnumerator DashCoroutine(Vector2 direction)
         {
-            PushRestrictions(PlayerActionType.Move, PlayerActionType.Attack, PlayerActionType.Jump,
-                PlayerActionType.Dash);
+            PushRestrictions(PlayerRestrictions.Move, PlayerRestrictions.Attack, PlayerRestrictions.Jump,
+                PlayerRestrictions.Dash);
 
             Core.Velocity = Vector2.zero;
 

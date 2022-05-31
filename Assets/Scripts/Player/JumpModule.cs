@@ -27,6 +27,7 @@ namespace Player
 
         public int MaxJumpCount { get; private set; }
 
+        [SerializeField]
         private int _availableJumpCount = 0;
 
         private Timer _coyoteTimer;
@@ -106,7 +107,7 @@ namespace Player
                 return;
             }
             
-            if (Core.CanPerform(PlayerActionType.Jump) && HasAvailableJumps)
+            if (Core.CanPerform(PlayerRestrictions.Jump) && HasAvailableJumps)
             {
                 Jump();
             }
@@ -134,7 +135,7 @@ namespace Player
             _coyoteTimer.Tick(Time.deltaTime);
             _inputWaitTrigger.Tick(Time.deltaTime);
 
-            if (_inputWaitTrigger.IsSet && HasAvailableJumps && Core.CanPerform(PlayerActionType.Jump))
+            if (_inputWaitTrigger.IsSet && HasAvailableJumps && Core.CanPerform(PlayerRestrictions.Jump))
             {
                 Jump();
                 _inputWaitTrigger.Reset();

@@ -22,8 +22,8 @@ namespace Enemies
 
         private void StartTimer()
         {
-            _shootTimer = _timerRunner.CreateTimer(Shot, true);
-            _shootTimer.Start(shootInterval);
+            _shootTimer = _timerRunner.CreateTimer(Shot);
+            _shootTimer.Start(shootInterval, true);
             
             var offset = Random.Range(0, shootInterval);
             _shootTimer.Tick(offset);

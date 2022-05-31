@@ -8,12 +8,9 @@ namespace Utilities
     {
         private readonly List<Timer> _timers = new List<Timer>();
         
-        public Timer CreateTimer(Action timeout = null, bool repeating = false)
+        public Timer CreateTimer(Action timeout = null)
         {
-            var timer = new Timer()
-            {
-                Repeating = repeating
-            };
+            var timer = new Timer();
             if (timeout != null)
             {
                 timer.Timeout += timeout;

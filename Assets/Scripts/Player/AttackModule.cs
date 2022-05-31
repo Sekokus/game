@@ -10,6 +10,7 @@ namespace Player
 
         private readonly TimedTrigger _inputTrigger = new TimedTrigger();
         [SerializeField] private float inputWaitTime = 1;
+        [SerializeField] private float onHitUpMomentum = 3;
 
         private void OnEnable()
         {
@@ -34,6 +35,11 @@ namespace Player
         {
             Core.Resources.DashCharges.Restore(1);
             Core.Jump.RestoreOneJump();
+            
+            if (!Core.Movement.IsGrounded)
+            {
+                Core.Velocity.y = onHitUpMomentum;
+            }
         }
 
         private void OnAttackAction(bool pressed)
@@ -43,7 +49,7 @@ namespace Player
                 return;
             }
 
-            if (Core.CanPerform(PlayerActionType.Attack))
+            if (Core.CanPerform(PlayerRestrictions.Attack))
             {
                 Attack();
             }
@@ -55,14 +61,14 @@ namespace Player
 
         private void Attack()
         {
-            PushRestrictions(PlayerActionType.Jump, PlayerActionType.Dash, PlayerActionType.Attack);
+            PushRestrictions(PlayerRestrictions.Jump, PlayerRestrictions.Dash, PlayerRestrictions.Attack);
 
             Core.Animator.SetTrigger("attack");
         }
 
         private void Update()
         {
-            if (Core.CanPerform(PlayerActionType.Attack) && _inputTrigger.IsSet)
+            if (Core.CanPerform(PlayerRestrictions.Attack) && _inputTrigger.IsSet)
             {
                 Attack();
                 _inputTrigger.Reset();

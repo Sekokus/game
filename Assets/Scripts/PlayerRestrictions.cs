@@ -1,4 +1,4 @@
-﻿public enum PlayerActionType
+﻿public enum PlayerRestrictions
 {
     Dash,
     Attack,

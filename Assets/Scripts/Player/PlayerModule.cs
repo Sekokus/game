@@ -8,9 +8,9 @@ namespace Player
         protected PauseObserver PauseObserver { get; private set; }
         protected PlayerCore Core { get; private set; }
 
-        private PlayerActionType[] _restrictions;
+        private PlayerRestrictions[] _restrictions;
 
-        protected void PushRestrictions(params PlayerActionType[] actions)
+        protected void PushRestrictions(params PlayerRestrictions[] actions)
         {
             _restrictions = actions;
             Core.AddRestrictions(actions);

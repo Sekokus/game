@@ -7,10 +7,12 @@ namespace Player
     [DefaultExecutionOrder(-2)]
     public class PlayerCore : MonoBehaviour
     {
+        [SerializeField] private new Rigidbody2D rigidbody2D;
+        [SerializeField] private new Transform transform;
         [SerializeField] private Animator animator;
         public Animator Animator => animator;
-        public Transform Transform { get; private set; }
-        public Rigidbody2D Rigidbody { get; private set; }
+        public Transform Transform => transform;
+        public Rigidbody2D Rigidbody => rigidbody2D;
         public MovementModule Movement { get; private set; }
         public JumpModule Jump { get; private set; }
         public DashModule Dash { get; private set; }
@@ -22,12 +24,15 @@ namespace Player
 
         [NonSerialized] public Vector2 Velocity;
 
+        private void OnValidate()
+        {
+            transform = base.transform;
+            rigidbody2D = GetComponent<Rigidbody2D>();
+        }
+
         private void Awake()
         {
             GameEvents = Container.Get<GameEvents>();
-            
-            Transform = transform;
-            Rigidbody = GetComponent<Rigidbody2D>();
             Movement = GetComponent<MovementModule>();
             Jump = GetComponent<JumpModule>();
             Dash = GetComponent<DashModule>();
@@ -37,14 +42,14 @@ namespace Player
             AnimationEvents = GetComponentInChildren<PlayerAnimationEvents>();
         }
 
-        private readonly List<PlayerActionType> _restrictions = new List<PlayerActionType>();
+        private readonly List<PlayerRestrictions> _restrictions = new List<PlayerRestrictions>();
 
-        public void AddRestrictions(params PlayerActionType[] actions)
+        public void AddRestrictions(params PlayerRestrictions[] actions)
         {
             _restrictions.AddRange(actions);
         }
 
-        public void RemoveRestrictions(params PlayerActionType[] actions)
+        public void RemoveRestrictions(params PlayerRestrictions[] actions)
         {
             foreach (var action in actions)
             {
@@ -52,7 +57,7 @@ namespace Player
             }
         }
 
-        public bool CanPerform(PlayerActionType action)
+        public bool CanPerform(PlayerRestrictions action)
         {
             return !_restrictions.Contains(action);
         }
