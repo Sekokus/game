@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignored: []
   overlapTester: {fileID: 3982716188330472513}
+  team: 1
 --- !u!114 &3982716188330472513
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utilities;
 
 namespace Player
@@ -115,9 +116,26 @@ namespace Player
             DampenHorizontalVelocity();
             ApplyVelocityToRigidbody();
             
+<<<<<<< Updated upstream
             UpdateAnimatorValues();
             
             MoveCamera();
+=======
+            var slopeCheckDistance = 1;
+            var hit = Physics2D.Raycast(Core.Rigidbody.position, 
+                Vector2.down, slopeCheckDistance, contactCheckMask);
+
+            if (!hit)
+            {
+                return;
+            }
+
+            if (hit.normal.y < 1)
+            {
+                Core.Velocity.x += -hit.normal.x * 0.78f;
+                Core.Velocity.y = -hit.normal.y * 5;
+            }
+>>>>>>> Stashed changes
         }
 
         private void UpdateAnimatorValues()
@@ -173,16 +191,19 @@ namespace Player
                 Core.Velocity.x *= airAccelerationFactor;
             }
 
-            if (Mathf.Abs(direction) > 0)
+            if (Core.CanPerform(PlayerActionType.Rotate))
             {
-                LookTo(direction);
+                LookToCursor();
             }
         }
 
-        private void LookTo(float direction)
+        private void LookToCursor()
         {
+            var cursorScreen = Mouse.current.position.ReadValue();
+            var cursorWorld = _camera.ScreenToWorldPoint(cursorScreen);
+            var direction = cursorWorld.x - Core.Transform.position.x;
             var euler = Core.Transform.eulerAngles;
-            euler.y = (direction > 0) != isSpriteInitiallyFlipped ? 180 : 0;
+            euler.y = direction > 0 == isSpriteInitiallyFlipped ? 0 : 180;
             Core.Transform.eulerAngles = euler;
         }
 

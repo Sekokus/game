@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="21f050de-0d50-4738-aa30-9d6e9680cc91" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Sekokus/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sekokus/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Enemies/Default.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Enemies/Default.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Boot.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Boot.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level_1.unity" afterDir="false" />
@@ -14,6 +15,25 @@
       <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/player/jump.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/player/jump.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/player/palyer.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/player/palyer.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Obstacles/Chainsaw.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Obstacles/Chainsaw.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Obstacles/Spikes.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Obstacles/Spikes.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayerAvatar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayerAvatar.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Sword.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Sword.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/attack.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/attack.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Boot.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Boot.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level_1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/DashModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/DashModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/MovementModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/MovementModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerActionType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerActionType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Animations/player/palyer.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Animations/player/palyer.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sketches/idle.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sketches/idle.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sketches/run.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/sketches/run.anim.meta" beforeDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +52,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+<<<<<<< Updated upstream
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
@@ -48,6 +69,8 @@
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+=======
+>>>>>>> Stashed changes
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/93/a9613148/Activator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/cc/5edbd5c8/Delegate.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db7f68c084e842d98504c53b2b4dd3db13ca00/24/ca30bab5/ResourcesAPI.cs" root0="SKIP_HIGHLIGHTING" />
