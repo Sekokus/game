@@ -105,7 +105,6 @@ namespace Player
             }
             
             CheckContacts();
-
             ApplyGravity();
 
             if (Core.CanPerform(PlayerActionType.Move))
@@ -113,16 +112,19 @@ namespace Player
                 ApplyMoveInput();
             }
 
+            ApplySlopeCorrection();
             DampenHorizontalVelocity();
             ApplyVelocityToRigidbody();
             
-<<<<<<< Updated upstream
             UpdateAnimatorValues();
             
             MoveCamera();
-=======
+        }
+
+        private void ApplySlopeCorrection()
+        {
             var slopeCheckDistance = 1;
-            var hit = Physics2D.Raycast(Core.Rigidbody.position, 
+            var hit = Physics2D.Raycast(Core.Rigidbody.position,
                 Vector2.down, slopeCheckDistance, contactCheckMask);
 
             if (!hit)
@@ -135,7 +137,6 @@ namespace Player
                 Core.Velocity.x += -hit.normal.x * 0.78f;
                 Core.Velocity.y = -hit.normal.y * 5;
             }
->>>>>>> Stashed changes
         }
 
         private void UpdateAnimatorValues()
