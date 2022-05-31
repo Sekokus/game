@@ -116,9 +116,26 @@ namespace Player
             DampenHorizontalVelocity();
             ApplyVelocityToRigidbody();
             
+<<<<<<< Updated upstream
             UpdateAnimatorValues();
             
             MoveCamera();
+=======
+            var slopeCheckDistance = 1;
+            var hit = Physics2D.Raycast(Core.Rigidbody.position, 
+                Vector2.down, slopeCheckDistance, contactCheckMask);
+
+            if (!hit)
+            {
+                return;
+            }
+
+            if (hit.normal.y < 1)
+            {
+                Core.Velocity.x += -hit.normal.x * 0.78f;
+                Core.Velocity.y = -hit.normal.y * 5;
+            }
+>>>>>>> Stashed changes
         }
 
         private void ApplySlopeCorrection()
