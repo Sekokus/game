@@ -98,7 +98,7 @@ namespace Player
             Core.Velocity = Vector2.zero;
 
             DashStarted?.Invoke(dashStartDelay);
-
+            
             for (var i = 1; i <= dashFrames; i++)
             {
                 var startPosition = Core.Rigidbody.position;
@@ -106,9 +106,11 @@ namespace Player
 
                 var distance = dashDistance / dashFrames;
                 var expectedEndPosition = startPosition + direction * distance;
-
+                
                 Core.Rigidbody.MovePosition(expectedEndPosition);
+                
                 yield return new WaitForFixedUpdate();
+                
                 if (_pauseObserver.IsPaused)
                 {
                     yield return new WaitUntil(() => _pauseObserver.IsUnpaused);

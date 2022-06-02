@@ -10,6 +10,7 @@ namespace Utilities
         private float _timeRemained;
         private bool _isRunning;
         public bool IsRepeating { get; set; }
+        public bool IsPaused { get; set; }
 
         public void Start(float time, bool repeating = false)
         {
@@ -21,7 +22,7 @@ namespace Utilities
 
         public void Tick(float deltaTime)
         {
-            if (!_isRunning)
+            if (!_isRunning || IsPaused)
             {
                 return;
             }

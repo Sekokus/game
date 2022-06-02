@@ -62,6 +62,15 @@ public partial class @InputBindings : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Collect"",
+                    ""type"": ""Button"",
+                    ""id"": ""b05e66d6-7e89-4726-9d7c-5aac4d1886f8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,17 @@ public partial class @InputBindings : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a95edfde-1c99-47ff-bdad-1a3d05868c2a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Collect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -902,6 +922,7 @@ public partial class @InputBindings : IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Space = m_Player.FindAction("Space", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_Collect = m_Player.FindAction("Collect", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -979,6 +1000,7 @@ public partial class @InputBindings : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Space;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_Collect;
     public struct PlayerActions
     {
         private @InputBindings m_Wrapper;
@@ -987,6 +1009,7 @@ public partial class @InputBindings : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Space => m_Wrapper.m_Player_Space;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @Collect => m_Wrapper.m_Player_Collect;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1008,6 +1031,9 @@ public partial class @InputBindings : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Collect.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCollect;
+                @Collect.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCollect;
+                @Collect.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCollect;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1024,6 +1050,9 @@ public partial class @InputBindings : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Collect.started += instance.OnCollect;
+                @Collect.performed += instance.OnCollect;
+                @Collect.canceled += instance.OnCollect;
             }
         }
     }
@@ -1200,6 +1229,7 @@ public partial class @InputBindings : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnSpace(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnCollect(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -22,8 +22,6 @@ namespace Player
         [Space] [Header("Contact checking properties")] [SerializeField]
         private LayerMask contactCheckMask;
 
-        [SerializeField] private BoxCollider2D contactCollider;
-
         [SerializeField] private float slopeCheckDistance = 1;
         [SerializeField] [Range(0, 1)] private float minContactAngle = 0.7f;
         [SerializeField] [Range(0, 0.2f)] private float contactRaycastSizeAndDistance = 0.05f;
@@ -169,10 +167,16 @@ namespace Player
 
         private void ApplyMoveInput()
         {
-            var input = Core.Input.MoveInput.x;
-            if (Mathf.Abs(input) > 0)
+            var input = Core.Input.MoveInput;
+            if (input.y < 0)
             {
-                Walk(Core.Input.MoveInput.x);
+                Core.PostDownAction();
+            }
+
+
+            if (Mathf.Abs(input.x) > 0)
+            {
+                Walk(input.x);
             }
         }
 
@@ -254,15 +258,9 @@ namespace Player
             Down
         }
 
-        private Bounds GetActualColliderBounds()
-        {
-            var rawBounds = contactCollider.bounds;
-            return new Bounds(rawBounds.center, rawBounds.size + Vector3.one * (contactCollider.edgeRadius * 2));
-        }
-
         private bool CheckBoundsContact(ContactCheckDirection direction)
         {
-            var bounds = GetActualColliderBounds();
+            var bounds = Core.GetBounds();
             var castOrigin = direction == ContactCheckDirection.Down
                 ? new Vector2(bounds.min.x + bounds.extents.x, bounds.min.y)
                 : new Vector2(bounds.max.x - bounds.extents.x, bounds.max.y);
@@ -274,6 +272,7 @@ namespace Player
                 _contacts, contactRaycastSizeAndDistance, contactCheckMask);
             return _contacts
                 .Take(contactCount)
+                .Where(contact => !Core.RaycastIgnoredColliders.Contains(contact.collider))
                 .Where(contact =>
                     (contact.normal.y >= minContactAngle && direction == ContactCheckDirection.Down) ||
                     (contact.normal.y <= -minContactAngle && direction == ContactCheckDirection.Up))

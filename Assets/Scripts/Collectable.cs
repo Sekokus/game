@@ -1,37 +1,64 @@
-﻿using System.Collections.Generic;
-using Player;
+﻿using Player;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
     public class Collectable : MonoBehaviour
     {
-        [SerializeField] private BoxOverlapTester overlapTester;
         private LevelGoalCounter _levelGoalCounter;
-
-        private void Reset()
-        {
-            overlapTester = GetComponent<BoxOverlapTester>();
-        }
+        private GameEvents _gameEvents;
+        [SerializeField] private SpriteOutline spriteOutline;
 
         private void Awake()
         {
             _levelGoalCounter = Container.Get<LevelGoalCounter>();
+            _gameEvents = Container.Get<GameEvents>();
 
-            overlapTester.Overlap += OnOverlap;
+            _gameEvents.PlayerTryCollect += OnTryCollect;
+            SetCollectable(false);
         }
 
-        private void OnOverlap(IReadOnlyList<Collider2D> overlaps)
+        private bool _isCollectable;
+
+        private void OnTryCollect()
         {
-            foreach (var overlap in overlaps)
+            if (_isCollectable)
             {
-                if (overlap.GetComponentInParent<PlayerCore>())
-                {
-                    _levelGoalCounter.IncrementCounter();
-                    gameObject.SetActive(false);
-                    break;
-                }
+                Collect();
             }
+        }
+
+        private void Collect()
+        {
+            _levelGoalCounter.IncrementCounter();
+            Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            _gameEvents.PlayerTryCollect -= OnTryCollect;
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.GetComponentInParent<PlayerCore>())
+            {
+                SetCollectable(true);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D col)
+        {
+            if (col.GetComponentInParent<PlayerCore>())
+            {
+                SetCollectable(false);
+            }
+        }
+
+        private void SetCollectable(bool isCollectable)
+        {
+            _isCollectable = isCollectable;
+            spriteOutline.SetOutline(_isCollectable);
         }
     }
 }

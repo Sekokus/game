@@ -457,6 +457,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 944478ba-147c-46e2-a79e-dbfc45032f06
     m_ActionName: UI/Inventory[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7160953146846894358}
+        m_TargetAssemblyTypeName: Player.InputModule, Assembly-CSharp
+        m_MethodName: OnCollect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b05e66d6-7e89-4726-9d7c-5aac4d1886f8
+    m_ActionName: Player/Collect[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -542,7 +558,6 @@ MonoBehaviour:
   contactCheckMask:
     serializedVersion: 2
     m_Bits: 256
-  contactCollider: {fileID: 7160953146846894364}
   slopeCheckDistance: 1
   minContactAngle: 0.7
   contactRaycastSizeAndDistance: 0.05
@@ -550,7 +565,7 @@ MonoBehaviour:
   contactsBufferSize: 6
   isSpriteInitiallyFlipped: 1
   cameraFollowSmoothness: 0.7
-  slopeNoInputDampening: 0.2
+  slopeHorizontalDampening: 0.2
 --- !u!114 &7160953146846894358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,6 +610,7 @@ MonoBehaviour:
   rigidbody2D: {fileID: 7160953146846894363}
   transform: {fileID: 7160953146846894361}
   animator: {fileID: 5303158650233141726}
+  boxCollider: {fileID: 7160953146846894364}
 --- !u!114 &7160953146846894355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,6 +1095,30 @@ PrefabInstance:
     - target: {fileID: 7236822596020182133, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514028861418335525, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514028861418335525, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514028861418335525, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: debugColor.g
+      value: 0.735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514028861418335525, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: debugColor.r
+      value: 0.27634716
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514028861418335525, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: colliderSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514028861418335525, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: colliderSize.y
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8006722873374466892, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
       propertyPath: m_LocalRotation.w

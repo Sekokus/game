@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 7856385386412697833}
   - component: {fileID: -7796162330794602480}
   - component: {fileID: 3075984270788664309}
+  - component: {fileID: 1563661820797495404}
   m_Layer: 0
   m_Name: Default
   m_TagString: Untagged
@@ -190,6 +191,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtbox: {fileID: 2288144436821442762}
   destroyDelay: 0
+--- !u!114 &1563661820797495404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001977717007388510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cdcfbbf0a27440a92bf23463d033563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 5
+  scanInterval: 0.3
+  _switchables: []
+  references:
+    version: 1
 --- !u!1 &4355147031785969217
 GameObject:
   m_ObjectHideFlags: 0

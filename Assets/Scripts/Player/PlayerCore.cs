@@ -10,6 +10,7 @@ namespace Player
         [SerializeField] private new Rigidbody2D rigidbody2D;
         [SerializeField] private new Transform transform;
         [SerializeField] private Animator animator;
+        [SerializeField] private BoxCollider2D boxCollider;
         public Animator Animator => animator;
         public Transform Transform => transform;
         public Rigidbody2D Rigidbody => rigidbody2D;
@@ -22,12 +23,30 @@ namespace Player
         public GameEvents GameEvents { get; private set; }
         public PlayerAnimationEvents AnimationEvents { get; private set; }
 
+        public BoxCollider2D BoxCollider => boxCollider;
+
+        public readonly List<Collider2D> RaycastIgnoredColliders = new List<Collider2D>();
+
+        public Bounds GetBounds()
+        {
+            var rawBounds = BoxCollider.bounds;
+            return new Bounds(rawBounds.center, rawBounds.size + Vector3.one * (BoxCollider.edgeRadius * 2));
+        }
+
+        public event Action DownAction;
+        
+        public void PostDownAction()
+        {
+            DownAction?.Invoke();
+        }
+
         [NonSerialized] public Vector2 Velocity;
 
-        private void OnValidate()
+        private void Reset()
         {
             transform = base.transform;
             rigidbody2D = GetComponent<Rigidbody2D>();
+            boxCollider = GetComponent<BoxCollider2D>();
         }
 
         private void Awake()

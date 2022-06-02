@@ -4,18 +4,21 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
-    public class InputModule : MonoBehaviour
+    public class InputModule : PlayerModule
     {
         private PauseService _pauseService;
         private PauseObserver _pauseObserver;
+        private GameEvents _gameEvents;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             Construct();
         }
 
         private void Construct()
         {
+            _gameEvents = Container.Get<GameEvents>();
             _pauseService = Container.Get<PauseService>();
             _pauseObserver = _pauseService.GetObserver(PauseSource.Any);
         }
@@ -64,6 +67,19 @@ namespace Player
             }
 
             AttackAction?.Invoke(context.action.IsPressed());
+        }
+
+        public void OnCollect(InputAction.CallbackContext context)
+        {
+            if (_pauseObserver.IsPaused || context.performed)
+            {
+                return;
+            }
+            
+            if (context.action.IsPressed())
+            {
+                _gameEvents.PostTryCollect();
+            }
         }
     }
 }
