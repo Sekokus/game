@@ -173,7 +173,6 @@ namespace Player
                 Core.PostDownAction();
             }
 
-
             if (Mathf.Abs(input.x) > 0)
             {
                 Walk(input.x);
@@ -205,15 +204,12 @@ namespace Player
 
             if (Core.CanPerform(PlayerRestrictions.Rotate))
             {
-                LookToCursor();
+                LookInDirection(direction);
             }
         }
 
-        private void LookToCursor()
+        public void LookInDirection(float direction)
         {
-            var cursorScreen = Mouse.current.position.ReadValue();
-            var cursorWorld = _camera.ScreenToWorldPoint(cursorScreen);
-            var direction = cursorWorld.x - Core.Transform.position.x;
             var euler = Core.Transform.eulerAngles;
             euler.y = direction > 0 == isSpriteInitiallyFlipped ? 0 : 180;
             Core.Transform.eulerAngles = euler;

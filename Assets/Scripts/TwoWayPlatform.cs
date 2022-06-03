@@ -61,7 +61,7 @@ namespace DefaultNamespace
         private void Update()
         {
             _passThroughTimer?.Tick(Time.deltaTime);
-            if (_suspendUpdate)
+            if (_suspendUpdate || !_player)
             {
                 return;
             }

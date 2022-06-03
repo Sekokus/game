@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utilities;
 
 namespace Player
@@ -11,6 +12,13 @@ namespace Player
         private readonly TimedTrigger _inputTrigger = new TimedTrigger();
         [SerializeField] private float inputWaitTime = 1;
         [SerializeField] private float onHitUpMomentum = 3;
+        private Camera _camera;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _camera = Camera.main;
+        }
 
         private void OnEnable()
         {
@@ -35,7 +43,7 @@ namespace Player
         {
             Core.Resources.DashCharges.Restore(1);
             Core.Jump.RestoreOneJump();
-            
+
             if (!Core.Movement.IsGrounded)
             {
                 Core.Velocity.y = onHitUpMomentum;
@@ -61,9 +69,20 @@ namespace Player
 
         private void Attack()
         {
-            PushRestrictions(PlayerRestrictions.Jump, PlayerRestrictions.Dash, PlayerRestrictions.Attack);
+            PushRestrictions(PlayerRestrictions.Jump, PlayerRestrictions.Dash, PlayerRestrictions.Attack,
+                PlayerRestrictions.Rotate);
+
+            LookInCursorDirection();
 
             Core.Animator.SetTrigger("attack");
+        }
+
+        private void LookInCursorDirection()
+        {
+            var cursorScreen = Mouse.current.position.ReadValue();
+            var cursorWorld = _camera.ScreenToWorldPoint(cursorScreen);
+            var direction = cursorWorld.x - Core.Transform.position.x;
+            Core.Movement.LookInDirection(direction);
         }
 
         private void Update()
@@ -73,7 +92,7 @@ namespace Player
                 Attack();
                 _inputTrigger.Reset();
             }
-            
+
             _inputTrigger.Tick(Time.deltaTime);
         }
     }
