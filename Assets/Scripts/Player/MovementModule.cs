@@ -173,7 +173,6 @@ namespace Player
                 Core.PostDownAction();
             }
 
-
             if (Mathf.Abs(input.x) > 0)
             {
                 Walk(input.x);
