@@ -58,6 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6870583707107204985}
   - component: {fileID: 8271769860780227850}
+  - component: {fileID: 3567952193178468901}
   m_Layer: 0
   m_Name: WeaponSprite
   m_TagString: Untagged
@@ -98,7 +99,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 874cf254ec46e1243935fb0d41fff89c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -130,6 +131,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3567952193178468901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402192804451533118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2043d7f7811948bab06301601988c250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0, b: 0, a: 1}
+  outlineSize: 5
+  spriteRenderer: {fileID: 8271769860780227850}
+  outlineEnabled: 1
 --- !u!1 &3001977717007388510
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7773291246807653395}
   - component: {fileID: 8594679154770591252}
+  - component: {fileID: 1549901959663182562}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -257,7 +275,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 874cf254ec46e1243935fb0d41fff89c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -289,6 +307,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1549901959663182562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4355147031785969217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2043d7f7811948bab06301601988c250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0, b: 0, a: 1}
+  outlineSize: 5
+  spriteRenderer: {fileID: 8594679154770591252}
+  outlineEnabled: 1
 --- !u!1 &7980435331872594386
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +451,10 @@ PrefabInstance:
     - target: {fileID: 1628520772566184693, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
       propertyPath: beamDistance
       value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1628520772566184693, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
+      propertyPath: contactWith.m_Bits
+      value: 1335
       objectReference: {fileID: 0}
     - target: {fileID: 4687624911582788864, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
       propertyPath: m_Name
