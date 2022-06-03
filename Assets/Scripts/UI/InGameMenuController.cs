@@ -1,4 +1,5 @@
-﻿using Player;
+﻿using System;
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -72,6 +73,11 @@ namespace UI
             }
 
             _activeMenu = menu;
+        }
+
+        private void OnDisable()
+        {
+            _pauseService.Unpause(PauseSource.MenuOpened);
         }
     }
 }

@@ -8,10 +8,12 @@ namespace UI
     {
         [SerializeField] private GameObject menu;
         [SerializeField] private AbstractMenu settingsMenu;
-        [SerializeField] private string gameScene;
+        
+        private SceneLoader _sceneLoader;
 
         private void Awake()
         {
+            _sceneLoader = Container.Get<SceneLoader>();
             IsShown = true;
         }
 
@@ -37,8 +39,13 @@ namespace UI
         [UsedImplicitly]
         public void LoadGame()
         {
-            Time.timeScale = 1;
-            SceneManager.LoadScene(gameScene);
+            _sceneLoader.ReplaceLastScene(SceneLoader.GetLastExitScene());
+        }
+
+        [UsedImplicitly]
+        public void LoadNewGame()
+        {
+            _sceneLoader.ReplaceLastScene(SceneLoader.NewGameScene);
         }
 
         [UsedImplicitly]

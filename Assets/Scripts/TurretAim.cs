@@ -22,6 +22,11 @@ public class TurretAim : MonoBehaviour, ISwitchable
         rotation = GetComponent<TransformRotation>();
     }
 
+    private void OnValidate()
+    {
+        rotation.rotationSpeed = idleRotationSpeed;
+    }
+
     private void Awake()
     {
         Container.Get<PlayerFactory>().WhenPlayerAvailable(playerCore => _player = playerCore);
@@ -36,11 +41,13 @@ public class TurretAim : MonoBehaviour, ISwitchable
     private void RotateInDirection(Vector2 direction)
     {
         var z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        var sign = Mathf.Sign(z - transform.eulerAngles.z);
-        transform.Rotate(Vector3.forward, sign * aggroRotationSpeed * Time.deltaTime);
+        var newRotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, z),
+            aggroRotationSpeed * Time.deltaTime);
+        transform.rotation = newRotation;
     }
 
     private float _currentAutoRotationSpeed;
+    private bool _shouldRotateFromWall;
 
     private void Update()
     {
@@ -57,22 +64,30 @@ public class TurretAim : MonoBehaviour, ISwitchable
         }
     }
 
-    private void UpdateAutoRotationSpeed()
+    private bool ShouldRotateFromWall()
     {
-        _currentAutoRotationSpeed = idleRotationSpeed;
-
         var lastRaycast = laserBeam.LastRaycast;
         if (!lastRaycast)
+        {
+            return false;
+        }
+
+        return (lastRaycast.distance < idleRotationDirectionChangeHitDistance);
+    }
+
+    private void UpdateAutoRotationSpeed()
+    {
+        var shouldRotateFromWallNew = ShouldRotateFromWall();
+        if (shouldRotateFromWallNew == _shouldRotateFromWall)
         {
             return;
         }
 
-        if (lastRaycast.distance < idleRotationDirectionChangeHitDistance)
+        _shouldRotateFromWall = shouldRotateFromWallNew;
+        if (shouldRotateFromWallNew)
         {
-            _currentAutoRotationSpeed = -idleRotationSpeed;
+            rotation.rotationSpeed *= -1;
         }
-
-        rotation.rotationSpeed = _currentAutoRotationSpeed;
     }
 
     private bool _rotateToPlayer = false;

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace UI
 {
@@ -7,7 +6,14 @@ namespace UI
     {
         [SerializeField] private GameObject menu;
         [SerializeField] private AbstractMenu settingsMenu;
-        [SerializeField] private string menuScene;
+        private GameEvents _gameEvents;
+        private SceneLoader _sceneLoader;
+
+        private void Awake()
+        {
+            _gameEvents = Container.Get<GameEvents>();
+            _sceneLoader = Container.Get<SceneLoader>();
+        }
 
         protected override void OnShow()
         {
@@ -42,6 +48,12 @@ namespace UI
             settingsMenu.Show(this);
         }
 
+        public void Restart()
+        {
+            Close();
+            _gameEvents.PostPlayerDied();
+        }
+
         public override void OnChildClosed(AbstractMenu child)
         {
             Show();
@@ -50,7 +62,7 @@ namespace UI
         public void Quit()
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene(menuScene);
+            _sceneLoader.ReplaceLastScene(SceneLoader.MenuScene);
         }
     }
 }

@@ -1,28 +1,39 @@
 ﻿using System;
+using UnityEngine;
 
 namespace DefaultNamespace
 {
     public class LevelGoalCounter
     {
-        public int RequiredCount { get; private set; }
+        public int MinCount { get; private set; }
+        public int MaxCount { get; private set; }
+
         public int CurrentCount { get; private set; }
 
         public event Action ValueChanged;
-        public event Action ReachedRequiredCount;
+        public event Action ReachedMinCount;
+        public event Action ReachedMaxCount;
 
 
-        public void SetRequiredCount(int count)
+        public void SetCounts(int minCount, int maxCount)
         {
-            RequiredCount = count;
+            MinCount = minCount;
+            MaxCount = maxCount;
         }
 
         public void IncrementCounter()
         {
-            CurrentCount++;
+            CurrentCount = Mathf.Min(CurrentCount + 1, MaxCount);
+            
             ValueChanged?.Invoke();
-            if (CurrentCount == RequiredCount)
+            if (CurrentCount == MinCount)
             {
-                ReachedRequiredCount?.Invoke();
+                ReachedMinCount?.Invoke();
+            }
+
+            if (CurrentCount == MaxCount)
+            {
+                ReachedMaxCount?.Invoke();
             }
         }
 

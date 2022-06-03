@@ -14,6 +14,7 @@ public class Marker : MonoBehaviour
     {
         GizmosHelper.PushColor(debugColor);
         Gizmos.DrawSphere(Location, 0.5f);
+        Gizmos.DrawLine(Location, Location + transform.right);
         Handles.Label(Location + Vector3.up, Name);
         GizmosHelper.PopColor();
     }

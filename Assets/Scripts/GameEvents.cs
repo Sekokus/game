@@ -5,8 +5,10 @@ public class GameEvents : MonoBehaviour
 {
     public event Action Exiting;
     public event Action PlayerDied;
-    public event Action PlayerGoalCompleted;
-    public event Action PlayerTryCollect;
+    public event Action PlayerMinGoalCompleted;
+    public event Action PlayerFullGoalCompleted;
+    public event Action PlayerFinished;
+    public event Action PlayerInteract;
     
     private void OnApplicationQuit()
     {
@@ -18,13 +20,23 @@ public class GameEvents : MonoBehaviour
         PlayerDied?.Invoke();
     }
 
-    public void PostPlayerGoalCompleted()
+    public void PostMinGoalCompleted()
     {
-        PlayerGoalCompleted?.Invoke();
+        PlayerMinGoalCompleted?.Invoke();
+    }
+
+    public void PostFullGoalCompleted()
+    {
+        PlayerFullGoalCompleted?.Invoke();
     }
 
     public void PostTryCollect()
     {
-        PlayerTryCollect?.Invoke();
+        PlayerInteract?.Invoke();
+    }
+
+    public void PostFinishReached()
+    {
+        PlayerFinished?.Invoke();
     }
 }
