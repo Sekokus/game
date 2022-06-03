@@ -7,7 +7,9 @@ namespace DefaultNamespace
     {
         private LevelGoalCounter _levelGoalCounter;
         private GameEvents _gameEvents;
+
         [SerializeField] private SpriteOutline spriteOutline;
+        [SerializeField] private GameObject hintText;
 
         private void Awake()
         {
@@ -57,8 +59,10 @@ namespace DefaultNamespace
 
         private void SetCollectable(bool isCollectable)
         {
+            spriteOutline.SetOutline(isCollectable);
+            hintText.SetActive(isCollectable);
+            
             _isCollectable = isCollectable;
-            spriteOutline.SetOutline(_isCollectable);
         }
     }
 }
