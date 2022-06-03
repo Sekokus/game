@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     public class SpriteOutline : MonoBehaviour
     {
         public Color color = Color.white;

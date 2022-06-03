@@ -27,12 +27,11 @@ namespace Player
 
         public int MaxJumpCount { get; private set; }
 
-        [SerializeField]
         private int _availableJumpCount = 0;
 
         private Timer _coyoteTimer;
 
-        private TimedTrigger _inputWaitTrigger = new TimedTrigger();
+        private readonly TimedTrigger _inputWaitTrigger = new TimedTrigger();
 
         private JumpInfo _currentJump;
         private bool _isFalling;
@@ -69,14 +68,6 @@ namespace Player
             {
                 Core.Velocity.y = _currentJump.StartVelocity;
             }
-
-            ResetWaitingForJumpFrame();
-        }
-
-        private void ResetWaitingForJumpFrame()
-        {
-            _waitingForAnimationFrame = false;
-            Core.Animator.SetBool("waiting-for-jump-frame", false);
         }
 
         private void OnCoyoteTimerTimeout()
@@ -122,7 +113,6 @@ namespace Player
             _availableJumpCount = MaxJumpCount;
             _coyoteTimer.Reset();
             _currentJump = null;
-            ResetWaitingForJumpFrame();
         }
 
         public void RestoreOneJump()
@@ -165,11 +155,11 @@ namespace Player
         {
             _currentJump = GetNextJump();
             _isFalling = false;
-            _waitingForAnimationFrame = true;
+            //_waitingForAnimationFrame = true;
 
             _availableJumpCount--;
-            //Core.Animator.SetTrigger("jump");
-            Core.Animator.SetBool("waiting-for-jump-frame", true);
+            Core.Animator.SetTrigger("jump");
+            OnJumpFrame();
         }
 
         private void AbortJump()

@@ -58,7 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6870583707107204985}
   - component: {fileID: 8271769860780227850}
-  - component: {fileID: 3567952193178468901}
+  - component: {fileID: 6828051648854856551}
   m_Layer: 0
   m_Name: WeaponSprite
   m_TagString: Untagged
@@ -131,7 +131,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3567952193178468901
+--- !u!114 &6828051648854856551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,7 +146,6 @@ MonoBehaviour:
   color: {r: 1, g: 0, b: 0, a: 1}
   outlineSize: 5
   spriteRenderer: {fileID: 8271769860780227850}
-  outlineEnabled: 1
 --- !u!1 &3001977717007388510
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7773291246807653395}
   - component: {fileID: 8594679154770591252}
-  - component: {fileID: 1549901959663182562}
+  - component: {fileID: 2351259188210699470}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -307,7 +306,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1549901959663182562
+--- !u!114 &2351259188210699470
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -322,7 +321,6 @@ MonoBehaviour:
   color: {r: 1, g: 0, b: 0, a: 1}
   outlineSize: 5
   spriteRenderer: {fileID: 8594679154770591252}
-  outlineEnabled: 1
 --- !u!1 &7980435331872594386
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6941958786184550828}
   - component: {fileID: 8619698777507556579}
+  - component: {fileID: 1109080765713347736}
   m_Layer: 0
   m_Name: WeaponAnchor
   m_TagString: Untagged
@@ -440,7 +439,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1f32d23c86c8645a63c6b9f77fe43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aggroRotationSpeed: 50
+  idleRotationSpeed: 30
+  idleRotationDirectionChangeHitDistance: 2
+  rotation: {fileID: 1109080765713347736}
+  laserBeam: {fileID: 8242892606235366759}
+--- !u!114 &1109080765713347736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9008742693768237363}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b906f594c647f19d5caaeb94744ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   rotationSpeed: 2
+  axis: {x: 0, y: 0, z: 1}
 --- !u!1001 &7276981526741165970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -519,3 +536,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7572266229640583818, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
   m_PrefabInstance: {fileID: 7276981526741165970}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8242892606235366759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1628520772566184693, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
+  m_PrefabInstance: {fileID: 7276981526741165970}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547f1b70d331463d8e860e4ef3f9e222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

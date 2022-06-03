@@ -11,6 +11,9 @@ namespace DefaultNamespace
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private GameObject hitCircleObject;
 
+        public RaycastHit2D LastRaycast { get; private set; }
+
+
         private void Reset()
         {
             lineRenderer = GetComponent<LineRenderer>();
@@ -20,8 +23,8 @@ namespace DefaultNamespace
         {
             var origin = GetOriginPoint();
             var direction = GetBeamDirection();
-            var hit = Physics2D.Raycast(origin, direction, beamDistance, contactWith);
-            SetHitState(hit);
+            LastRaycast = Physics2D.Raycast(origin, direction, beamDistance, contactWith);
+            SetHitState(LastRaycast);
         }
 
         private void SetHitState(RaycastHit2D hit)
