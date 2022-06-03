@@ -105,8 +105,8 @@ namespace Player
                 Core.Rigidbody.WakeUp();
             }
 
-            CheckContacts();
             ApplyGravity();
+            CheckContacts();
 
             if (Core.CanPerform(PlayerRestrictions.Move))
             {
