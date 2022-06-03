@@ -10,7 +10,7 @@ namespace Enemies
 
         private static readonly Dictionary<EnemyType, string> EnemyTypePaths = new Dictionary<EnemyType, string>
         {
-            { EnemyType.Default, "Default" }
+            { EnemyType.Turret, "Turret" }
         };
 
         private static readonly Dictionary<EnemyType, EnemyConductor> LoadedEnemyPrefabs =
