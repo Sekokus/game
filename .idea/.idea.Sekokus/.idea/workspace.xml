@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Sekokus/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sekokus/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Collectables/Coin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Collectables/Coin.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Collectables/Collectable.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Collectables/Collectable.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CollectAllUi.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CollectAllUi.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Enemies/Default.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Enemies/Default.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Player_LookDirectionIndicator.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player_LookDirectionIndicator.prefab" afterDir="false" />
@@ -16,7 +17,6 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/InputModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/InputModule.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/MovementModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/MovementModule.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/RotateToPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RotateToPlayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utilities/Timer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utilities/Timer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Settings/InputBindings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/InputBindings.cs" afterDir="false" />
@@ -112,7 +112,7 @@
       <workItem from="1653537432479" duration="11568000" />
       <workItem from="1653734820548" duration="286000" />
       <workItem from="1653879364464" duration="2173000" />
-      <workItem from="1654182613255" duration="8981000" />
+      <workItem from="1654182613255" duration="9350000" />
     </task>
     <servers />
   </component>
