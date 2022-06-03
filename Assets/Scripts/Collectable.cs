@@ -59,7 +59,7 @@ namespace DefaultNamespace
 
         private void SetCollectable(bool isCollectable)
         {
-            spriteOutline.SetOutline(isCollectable);
+            spriteOutline.enabled = isCollectable;
             hintText.SetActive(isCollectable);
             
             _isCollectable = isCollectable;

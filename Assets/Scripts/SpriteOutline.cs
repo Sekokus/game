@@ -17,7 +17,17 @@ namespace DefaultNamespace
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        public void SetOutline(bool outline)
+        private void OnEnable()
+        {
+            SetOutline(true);
+        }
+        
+        private void OnDisable()
+        {
+            SetOutline(false);
+        }
+
+        private void SetOutline(bool outline)
         {
             var mpb = new MaterialPropertyBlock();
             spriteRenderer.GetPropertyBlock(mpb);
