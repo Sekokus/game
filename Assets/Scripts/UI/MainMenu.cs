@@ -18,7 +18,6 @@ namespace UI
             _sceneLoader = Container.Get<SceneLoader>();
             IsShown = true;
 
-            PlayerPrefs.DeleteAll();
             var lastLevel = SceneLoader.GetLastExitScene();
             if (string.IsNullOrEmpty(lastLevel))
             {
