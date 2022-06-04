@@ -53,6 +53,7 @@ namespace UI
 
         private void OnInventory(InputAction.CallbackContext context)
         {
+            return;
             if (_activeMenu == null)
             {
                 SetActiveMenu(rootInventoryMenu);

@@ -30,14 +30,17 @@ namespace Player
             }
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (PauseObserver.IsPaused)
             {
                 return;
             }
             
-            DashCharges.Restore(dashPassiveRechargeSpeed * Time.fixedDeltaTime);
+            if (Core.Movement.IsGrounded)
+            {
+                DashCharges.Restore(dashPassiveRechargeSpeed * Time.deltaTime);
+            }
             
             if (Keyboard.current.pKey.wasPressedThisFrame)
             {

@@ -9,9 +9,10 @@ public class LevelEntry : MonoBehaviour
         countdown.CountdownEnded += OnCountdownEnded;
     }
 
-    public void StartLevel(bool withCountdown)
+    public void StartLevel(bool withCountdown, string startText)
     {
         Time.timeScale = 0;
+        countdown.startText = startText;
         countdown.AllowCountdownStart();
         if (!withCountdown)
         {

@@ -17,6 +17,11 @@ namespace DefaultNamespace
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
+        private void OnValidate()
+        {
+            SetOutline(enabled);
+        }
+
         private void OnEnable()
         {
             SetOutline(true);

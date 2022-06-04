@@ -11,7 +11,6 @@ public class LevelStartCountdown : MonoBehaviour
     [Space] [SerializeField] private string preCountdownText = "Click to begin";
     [SerializeField] private int startTime = 3;
     [SerializeField] private int startTextHideTime = 2;
-    [SerializeField] private string startText = "Begin";
     [SerializeField] private ScreenColorTint screenDarkener;
 
     [SerializeField] private TextMeshProUGUI textMesh;
@@ -24,6 +23,8 @@ public class LevelStartCountdown : MonoBehaviour
     private bool _canStartCountdown;
     private CoroutineRunner.CoroutineContext _routine;
 
+    public string startText = "Begin";
+    
     private void Awake()
     {
         Construct();

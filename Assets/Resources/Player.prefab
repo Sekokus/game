@@ -535,7 +535,6 @@ MonoBehaviour:
     <AbortFactor>k__BackingField: 0.6
   - <StartVelocity>k__BackingField: 5
     <AbortFactor>k__BackingField: 0.6
-  _availableJumpCount: 0
 --- !u!114 &7160953146846894359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebbc42b06b73a9d4cb8bf3234c6434cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashPassiveRechargeSpeed: 0.3
+  dashPassiveRechargeSpeed: 1
 --- !u!114 &7160953146846894354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,6 +967,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.009439121
       objectReference: {fileID: 0}
+    - target: {fileID: 4571897084123232771, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 874cf254ec46e1243935fb0d41fff89c, type: 2}
     - target: {fileID: 4652343437092598761, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
       propertyPath: m_Time
       value: 0.1
@@ -1020,6 +1023,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6104755342865310373, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 874cf254ec46e1243935fb0d41fff89c, type: 2}
     - target: {fileID: 6172781294093009667, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.047
@@ -1202,6 +1209,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+--- !u!1 &8447751882956224735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1436839031233071408, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+  m_PrefabInstance: {fileID: 7407538376882942447}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4784256229454647394 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2641866241172988301, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
@@ -1215,6 +1227,16 @@ SpriteRenderer:
 --- !u!95 &5303158650233141726 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3410428169122072625, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+  m_PrefabInstance: {fileID: 7407538376882942447}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1772033236020997265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9104970297300868478, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+  m_PrefabInstance: {fileID: 7407538376882942447}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &3635722440535561034 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6104755342865310373, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
   m_PrefabInstance: {fileID: 7407538376882942447}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1927317104266185964 stripped
@@ -1239,3 +1261,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e12c9da66fd4b468ed1a2166885404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6554315568271292527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772033236020997265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2043d7f7811948bab06301601988c250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0.16767979, b: 1, a: 1}
+  outlineSize: 7
+  spriteRenderer: {fileID: 3635722440535561034}
+--- !u!114 &2412082731167498541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8447751882956224735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2043d7f7811948bab06301601988c250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
+  outlineSize: 5
+  spriteRenderer: {fileID: 6466738902435711980}

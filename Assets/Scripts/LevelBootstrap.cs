@@ -12,7 +12,7 @@ public class LevelBootstrap : MonoBehaviour
     [SerializeField] private Marker playerMarker;
     [SerializeField] private GameObject enemyMarkersParent;
     [SerializeField] private GameObject collectablesParent;
-
+    [SerializeField] private string startText = "Collect enough Coins to proceed";
     [SerializeField] private bool startWithTimer;
     private GameEvents _gameEvents;
     private LevelGoalCounter _counter;
@@ -44,7 +44,7 @@ public class LevelBootstrap : MonoBehaviour
     private void Start()
     {
         var levelEntry = _levelFactory.CreateLevel(levelType, playerMarker, _enemyMarkers);
-        levelEntry.StartLevel(startWithTimer);
+        levelEntry.StartLevel(startWithTimer, startText);
 
         _counter.ReachedMinCount += () => { _gameEvents.PostMinGoalCompleted(); };
     }
