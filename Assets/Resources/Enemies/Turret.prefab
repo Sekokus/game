@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: 0
-  bulletSpeed: 10
-  shootInterval: 2
+  defaultBulletSpeed: 10
 --- !u!1 &1402192804451533118
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +404,7 @@ GameObject:
   - component: {fileID: 6941958786184550828}
   - component: {fileID: 8619698777507556579}
   - component: {fileID: 1109080765713347736}
+  - component: {fileID: 3443142962421238756}
   m_Layer: 0
   m_Name: WeaponAnchor
   m_TagString: Untagged
@@ -442,11 +442,13 @@ MonoBehaviour:
   aggroRotationSpeed: 50
   idleRotationSpeed: 30
   idleRotationDirectionChangeHitDistance: 2
-  aimedMinDot: 0.8
   aimTime: 2
-  aimedRotationSpeed: 2
+  blinkTime: 0.25
+  aimedRotationMinSpeed: 2
   rotation: {fileID: 1109080765713347736}
   laserBeam: {fileID: 8242892606235366759}
+  shooter: {fileID: 3968998285184132460}
+  aimRaycaster: {fileID: 3443142962421238756}
 --- !u!114 &1109080765713347736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +463,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 30
   axis: {x: 0, y: 0, z: 1}
+--- !u!114 &3443142962421238756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9008742693768237363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83e15e588754c22ba8a2abb1e5c7a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contactBufferSize: 8
+  maxDistance: 5
 --- !u!1001 &7276981526741165970
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -64,5 +64,11 @@ namespace UI
             Time.timeScale = 1;
             _sceneLoader.ReplaceLastScene(SceneLoader.MenuScene);
         }
+
+        public void QuitToHub()
+        {
+            Time.timeScale = 1;
+            _sceneLoader.ReplaceLastScene(SceneLoader.HubScene);
+        }
     }
 }

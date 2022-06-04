@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public delegate void DoEveryFrameCallback(float deltaTime, float passedTime);
+    public delegate void DoEveryFrameCallback(float deltaTime, float fraction);
 
     public static class Do
     {
@@ -54,13 +54,13 @@ namespace DefaultNamespace
                 var lastUpdate = Time.time;
                 do
                 {
+                    yield return null;
                     var newUpdate = Time.time;
                     var deltaTime = newUpdate - lastUpdate;
                     lastUpdate = newUpdate;
 
                     passedTime = Mathf.Min(passedTime + deltaTime, time);
-                    action(deltaTime, passedTime);
-                    yield return null;
+                    action(deltaTime, passedTime / time);
                 } while (passedTime < time);
             }
 

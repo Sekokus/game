@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using DefaultNamespace;
 using Enemies;
 using Player;
@@ -13,13 +11,14 @@ public class TurretAim : MonoBehaviour, ISwitchable
     [SerializeField] private float idleRotationSpeed = 3;
 
     [SerializeField] private float idleRotationDirectionChangeHitDistance = 1;
-    [SerializeField] private float aimedMinDot = 0.8f;
     [SerializeField] private float aimTime = 2;
     [SerializeField] private float blinkTime = 0.1f;
-    [SerializeField] private float aimedRotationSpeed = 2;
+    [SerializeField] private float aimedRotationMinSpeed = 2;
 
     [SerializeField] private TransformRotation rotation;
     [SerializeField] private LaserBeam laserBeam;
+    [SerializeField] private BulletShooter shooter;
+    [SerializeField] private PlayerRaycaster aimRaycaster;
 
     private void Reset()
     {
@@ -35,14 +34,23 @@ public class TurretAim : MonoBehaviour, ISwitchable
     private void Awake()
     {
         Container.Get<PlayerFactory>().WhenPlayerAvailable(playerCore => _player = playerCore);
+        aimRaycaster.Hit += (hit, core) => OnPlayerHit();
+        _currentRotationSpeed = aggroRotationSpeed;
+    }
+
+    private void OnPlayerHit()
+    {
+        if (!_isAimed)
+        {
+            SetAimLock();
+        }
     }
 
     private void RotateInDirection(Vector2 direction)
     {
-        var speed = _isAimed ? aimedRotationSpeed : aggroRotationSpeed;
         var z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         var newRotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, z),
-            speed * Time.deltaTime);
+            _currentRotationSpeed * Time.deltaTime);
         transform.rotation = newRotation;
     }
 
@@ -55,11 +63,6 @@ public class TurretAim : MonoBehaviour, ISwitchable
         {
             rotation.enabled = false;
             RotateInDirection(GetDirectionToPlayer());
-
-            if (!_isAimed && ShouldAim())
-            {
-                SetAimLock();
-            }
         }
         else
         {
@@ -68,24 +71,44 @@ public class TurretAim : MonoBehaviour, ISwitchable
         }
     }
 
+    private float _currentRotationSpeed;
+
     private void SetAimLock()
     {
         _isAimed = true;
-        StartCoroutine(ShootRoutine());
+        var strength = 1f;
+        var sign = -1;
+        var lastTime = 0f;
+        Do.EveryFrameFor((deltaTime, fraction) =>
+            {
+                var passedBlinkTime = aimTime * fraction % blinkTime;
+                if (passedBlinkTime < lastTime)
+                {
+                    sign *= -1;
+                }
+                
+                lastTime = passedBlinkTime;
+                
+                strength += sign * deltaTime / (blinkTime / 2);
+                laserBeam.SetStrength(strength);
+            }, aimTime)
+            .Start(this);
+        
+        Do.EveryFrameFor((time, fraction) =>
+            {
+                _currentRotationSpeed =
+                    aggroRotationSpeed - (aggroRotationSpeed - aimedRotationMinSpeed) * fraction;
+            }, aimTime)
+            .Action(OnShoot)
+            .Start(this);
     }
 
-    private IEnumerator ShootRoutine()
+    private void OnShoot()
     {
-        // TODO:
-        yield break;
-    }
-
-    private bool ShouldAim()
-    {
-        var directionToPlayer = GetDirectionToPlayer();
-        var currentLookDirection = laserBeam.GetBeamDirection();
-        var dot = Vector2.Dot(directionToPlayer, currentLookDirection);
-        return dot >= aimedMinDot;
+        laserBeam.SetStrength(1);
+        shooter.Shoot(transform.right);
+        _isAimed = false;
+        _currentRotationSpeed = aggroRotationSpeed;
     }
 
     private Vector2 GetDirectionToPlayer()

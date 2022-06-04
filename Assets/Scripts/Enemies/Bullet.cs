@@ -40,7 +40,7 @@ namespace Enemies
             _pauseObserver = _pauseService.GetObserver(PauseSource.Any);
         }
 
-        public void Shot(Vector2 direction, float speed)
+        public void Shoot(Vector2 direction, float speed)
         {
             if (IsShot)
             {

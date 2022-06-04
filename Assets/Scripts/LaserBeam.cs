@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -10,6 +11,7 @@ namespace DefaultNamespace
         [SerializeField] private LayerMask contactWith = ~0;
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private GameObject hitCircleObject;
+        private GradientAlphaKey[] _initialAlphaKeys;
 
         public RaycastHit2D LastRaycast { get; private set; }
 
@@ -17,6 +19,11 @@ namespace DefaultNamespace
         private void Reset()
         {
             lineRenderer = GetComponent<LineRenderer>();
+        }
+
+        private void Awake()
+        {
+            _initialAlphaKeys = lineRenderer.colorGradient.alphaKeys;
         }
 
         private void Update()
@@ -35,6 +42,7 @@ namespace DefaultNamespace
             {
                 hitCircleObject.transform.position = hit.point;
             }
+
             var distance = hit ? hit.distance : beamDistance;
             SetBeamDistance(distance);
         }
@@ -56,6 +64,17 @@ namespace DefaultNamespace
         public Vector2 GetBeamDirection()
         {
             return transform.right;
+        }
+
+        public void SetStrength(float strength)
+        {
+            var alphaKeys = _initialAlphaKeys.Select(key =>
+                    new GradientAlphaKey(key.alpha * strength, key.time))
+                .ToArray();
+
+            var gradient = lineRenderer.colorGradient;
+            gradient.alphaKeys = alphaKeys;
+            lineRenderer.colorGradient = gradient;
         }
     }
 }

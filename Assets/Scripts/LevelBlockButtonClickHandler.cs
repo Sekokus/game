@@ -21,10 +21,9 @@ public class LevelBlockButtonClickHandler : MonoBehaviour, IPointerUpHandler, IP
     public void OnPointerExit(PointerEventData eventData)
     {
         StopAnimation();
-        var sign = Mathf.Sign(targetScale - 1);
-        Do.EveryFrameFor((deltaTime, passedTime) =>
+        Do.EveryFrameFor((deltaTime, fraction) =>
             {
-                var scale = 1 + sign * (1 - targetScale) * passedTime;
+                var scale = targetScale + (1 - targetScale) * fraction;
                 scaleTarget.localScale = new Vector3(scale, scale, scale);
             }, tweenTime)
             .Start(this);
@@ -38,10 +37,9 @@ public class LevelBlockButtonClickHandler : MonoBehaviour, IPointerUpHandler, IP
     public void OnPointerEnter(PointerEventData eventData)
     {
         StopAnimation();
-        var sign = Mathf.Sign(1 - targetScale);
-        _routine = Do.EveryFrameFor((deltaTime, passedTime) =>
+        _routine = Do.EveryFrameFor((deltaTime, fraction) =>
             {
-                var scale = targetScale + sign * (1 - targetScale) * passedTime;
+                var scale = 1 + (targetScale - 1) * fraction;
                 scaleTarget.localScale = new Vector3(scale, scale, scale);
             }, tweenTime)
             .Start(this);
