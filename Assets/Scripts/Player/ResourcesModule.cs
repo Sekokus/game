@@ -9,11 +9,12 @@ namespace Player
         public Resource Health { get; private set; }
 
         [SerializeField] private float dashPassiveRechargeSpeed;
+        [SerializeField, Range(0, 1)] private float airboneDashRechargeFactor = 0.3f;
 
         protected override void Awake()
         {
             base.Awake();
-            
+
             DashCharges = new Resource(4);
             Health = new Resource(4);
 
@@ -36,16 +37,9 @@ namespace Player
             {
                 return;
             }
-            
-            if (Core.Movement.IsGrounded)
-            {
-                DashCharges.Restore(dashPassiveRechargeSpeed * Time.deltaTime);
-            }
-            
-            if (Keyboard.current.pKey.wasPressedThisFrame)
-            {
-                Core.GameEvents.PostPlayerDied();
-            }
+
+            var factor = Core.Movement.IsGrounded ? 1 : airboneDashRechargeFactor;
+            DashCharges.Restore(factor * dashPassiveRechargeSpeed * Time.deltaTime);
         }
     }
 }
