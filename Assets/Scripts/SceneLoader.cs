@@ -15,7 +15,7 @@ public class SceneLoader
 
     public static string GetLastExitScene()
     {
-        return PlayerPrefs.GetString(LastLevelPrefName);
+        return PlayerPrefs.GetString(LastLevelPrefName, string.Empty);
     }
 
     public event Action<string> SceneUnloaded;

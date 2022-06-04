@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -8,13 +9,21 @@ namespace UI
     {
         [SerializeField] private GameObject menu;
         [SerializeField] private AbstractMenu settingsMenu;
-        
+        [SerializeField] private Button continueButton;
+
         private SceneLoader _sceneLoader;
 
         private void Awake()
         {
             _sceneLoader = Container.Get<SceneLoader>();
             IsShown = true;
+
+            PlayerPrefs.DeleteAll();
+            var lastLevel = SceneLoader.GetLastExitScene();
+            if (string.IsNullOrEmpty(lastLevel))
+            {
+                continueButton.interactable = false;
+            }
         }
 
         protected override void OnShow()
