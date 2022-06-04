@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 10896216}
   - component: {fileID: 10896215}
   m_Layer: 0
-  m_Name: pixil-frame-0 (10)
+  m_Name: hint-lmb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10896214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.89, y: 22.5211, z: 0}
+  m_LocalPosition: {x: -25.89, y: 22.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -694,7 +694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6072857986226491718, guid: 3e594a019e178914cafafcdfc2a0fc17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.49
+      value: 20.67
       objectReference: {fileID: 0}
     - target: {fileID: 6072857986226491718, guid: 3e594a019e178914cafafcdfc2a0fc17, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2096,11 +2096,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6072857986226491718, guid: 3e594a019e178914cafafcdfc2a0fc17, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.2
+      value: -25.35
       objectReference: {fileID: 0}
     - target: {fileID: 6072857986226491718, guid: 3e594a019e178914cafafcdfc2a0fc17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.66
+      value: 16.89
       objectReference: {fileID: 0}
     - target: {fileID: 6072857986226491718, guid: 3e594a019e178914cafafcdfc2a0fc17, type: 3}
       propertyPath: m_LocalPosition.z
