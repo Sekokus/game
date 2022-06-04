@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DefaultNamespace
 {
@@ -6,19 +7,25 @@ namespace DefaultNamespace
     {
         [SerializeField] private string nextLevel;
         private SceneLoader _sceneLoader;
+        private GameEvents _gameEvents;
 
         private void Awake()
         {
             Time.timeScale = 1;
             _sceneLoader = Container.Get<SceneLoader>();
-            var gameEvents = Container.Get<GameEvents>();
-            gameEvents.PlayerFinished += OnFinished;
+            _gameEvents = Container.Get<GameEvents>();
+            _gameEvents.PlayerFinished += OnFinished;
         }
 
         private void OnFinished()
         {
             Time.timeScale = 0;
             _sceneLoader.ReplaceLastScene(nextLevel);
+        }
+
+        private void OnDestroy()
+        {
+            _gameEvents.PlayerFinished -= OnFinished;
         }
     }
 }
