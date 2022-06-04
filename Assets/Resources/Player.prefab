@@ -623,6 +623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashPassiveRechargeSpeed: 1
+  airboneDashRechargeFactor: 0.3
 --- !u!114 &7160953146846894354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1022,6 +1023,10 @@ PrefabInstance:
     - target: {fileID: 5977944742923059292, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104755342865310373, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6104755342865310373, guid: 2c7e19cdb69833445b446560586d1a7a, type: 3}
       propertyPath: m_Materials.Array.data[0]
