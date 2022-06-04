@@ -179,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1ec260217f4eb2548a776875ae92feb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -198,12 +198,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10896214}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -25.89, y: 22.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 828625641}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &42751890
 PrefabInstance:
@@ -1176,7 +1176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 551438443}
   m_Layer: 0
-  m_Name: --COLLECTABLES-- (1)
+  m_Name: --COLLECTABLES--
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1208,7 +1208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 570962579}
   m_Layer: 0
-  m_Name: --ENEMIES-- (1)
+  m_Name: --ENEMIES--
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1240,7 +1240,7 @@ GameObject:
   - component: {fileID: 594853415}
   - component: {fileID: 594853416}
   m_Layer: 0
-  m_Name: window-factory (8)
+  m_Name: window-factory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1520,7 +1520,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 26a3ebe09eb74784c86d16caa1f77c91, type: 3}
   m_Color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
   m_FlipX: 0
@@ -1539,12 +1539,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723856196}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -39.0169, y: 26.225185, z: 0}
   m_LocalScale: {x: 0.9592042, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 828625641}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &826201032
 GameObject:
@@ -1602,7 +1602,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5972edebd22bafc44af3c2ba40e31761, type: 3}
   m_Color: {r: 0.35686275, g: 0.34117648, b: 0.3254902, a: 1}
   m_FlipX: 0
@@ -1621,12 +1621,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826201032}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -33.551, y: 27.283, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 828625641}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &828625640
 GameObject:
@@ -1640,7 +1640,7 @@ GameObject:
   - component: {fileID: 828625642}
   - component: {fileID: 828625643}
   m_Layer: 0
-  m_Name: background
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1659,6 +1659,9 @@ Transform:
   m_Children:
   - {fileID: 463967364}
   - {fileID: 594853415}
+  - {fileID: 723856198}
+  - {fileID: 826201034}
+  - {fileID: 10896216}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1733,9 +1736,8 @@ GameObject:
   m_Component:
   - component: {fileID: 864946540}
   - component: {fileID: 864946539}
-  - component: {fileID: 864946541}
   m_Layer: 0
-  m_Name: --LEVEL-STARTER-- (1)
+  m_Name: --LEVEL-STARTER--
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1753,13 +1755,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53200f8f95a34972bb67390e8499d451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelType: 0
   playerMarker: {fileID: 1156004292}
   enemyMarkersParent: {fileID: 570962578}
   collectablesParent: {fileID: 551438442}
   startText: Collect enough Coins to proceed
   startWithTimer: 0
-  requiredCount: 2
+  levelData: {fileID: 11400000, guid: 6fe25de08440b9c41b81b661921a22ea, type: 2}
 --- !u!4 &864946540
 Transform:
   m_ObjectHideFlags: 0
@@ -1774,19 +1775,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &864946541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864946538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47626d17bf24ef89f423d1bb740a591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextLevel: Level_1
 --- !u!1001 &931420660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2448,7 +2436,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2921496703893581910, guid: 997f756d8afbaca4286cb5eb8d149a0f, type: 3}
       propertyPath: m_Name
-      value: --PLAYER-MARKER-- (1)
+      value: --PLAYER-MARKER--
       objectReference: {fileID: 0}
     - target: {fileID: 2921496703893581911, guid: 997f756d8afbaca4286cb5eb8d149a0f, type: 3}
       propertyPath: m_RootOrder
@@ -2707,7 +2695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1831799123}
   m_Layer: 0
-  m_Name: Environment (1)
+  m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

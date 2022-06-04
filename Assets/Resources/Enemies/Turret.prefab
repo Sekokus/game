@@ -442,6 +442,9 @@ MonoBehaviour:
   aggroRotationSpeed: 50
   idleRotationSpeed: 30
   idleRotationDirectionChangeHitDistance: 2
+  aimedMinDot: 0.8
+  aimTime: 2
+  aimedRotationSpeed: 2
   rotation: {fileID: 1109080765713347736}
   laserBeam: {fileID: 8242892606235366759}
 --- !u!114 &1109080765713347736
@@ -484,6 +487,10 @@ PrefabInstance:
     - target: {fileID: 6308873079748684521, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
       propertyPath: m_Positions.Array.data[1].x
       value: 4.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308873079748684521, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7572266229640583818, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
       propertyPath: m_RootOrder

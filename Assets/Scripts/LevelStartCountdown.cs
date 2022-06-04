@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using DefaultNamespace;
 using Player;
 using TMPro;
 using UnityEngine;
@@ -15,16 +16,13 @@ public class LevelStartCountdown : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI textMesh;
 
-    private CoroutineRunner _coroutineRunner;
-    private PauseService _pauseService;
     private InputBindings _bindings;
 
     private bool _countdownStarted;
     private bool _canStartCountdown;
-    private CoroutineRunner.CoroutineContext _routine;
 
     public string startText = "Begin";
-    
+
     private void Awake()
     {
         Construct();
@@ -35,8 +33,6 @@ public class LevelStartCountdown : MonoBehaviour
     {
         textMesh.text = preCountdownText;
         screenDarkener.Enable();
-
-        _pauseService.Pause(PauseSource.LevelCountdown);
     }
 
     public void SkipCountdown()
@@ -47,9 +43,6 @@ public class LevelStartCountdown : MonoBehaviour
 
     private void Construct()
     {
-        _coroutineRunner = Container.Get<CoroutineRunner>();
-        _pauseService = Container.Get<PauseService>();
-
         _bindings = Container.Get<PlayerBindings>().GetBindings();
         _bindings.UI.Click.performed += OnUIClick;
     }
@@ -94,21 +87,14 @@ public class LevelStartCountdown : MonoBehaviour
     {
         textMesh.text = startText;
         screenDarkener.Disable();
-        
-        _routine = _coroutineRunner.RunAfter(() => textMesh.enabled = false, startTextHideTime);
-            
-        _pauseService.Unpause(PauseSource.LevelCountdown);
-            
+
+        Do.After(() => textMesh.enabled = false, startTextHideTime)
+            .Start(this);
         CountdownEnded?.Invoke();
     }
 
     public void AllowCountdownStart()
     {
         _canStartCountdown = true;
-    }
-
-    private void OnDestroy()
-    {
-        _routine.Stop();
     }
 }

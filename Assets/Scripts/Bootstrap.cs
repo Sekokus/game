@@ -37,6 +37,12 @@ public class Bootstrap : MonoBehaviour
         AddGameEvents();
         AddTimerRunner();
         AddCoroutineRunner();
+        AddLevelGroupUi();
+    }
+
+    private void AddLevelGroupUi()
+    {
+        AddDelayedSceneSingleton<LevelGroupUi>();
     }
 
     private static void BindCollectableAccumulator()
@@ -50,6 +56,11 @@ public class Bootstrap : MonoBehaviour
     }
 
     private void AddGameEvents() => AddSingletonFromScene<GameEvents>();
+
+    private void AddDelayedSceneSingleton<TMonoBehaviour>() where TMonoBehaviour : MonoBehaviour
+    {
+        Container.Add(FindObjectOfType<TMonoBehaviour>, ServiceLifetime.PerScene);
+    }
 
     private static void BindBulletPool()
     {

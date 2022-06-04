@@ -26,7 +26,6 @@ namespace UI
             _bindings = Container.Get<PlayerBindings>().GetBindings();
             _bindings.UI.Enable();
             _bindings.UI.Menu.performed += OnMenu;
-            _bindings.UI.Inventory.performed += OnInventory;
 
             var menus = GetComponentsInChildren<AbstractMenu>();
             foreach (var menu in menus)
@@ -38,7 +37,6 @@ namespace UI
         private void OnDestroy()
         {
             _bindings.UI.Menu.performed -= OnMenu;
-            _bindings.UI.Inventory.performed -= OnInventory;
         }
 
         private void OnMenu(InputAction.CallbackContext context)
@@ -49,17 +47,6 @@ namespace UI
             }
 
             _activeMenu.OnMenuKeyAction(MenuKeyAction.Return);
-        }
-
-        private void OnInventory(InputAction.CallbackContext context)
-        {
-            return;
-            if (_activeMenu == null)
-            {
-                SetActiveMenu(rootInventoryMenu);
-            }
-
-            _activeMenu.OnMenuKeyAction(MenuKeyAction.Inventory);
         }
 
         public void SetActiveMenu(AbstractMenu menu)

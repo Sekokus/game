@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d596c1521a4ca29e9669c7f3235adf, type: 3}
+  m_Name: Tut_3
+  m_EditorClassIdentifier: 
+  levelName: 0-3
+  sceneName: Level_2
+  bestLevelTimeMs: 0
+  bestLevelCoinCount: 0
+  requiredCoinCount: 6
+  maxCoinCount: 11
+  previewSprite: {fileID: 21300000, guid: 4c23f2a1bd3cae1429e7fe25143317bc, type: 3}

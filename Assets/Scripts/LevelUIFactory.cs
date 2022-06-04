@@ -4,10 +4,10 @@ using Object = UnityEngine.Object;
 
 public class LevelUIFactory
 {
-    private const string KillAllUi = "KillAllUi";
+    private const string HubUi = "HubUi";
     private const string CollectAllUi = "CollectAllUi";
-    
-    private static GameObject _killAllUiPrefab;
+
+    private static GameObject _hubUiPrefab;
     private static GameObject _collectAllUiPrefab;
 
     public GameObject CreateUi(LevelType levelType)
@@ -27,13 +27,13 @@ public class LevelUIFactory
                 }
 
                 return _collectAllUiPrefab;
-            case LevelType.KillAll:
-                if (_killAllUiPrefab == null)
+            case LevelType.Hub:
+                if (_hubUiPrefab == null)
                 {
-                    _killAllUiPrefab = Resources.Load<GameObject>(KillAllUi);
+                    _hubUiPrefab = Resources.Load<GameObject>(HubUi);
                 }
 
-                return _killAllUiPrefab;
+                return _hubUiPrefab;
             default:
                 throw new ArgumentOutOfRangeException(nameof(levelType), levelType, null);
         }

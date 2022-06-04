@@ -2009,7 +2009,6 @@ GameObject:
   m_Component:
   - component: {fileID: 694090659}
   - component: {fileID: 694090658}
-  - component: {fileID: 694090660}
   m_Layer: 0
   m_Name: --LEVEL-STARTER--
   m_TagString: Untagged
@@ -2029,13 +2028,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53200f8f95a34972bb67390e8499d451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelType: 0
   playerMarker: {fileID: 1586530572}
   enemyMarkersParent: {fileID: 219108274}
   collectablesParent: {fileID: 701556387}
   startText: Collect enough Coins to proceed
   startWithTimer: 0
-  requiredCount: 7
+  levelData: {fileID: 11400000, guid: aa302448a399046429d3bef08382bebb, type: 2}
 --- !u!4 &694090659
 Transform:
   m_ObjectHideFlags: 0
@@ -2050,19 +2048,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &694090660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694090657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47626d17bf24ef89f423d1bb740a591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextLevel: Level_3
 --- !u!1 &697548507 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6782613073286703331, guid: 80f0a40ffb40950439000209e0b7551a, type: 3}

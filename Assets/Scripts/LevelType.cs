@@ -1,5 +1,7 @@
-﻿public enum LevelType
+﻿using System;
+
+public enum LevelType
 {
     CollectAll,
-    KillAll
+    Hub
 }

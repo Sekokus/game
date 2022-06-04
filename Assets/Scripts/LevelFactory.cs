@@ -8,14 +8,14 @@ using Object = UnityEngine.Object;
 public class LevelFactory
 {
     private const string CollectAllLevelPath = "CollectAllLevelEntry";
-    private const string KillAllLevelPath = "KillAllLevelEntry";
+    private const string HubLevelPath = "HubLevelEntry";
 
     private readonly PlayerFactory _playerFactory;
     private readonly EnemyFactory _enemyFactory;
     private readonly LevelUIFactory _levelUIFactory;
 
     private static LevelEntry _collectAllLevelPrefab;
-    private static LevelEntry _killAllLevelPrefab;
+    private static LevelEntry _hunEntryPrefab;
 
     public LevelFactory(PlayerFactory playerFactory, EnemyFactory enemyFactory, LevelUIFactory levelUIFactory)
     {
@@ -40,7 +40,7 @@ public class LevelFactory
         _levelUIFactory.CreateUi(levelType);
     }
 
-    private LevelEntry CreateLevelEntry(LevelType levelType)
+    private static LevelEntry CreateLevelEntry(LevelType levelType)
     {
         var prefab = GetLevelPrefab(levelType);
         return Object.Instantiate(prefab);
@@ -70,13 +70,13 @@ public class LevelFactory
                 }
 
                 return _collectAllLevelPrefab;
-            case LevelType.KillAll:
-                if (_killAllLevelPrefab == null)
+            case LevelType.Hub:
+                if (_hunEntryPrefab == null)
                 {
-                    _killAllLevelPrefab = Resources.Load<LevelEntry>(KillAllLevelPath);
+                    _hunEntryPrefab = Resources.Load<LevelEntry>(HubLevelPath);
                 }
 
-                return _killAllLevelPrefab;
+                return _hunEntryPrefab;
             default:
                 throw new ArgumentOutOfRangeException(nameof(levelType), levelType, null);
         }

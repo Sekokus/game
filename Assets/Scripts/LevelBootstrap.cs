@@ -1,5 +1,4 @@
-﻿using System;
-using DefaultNamespace;
+﻿using DefaultNamespace;
 using Enemies;
 using UnityEngine;
 
@@ -8,23 +7,27 @@ public class LevelBootstrap : MonoBehaviour
 {
     private LevelFactory _levelFactory;
 
-    [SerializeField] private LevelType levelType;
     [SerializeField] private Marker playerMarker;
     [SerializeField] private GameObject enemyMarkersParent;
     [SerializeField] private GameObject collectablesParent;
     [SerializeField] private string startText = "Collect enough Coins to proceed";
     [SerializeField] private bool startWithTimer;
+
     private GameEvents _gameEvents;
     private LevelGoalCounter _counter;
     private SceneLoader _sceneLoader;
     private EnemyMarker[] _enemyMarkers;
     private Collectable[] _collectables;
-    [SerializeField] private int requiredCount = 3;
+
+    [SerializeField] private LevelData levelData;
+
+    private float _startTime;
 
     private void Awake()
     {
         _gameEvents = Container.Get<GameEvents>();
         _gameEvents.PlayerDied += OnPlayerDied;
+        _gameEvents.PlayerFinished += OnPlayerFinished;
 
         _sceneLoader = Container.Get<SceneLoader>();
         _levelFactory = Container.Get<LevelFactory>();
@@ -33,7 +36,13 @@ public class LevelBootstrap : MonoBehaviour
         _enemyMarkers = enemyMarkersParent.GetComponentsInChildren<EnemyMarker>();
         _collectables = collectablesParent.GetComponentsInChildren<Collectable>();
 
-        _counter.SetCounts(requiredCount, _collectables.Length);
+        if (levelData.maxCoinCount != _collectables.Length)
+        {
+            Debug.LogWarning("Level Data coin count != collectables count.");
+            levelData.maxCoinCount = _collectables.Length;
+        }
+
+        _counter.SetCounts(levelData.requiredCoinCount, levelData.maxCoinCount);
     }
 
     private void OnPlayerDied()
@@ -41,11 +50,37 @@ public class LevelBootstrap : MonoBehaviour
         _sceneLoader.ReloadLastScene();
     }
 
+    private void OnPlayerFinished()
+    {
+        UpdateCurrentLevelData();
+
+        var nextLevel = levelData.nextLevel;
+        var nextLevelName = nextLevel != null ? nextLevel.sceneName : SceneLoader.HubScene;
+        _sceneLoader.ReplaceLastScene(nextLevelName);
+    }
+
+    private void UpdateCurrentLevelData()
+    {
+        var passedTime = Mathf.CeilToInt((Time.time - _startTime) * 1000);
+        levelData.bestLevelTimeMs =
+            levelData.IsFullyCompleted ? Mathf.Min(levelData.bestLevelTimeMs, passedTime) : passedTime;
+        
+        levelData.bestLevelCoinCount = Mathf.Max(levelData.bestLevelCoinCount, _counter.CurrentCount);
+    }
+
     private void Start()
     {
-        var levelEntry = _levelFactory.CreateLevel(levelType, playerMarker, _enemyMarkers);
+        var levelEntry = _levelFactory.CreateLevel(LevelType.CollectAll, playerMarker, _enemyMarkers);
         levelEntry.StartLevel(startWithTimer, startText);
 
         _counter.ReachedMinCount += () => { _gameEvents.PostMinGoalCompleted(); };
+
+        _startTime = Time.time;
+    }
+
+    private void OnDestroy()
+    {
+        _gameEvents.PlayerDied -= OnPlayerDied;
+        _gameEvents.PlayerFinished -= OnPlayerFinished;
     }
 }

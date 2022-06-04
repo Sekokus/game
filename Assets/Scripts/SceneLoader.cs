@@ -11,12 +11,11 @@ public class SceneLoader
     private const string ScenesPath = "Scenes";
 
     public const string MenuScene = "Menu";
-    public const string NewGameScene = "Level_0";
+    public const string HubScene = "Hub";
 
-    public static string GetLastExitScene()
-    {
-        return PlayerPrefs.GetString(LastLevelPrefName, string.Empty);
-    }
+    
+    // TODO: убрать ваще    
+    public static string GetLastExitScene() => string.Empty;
 
     public event Action<string> SceneUnloaded;
     public event Action<string> SceneLoaded;

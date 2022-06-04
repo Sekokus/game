@@ -53,7 +53,7 @@ namespace UI
         [UsedImplicitly]
         public void LoadNewGame()
         {
-            _sceneLoader.ReplaceLastScene(SceneLoader.NewGameScene);
+            _sceneLoader.ReplaceLastScene(SceneLoader.HubScene);
         }
 
         [UsedImplicitly]

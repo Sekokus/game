@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 35034626392715867, guid: 4f10002f127671e488f8aa23cf17f71c, type: 3}
       propertyPath: afterLoadScene
-      value: Menu
+      value: Hub
       objectReference: {fileID: 0}
     - target: {fileID: 35034627127970557, guid: 4f10002f127671e488f8aa23cf17f71c, type: 3}
       propertyPath: m_Name

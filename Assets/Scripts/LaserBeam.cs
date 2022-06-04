@@ -48,12 +48,12 @@ namespace DefaultNamespace
             lineRenderer.SetPosition(1, beamTip);
         }
 
-        private Vector2 GetOriginPoint()
+        public Vector2 GetOriginPoint()
         {
             return transform.position;
         }
 
-        private Vector2 GetBeamDirection()
+        public Vector2 GetBeamDirection()
         {
             return transform.right;
         }
