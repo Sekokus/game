@@ -1,12 +1,22 @@
 ﻿using System;
 using System.IO;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader
 {
+    private static string LastLevelPrefName = "LastLevel";
     public static string InitialScene { get; set; }
 
     private const string ScenesPath = "Scenes";
+
+    public const string MenuScene = "Menu";
+    public const string NewGameScene = "Level_0";
+
+    public static string GetLastExitScene()
+    {
+        return PlayerPrefs.GetString(LastLevelPrefName);
+    }
 
     public event Action<string> SceneUnloaded;
     public event Action<string> SceneLoaded;
@@ -25,6 +35,7 @@ public class SceneLoader
         {
             return;
         }
+
         var operation = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
         operation.completed += _ =>
         {
@@ -45,6 +56,7 @@ public class SceneLoader
         {
             return;
         }
+
         operation.completed += _ =>
         {
             SceneUnloaded?.Invoke(name);
@@ -54,6 +66,10 @@ public class SceneLoader
 
     public void ReplaceLastScene(string name)
     {
+        if (name != MenuScene)
+        {
+            PlayerPrefs.SetString(LastLevelPrefName, name);
+        }
         UnloadScene(CurrentScene, () => LoadScene(name));
     }
 

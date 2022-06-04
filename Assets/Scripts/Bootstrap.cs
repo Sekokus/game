@@ -18,7 +18,6 @@ public class Bootstrap : MonoBehaviour
     {
         var sceneLoader = Container.Get<SceneLoader>();
         sceneLoader.LoadScene(afterLoadScene);
-        //SceneLoader.SetActive(afterLoadScene);
     }
 
     private void Initialize()

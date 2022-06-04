@@ -7,7 +7,7 @@ using UnityEngine;
 public class LevelBootstrap : MonoBehaviour
 {
     private LevelFactory _levelFactory;
-    
+
     [SerializeField] private LevelType levelType;
     [SerializeField] private Marker playerMarker;
     [SerializeField] private GameObject enemyMarkersParent;
@@ -19,6 +19,7 @@ public class LevelBootstrap : MonoBehaviour
     private SceneLoader _sceneLoader;
     private EnemyMarker[] _enemyMarkers;
     private Collectable[] _collectables;
+    [SerializeField] private int requiredCount = 3;
 
     private void Awake()
     {
@@ -32,17 +33,7 @@ public class LevelBootstrap : MonoBehaviour
         _enemyMarkers = enemyMarkersParent.GetComponentsInChildren<EnemyMarker>();
         _collectables = collectablesParent.GetComponentsInChildren<Collectable>();
 
-        switch (levelType)
-        {
-            case LevelType.CollectAll:
-                _counter.SetRequiredCount(_collectables?.Length ?? 0);
-                break;
-            case LevelType.KillAll:
-                _counter.SetRequiredCount(_enemyMarkers?.Length ?? 0);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        _counter.SetCounts(requiredCount, _collectables.Length);
     }
 
     private void OnPlayerDied()
@@ -55,9 +46,6 @@ public class LevelBootstrap : MonoBehaviour
         var levelEntry = _levelFactory.CreateLevel(levelType, playerMarker, _enemyMarkers);
         levelEntry.StartLevel(startWithTimer);
 
-        _counter.ReachedRequiredCount += () =>
-        {
-            _gameEvents.PostPlayerGoalCompleted();
-        };
+        _counter.ReachedMinCount += () => { _gameEvents.PostMinGoalCompleted(); };
     }
 }

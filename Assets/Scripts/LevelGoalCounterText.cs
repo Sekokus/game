@@ -11,19 +11,34 @@ namespace DefaultNamespace
         private void Awake()
         {
             _counter = Container.Get<LevelGoalCounter>();
-            
+
             _counter.ValueChanged += OnValueChanged;
             OnValueChanged();
         }
 
         private void OnValueChanged()
         {
-            SetText(_counter.CurrentCount, _counter.RequiredCount);
+            var currentCount = _counter.CurrentCount;
+            var minCount = _counter.MinCount;
+            var maxCount = _counter.MaxCount;
+
+            if (currentCount < minCount)
+            {
+                textMesh.text = WithColor(currentCount.ToString(), "red") + "/" + maxCount;
+            }
+            else if (currentCount < maxCount)
+            {
+                textMesh.text = currentCount + "/" + maxCount;
+            }
+            else
+            {
+                textMesh.text = WithColor(currentCount + "/" + maxCount, "green");
+            }
         }
 
-        private void SetText(int currentCount, int reqCount)
+        private static string WithColor(string text, string color)
         {
-            textMesh.text = currentCount + "\\" + reqCount;
+            return $"<color={color}>{text}</color>";
         }
     }
 }

@@ -16,13 +16,13 @@ namespace DefaultNamespace
             _levelGoalCounter = Container.Get<LevelGoalCounter>();
             _gameEvents = Container.Get<GameEvents>();
 
-            _gameEvents.PlayerTryCollect += OnTryCollect;
+            _gameEvents.PlayerInteract += OnInteract;
             SetCollectable(false);
         }
 
         private bool _isCollectable;
 
-        private void OnTryCollect()
+        private void OnInteract()
         {
             if (_isCollectable)
             {
@@ -38,7 +38,7 @@ namespace DefaultNamespace
 
         private void OnDestroy()
         {
-            _gameEvents.PlayerTryCollect -= OnTryCollect;
+            _gameEvents.PlayerInteract -= OnInteract;
         }
 
         private void OnTriggerEnter2D(Collider2D col)

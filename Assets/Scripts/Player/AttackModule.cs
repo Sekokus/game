@@ -13,6 +13,7 @@ namespace Player
         [SerializeField] private float inputWaitTime = 1;
         [SerializeField] private float onHitUpMomentum = 3;
         private Camera _camera;
+        private bool _isAttacking;
 
         protected override void Awake()
         {
@@ -36,6 +37,7 @@ namespace Player
 
         private void OnAttackDisableFrame()
         {
+            _isAttacking = false;
             PopRestrictions();
         }
 
@@ -72,8 +74,7 @@ namespace Player
             PushRestrictions(PlayerRestrictions.Jump, PlayerRestrictions.Dash, PlayerRestrictions.Attack,
                 PlayerRestrictions.Rotate);
 
-            LookInCursorDirection();
-
+            _isAttacking = true;
             Core.Animator.SetTrigger("attack");
         }
 
@@ -94,6 +95,11 @@ namespace Player
             }
 
             _inputTrigger.Tick(Time.deltaTime);
+
+            if (_isAttacking)
+            {
+                LookInCursorDirection();
+            }
         }
     }
 }

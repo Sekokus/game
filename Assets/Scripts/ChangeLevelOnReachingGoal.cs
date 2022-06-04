@@ -1,23 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public static class LevelLibrary
-    {
-        private static readonly string[] Levels =
-        {
-            "Test_Level_1",
-            "Test_Level_2"
-        };
-
-        public static int LevelCount => Levels.Length;
-        public static string GetLevelAt(int index) => Levels[index];
-        public static int GetLevelIndex(string name) => Array.IndexOf(Levels, name);
-    }
-
     public class ChangeLevelOnReachingGoal : MonoBehaviour
     {
+        [SerializeField] private string nextLevel;
         private SceneLoader _sceneLoader;
 
         private void Awake()
@@ -25,18 +12,13 @@ namespace DefaultNamespace
             Time.timeScale = 1;
             _sceneLoader = Container.Get<SceneLoader>();
             var gameEvents = Container.Get<GameEvents>();
-            gameEvents.PlayerGoalCompleted += OnReachedRequiredCount;
+            gameEvents.PlayerFinished += OnFinished;
         }
 
-        private void OnReachedRequiredCount()
+        private void OnFinished()
         {
-            var currentLevel = _sceneLoader.CurrentScene;
-            var currentIndex = LevelLibrary.GetLevelIndex(currentLevel);
-            if (currentIndex + 1 < LevelLibrary.LevelCount)
-            {
-                Time.timeScale = 0;
-                _sceneLoader.ReplaceLastScene(LevelLibrary.GetLevelAt(currentIndex + 1));
-            }
+            Time.timeScale = 0;
+            _sceneLoader.ReplaceLastScene(nextLevel);
         }
     }
 }
