@@ -176,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerEvents: {fileID: 1545998518355200172}
   portalBody: {fileID: 5962952814177616126}
-  interactHint: {fileID: 0}
+  interactHint: {fileID: 9167570865961356294}
 --- !u!1 &9029108252505887557
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +344,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aa93cb19bbcaf3418374815eb22d2ac, type: 3}
+--- !u!1 &9167570865961356294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6878661706547455179, guid: 4aa93cb19bbcaf3418374815eb22d2ac, type: 3}
+  m_PrefabInstance: {fileID: 2327282669543434445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &798881488283844234 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3123837032540149319, guid: 4aa93cb19bbcaf3418374815eb22d2ac, type: 3}
