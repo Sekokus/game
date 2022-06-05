@@ -1,13 +1,14 @@
+using Enemies;
 using UnityEngine;
 
-public class DestroyOnHit : MonoBehaviour
+public class DestroyOnHitReceived : MonoBehaviour
 {
+    [SerializeField] private DestructionHandler destructionHandler;
     [SerializeField] private Hurtbox hurtbox;
-    [SerializeField] private float destroyDelay = 0.5f;
-    private bool _hitReceived;
 
     private void Reset()
     {
+        destructionHandler = GetComponent<DestructionHandler>();
         hurtbox = GetComponentInChildren<Hurtbox>();
     }
 
@@ -18,12 +19,6 @@ public class DestroyOnHit : MonoBehaviour
 
     private void OnHitReceived(Hitbox obj)
     {
-        if (_hitReceived)
-        {
-            return;
-        }
-
-        _hitReceived = true;
-        Destroy(gameObject, destroyDelay);
+        destructionHandler.Destroy();
     }
 }

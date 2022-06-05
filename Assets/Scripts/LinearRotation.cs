@@ -2,7 +2,7 @@
 
 namespace DefaultNamespace
 {
-    public class TransformRotation : MonoBehaviour
+    public class LinearRotation : MonoBehaviour
     {
         public float rotationSpeed;
         public Vector3 axis = new Vector3(0, 0, 1);

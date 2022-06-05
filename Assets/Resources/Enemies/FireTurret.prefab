@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7266741246916601164}
   - component: {fileID: 1878473705682804149}
   - component: {fileID: 2553485111825421904}
+  - component: {fileID: 2728177118866673035}
   m_Layer: 0
   m_Name: FireTurret
   m_TagString: Untagged
@@ -59,8 +60,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c07dd055d971bc4c9d315ee9e0ef523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destructionHandler: {fileID: 2728177118866673035}
   hurtbox: {fileID: 1593928430763707759}
-  destroyDelay: 0
+--- !u!114 &2728177118866673035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2339321624627200763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9fe61beae64e398b448ee01b049d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyedObjectPrefab: {fileID: 0}
 --- !u!1 &3868395735894809572
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2446055172780622723}
   - component: {fileID: 1593928430763707759}
-  - component: {fileID: 277969050579800776}
+  - component: {fileID: 5162934876622157843}
   m_Layer: 11
   m_Name: Hurtbox
   m_TagString: Untagged
@@ -204,10 +218,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableOnHitTime: 0
-  attachedCollider: {fileID: 277969050579800776}
+  attachedCollider: {fileID: 5162934876622157843}
   team: 1
---- !u!61 &277969050579800776
-BoxCollider2D:
+--- !u!58 &5162934876622157843
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -220,18 +234,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.7}
-  m_EdgeRadius: 0
+  m_Radius: 0.35
 --- !u!1 &8420220524283944086
 GameObject:
   m_ObjectHideFlags: 0

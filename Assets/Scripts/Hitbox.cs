@@ -33,17 +33,26 @@ public class Hitbox : MonoBehaviour
 
     private void OnDisable()
     {
-        overlapTester.enabled = false;
+        if (overlapTester)
+        {
+            overlapTester.enabled = false;
+        }
     }
 
     private void OnEnable()
     {
-        overlapTester.enabled = true;
+        if (overlapTester)
+        {
+            overlapTester.enabled = true;
+        }
     }
 
     private void OnValidate()
     {
-        overlapTester.enabled = enabled;
+        if (overlapTester)
+        {
+            overlapTester.enabled = enabled;
+        }
     }
 
     private void OnOverlap(IReadOnlyList<Collider2D> overlaps)

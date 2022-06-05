@@ -3492,7 +3492,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: enemyType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: debugColor.b
@@ -6126,7 +6126,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: enemyType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: debugColor.b

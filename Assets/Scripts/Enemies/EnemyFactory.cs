@@ -11,7 +11,8 @@ namespace Enemies
         private static readonly Dictionary<EnemyType, string> EnemyTypePaths = new Dictionary<EnemyType, string>
         {
             { EnemyType.BulletTurret, "BulletTurret" },
-            { EnemyType.FireTurret, "FireTurret" }
+            { EnemyType.FireTurret, "FireTurret" },
+            { EnemyType.HomingMassTurret, "HomingTurret" }
         };
 
         private static readonly Dictionary<EnemyType, EnemyConductor> LoadedEnemyPrefabs =

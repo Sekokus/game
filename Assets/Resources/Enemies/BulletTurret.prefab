@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: -7796162330794602480}
   - component: {fileID: 3075984270788664309}
   - component: {fileID: 1563661820797495404}
+  - component: {fileID: 6221836606740520903}
   m_Layer: 0
   m_Name: BulletTurret
   m_TagString: Untagged
@@ -205,8 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c07dd055d971bc4c9d315ee9e0ef523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destructionHandler: {fileID: 6221836606740520903}
   hurtbox: {fileID: 2288144436821442762}
-  destroyDelay: 0
 --- !u!114 &1563661820797495404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +223,19 @@ MonoBehaviour:
   detectRadius: 5
   scanInterval: 0.3
   deaggroTime: 1
+--- !u!114 &6221836606740520903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001977717007388510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9fe61beae64e398b448ee01b049d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyedObjectPrefab: {fileID: 0}
 --- !u!1 &4355147031785969217
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2895243311697546790}
   - component: {fileID: 2288144436821442762}
-  - component: {fileID: 721791087303909229}
+  - component: {fileID: 8644795227012471053}
   m_Layer: 11
   m_Name: Hurtbox
   m_TagString: Untagged
@@ -365,10 +379,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableOnHitTime: 0
-  attachedCollider: {fileID: 721791087303909229}
+  attachedCollider: {fileID: 8644795227012471053}
   team: 1
---- !u!61 &721791087303909229
-BoxCollider2D:
+--- !u!58 &8644795227012471053
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -381,18 +395,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.35
 --- !u!1 &9008742693768237363
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,29 +488,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4280959635387031066}
     m_Modifications:
-    - target: {fileID: 1628520772566184693, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
-      propertyPath: beamDistance
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1628520772566184693, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
-      propertyPath: contactWith.m_Bits
-      value: 1335
-      objectReference: {fileID: 0}
     - target: {fileID: 4687624911582788864, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
       propertyPath: m_Name
       value: LaserBeam
-      objectReference: {fileID: 0}
-    - target: {fileID: 6308873079748684521, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
-      propertyPath: m_Positions.Array.data[0].x
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6308873079748684521, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
-      propertyPath: m_Positions.Array.data[1].x
-      value: 4.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6308873079748684521, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.a
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7572266229640583818, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
       propertyPath: m_RootOrder

@@ -15,7 +15,7 @@ public class TurretAim : MonoBehaviour, ISwitchable
     [SerializeField] private float blinkTime = 0.1f;
     [SerializeField] private float aimedRotationMinSpeed = 2;
 
-    [SerializeField] private TransformRotation rotation;
+    [SerializeField] private LinearRotation rotation;
     [SerializeField] private LaserBeam laserBeam;
     [SerializeField] private BulletShooter shooter;
     [SerializeField] private PlayerRaycaster aimRaycaster;
@@ -23,7 +23,7 @@ public class TurretAim : MonoBehaviour, ISwitchable
     private void Reset()
     {
         laserBeam = GetComponent<LaserBeam>();
-        rotation = GetComponent<TransformRotation>();
+        rotation = GetComponent<LinearRotation>();
     }
 
     private void OnValidate()

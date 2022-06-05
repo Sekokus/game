@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6379777274446929650}
   - component: {fileID: -2311066695687107761}
   m_Layer: 0
-  m_Name: EnemyMarker
+  m_Name: Marker_BulletTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

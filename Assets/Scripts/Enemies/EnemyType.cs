@@ -3,6 +3,7 @@
     public enum EnemyType
     {
         BulletTurret,
-        FireTurret
+        FireTurret,
+        HomingMassTurret
     }
 }
