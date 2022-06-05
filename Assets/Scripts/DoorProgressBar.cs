@@ -15,7 +15,7 @@ namespace DefaultNamespace
 
         public void FillFromLevelGroup(LevelGroup levelGroup)
         {
-            var levelDatas = levelGroup.GetLevelDatas();
+            var levelDatas = levelGroup.levelDatas;
             var levelCount = levelDatas.Count;
 
             var scaleY = CalculateStatusObjectScale(levelCount);

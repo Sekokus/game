@@ -10,10 +10,11 @@ namespace DefaultNamespace.EditorTools
     {
         [SerializeField] private List<LevelData> levelDatas = new List<LevelData>();
         
-        [MenuItem("Window/Level Control Panel")]
+        [MenuItem("Window/Levels/Level Control Panel")]
         public static void ShowWindow()
         {
-            GetWindow<LevelControlPanel>("Level Control Panel");
+            var window = GetWindow<LevelControlPanel>("Level Control Panel");
+            window.PopulateLevelDatas();
         }
 
         private void PopulateLevelDatas()
@@ -35,23 +36,19 @@ namespace DefaultNamespace.EditorTools
 
         private void OnGUI()
         {
-            if (levelDatas.Count == 0)
-            {
-                PopulateLevelDatas();
-            }
-            
             var richTextStyle = new GUIStyle(GUI.skin.label)
             {
                 richText = true
             };
 
-            _levelSearch = EditorGUILayout.TextField("Level search", _levelSearch);
+            _levelSearch = EditorGUILayout.TextField("Search level", _levelSearch);
+            
             EditorGUILayout.Space();
             foreach (var levelData in levelDatas
                          .Where(ld => ld.levelName.StartsWith(_levelSearch)))
             {
                 EditorGUILayout.LabelField($"Level name: <b>{levelData.levelName}</b>", richTextStyle);
-                DrawSceneName(levelData);
+                DrawSceneInfo(levelData);
 
                 if (GUILayout.Button($"Start at level <b>{levelData.levelName}</b>", new GUIStyle(GUI.skin.button)
                         {
@@ -68,7 +65,7 @@ namespace DefaultNamespace.EditorTools
             }
         }
 
-        private static void DrawSceneName(LevelData levelData)
+        private static void DrawSceneInfo(LevelData levelData)
         {
             var richTextStyle = new GUIStyle(GUI.skin.label)
             {

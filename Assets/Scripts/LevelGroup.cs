@@ -4,15 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Levels/Level Group", fileName = "LevelGroup", order = 1)]
 public class LevelGroup : ScriptableObject
 {
-    [SerializeField] private LevelData[] levelDatas;
-
-    public IReadOnlyList<LevelData> GetLevelDatas()
-    {
-        return levelDatas;
-    }
+    public List<LevelData> levelDatas;
 
     [ContextMenu(nameof(ResetPlayerDataInGroup))]
-    private void ResetPlayerDataInGroup()
+    public void ResetPlayerDataInGroup()
     {
         foreach (var levelData in levelDatas)
         {

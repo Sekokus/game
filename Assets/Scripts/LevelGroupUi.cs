@@ -23,7 +23,7 @@ public class LevelGroupUi : MonoBehaviour
     {
         screenColorTint.Enable();
         
-        foreach (var levelData in levelGroup.GetLevelDatas())
+        foreach (var levelData in levelGroup.levelDatas)
         {
             var levelBlock = Instantiate(levelBlockPrefab, transform);
             levelBlock.SetLevelData(levelData);
