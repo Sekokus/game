@@ -19,7 +19,12 @@ public class Hitbox : MonoBehaviour
     private HashSet<Collider2D> _ignored;
 
     public BoxOverlapTester OverlapTester => overlapTester;
-    
+
+    private void Reset()
+    {
+        overlapTester = GetComponent<BoxOverlapTester>();
+    }
+
     private void Awake()
     {
         _ignored = new HashSet<Collider2D>(ignored);

@@ -216,6 +216,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (12)
@@ -444,7 +460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1201546773839055371, guid: 0b216431fd7a129479cf1814561acd72, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 1201546773839055371, guid: 0b216431fd7a129479cf1814561acd72, type: 3}
       propertyPath: m_LocalRotation.w
@@ -569,6 +585,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (2)
@@ -779,6 +811,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (7)
@@ -907,6 +955,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (8)
@@ -1075,6 +1139,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (6)
@@ -1536,7 +1616,7 @@ MonoBehaviour:
   collectablesParent: {fileID: 434044365}
   startText: Collect enough Coins to proceed
   startWithTimer: 0
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 41b75c79a38e517408d52bf7ee64cbf8, type: 2}
 --- !u!4 &423076067
 Transform:
   m_ObjectHideFlags: 0
@@ -3065,6 +3145,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (10)
@@ -3189,6 +3285,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (1)
@@ -3300,6 +3412,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (13)
@@ -3362,6 +3490,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (14)
@@ -3424,6 +3568,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (9)
@@ -4801,7 +4961,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -5
+  m_SortingOrder: -15
 --- !u!4 &1488508464
 Transform:
   m_ObjectHideFlags: 0
@@ -5525,6 +5685,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (11)
@@ -5730,6 +5906,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (4)
@@ -5792,6 +5984,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (3)
@@ -5916,6 +6124,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker
@@ -6090,7 +6314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891674883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.9, y: 18.1, z: -10}
+  m_LocalPosition: {x: -4.9, y: 18.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 88959416}
@@ -6397,6 +6621,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020308521}
     m_Modifications:
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.g
+      value: 0.38161746
+      objectReference: {fileID: 0}
+    - target: {fileID: -2311066695687107761, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
+      propertyPath: debugColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 4217332323204085875, guid: 4ef5a08b07549cb44a11b4369be9b676, type: 3}
       propertyPath: m_Name
       value: EnemyMarker (5)

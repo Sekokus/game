@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace;
+using DefaultNamespace.EditorTools;
 using Enemies;
 using Player;
 using UnityEngine;
@@ -7,7 +8,21 @@ using Utilities;
 [DefaultExecutionOrder(-100)]
 public class Bootstrap : MonoBehaviour
 {
-    [SerializeField] private string afterLoadScene;
+    private int GetLoadScene()
+    {
+#if UNITY_EDITOR
+        var bootData = AutoBootData.GetInstance();
+        var scene = bootData.loadAfterBootScene;
+        if (scene >= 0)
+        {
+            bootData.loadAfterBootScene = -1;
+            return scene;
+        }
+#endif
+
+        return SceneLoader.HubScene;
+    }
+
     private void Awake()
     {
         Initialize();
@@ -16,7 +31,7 @@ public class Bootstrap : MonoBehaviour
     private void Start()
     {
         var sceneLoader = Container.Get<SceneLoader>();
-        sceneLoader.LoadScene(afterLoadScene);
+        sceneLoader.LoadScene(GetLoadScene());
     }
 
     private void Initialize()

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -21,6 +22,11 @@ namespace DefaultNamespace
         private Coroutine _routine;
         private Vector3 _startPosition;
 
+        private void Awake()
+        {
+            _startPosition = transform.localPosition;
+        }
+
         public void Shake(float time, float speed, float magnitude)
         {
             StopShake();
@@ -34,7 +40,7 @@ namespace DefaultNamespace
                     var curveAffect = shakeCurve.Evaluate(state.Fraction);
 
                     var shake = (shakeRight + shakeUp) * (curveAffect * magnitude);
-                    transform.localPosition = shake;
+                    transform.localPosition = new Vector3(shake.x, shake.y, _startPosition.z);
                 }, time)
                 .Action(OnShakeEnded)
                 .Start(this);

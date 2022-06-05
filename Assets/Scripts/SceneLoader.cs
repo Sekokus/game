@@ -1,56 +1,49 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader
 {
-    private static string LastLevelPrefName = "LastLevel";
-    public static string InitialScene { get; set; }
+    public const int HubScene = 1;
+    public const int MenuScene = 2;
 
-    private const string ScenesPath = "Scenes";
+    public event Action<int> SceneUnloaded;
+    public int CurrentScene { get; private set; }
 
-    public const string MenuScene = "Menu";
-    public const string HubScene = "Hub";
-
-    
-    // TODO: убрать ваще    
-    public static string GetLastExitScene() => string.Empty;
-
-    public event Action<string> SceneUnloaded;
-    public event Action<string> SceneLoaded;
-    public string CurrentScene { get; private set; }
-
-    public static void SetActive(string name)
+    public static void SetActive(int buildIndex)
     {
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(name));
+        var scene = SceneManager.GetSceneByBuildIndex(buildIndex);
+        SceneManager.SetActiveScene(scene);
     }
 
-    public void LoadScene(string name)
+    public static int GetBuildIndex(string name)
     {
-        CurrentScene = name;
-        var scene = SceneManager.GetSceneByName(name);
-        if (scene.isLoaded)
-        {
-            return;
-        }
+        var scenePath = "Assets/Scenes/" + name + ".unity";
+        return SceneUtility.GetBuildIndexByScenePath(scenePath);
+    }
 
-        var operation = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
+    public void LoadScene(int buildIndex)
+    {
+        var scene = GetScene(buildIndex);
+        CurrentScene = buildIndex;
+        
+        var operation = SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Additive);
         operation.completed += _ =>
         {
-            SetActive(name);
-            SceneLoaded?.Invoke(name);
+            SetActive(buildIndex);
         };
     }
 
-    private string GetScenePath(string name)
+    private static Scene GetScene(int buildIndex)
     {
-        return Path.Combine(ScenesPath, name);
+        return SceneManager.GetSceneByBuildIndex(buildIndex);
     }
 
-    public void UnloadScene(string name, Action completed)
+    public void UnloadScene(int buildIndex, Action completed)
     {
-        var operation = SceneManager.UnloadSceneAsync(name);
+        var operation = SceneManager.UnloadSceneAsync(buildIndex);
         if (operation == null)
         {
             return;
@@ -58,18 +51,14 @@ public class SceneLoader
 
         operation.completed += _ =>
         {
-            SceneUnloaded?.Invoke(name);
+            SceneUnloaded?.Invoke(buildIndex);
             completed?.Invoke();
         };
     }
 
-    public void ReplaceLastScene(string name)
+    public void ReplaceLastScene(int buildIndex)
     {
-        if (name != MenuScene)
-        {
-            PlayerPrefs.SetString(LastLevelPrefName, name);
-        }
-        UnloadScene(CurrentScene, () => LoadScene(name));
+        UnloadScene(CurrentScene, () => LoadScene(buildIndex));
     }
 
     public void ReloadLastScene() => ReplaceLastScene(CurrentScene);

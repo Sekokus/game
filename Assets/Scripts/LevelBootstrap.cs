@@ -1,6 +1,8 @@
-﻿using DefaultNamespace;
+﻿using System;
+using DefaultNamespace;
 using Enemies;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(10)]
 public class LevelBootstrap : MonoBehaviour
@@ -26,9 +28,6 @@ public class LevelBootstrap : MonoBehaviour
     private void Awake()
     {
         _gameEvents = Container.Get<GameEvents>();
-        _gameEvents.PlayerDied += OnPlayerDied;
-        _gameEvents.PlayerFinished += OnPlayerFinished;
-
         _sceneLoader = Container.Get<SceneLoader>();
         _levelFactory = Container.Get<LevelFactory>();
         _counter = Container.Get<LevelGoalCounter>();
@@ -55,7 +54,8 @@ public class LevelBootstrap : MonoBehaviour
         UpdateCurrentLevelData();
 
         var nextLevel = levelData.nextLevel;
-        var nextLevelName = nextLevel != null ? nextLevel.sceneName : SceneLoader.HubScene;
+        var scenePath = "Assets/Scenes/" + nextLevel.sceneName + ".unity";
+        var nextLevelName = nextLevel != null ? SceneUtility.GetBuildIndexByScenePath(scenePath) : SceneLoader.HubScene;
         _sceneLoader.ReplaceLastScene(nextLevelName);
     }
 
@@ -85,9 +85,21 @@ public class LevelBootstrap : MonoBehaviour
         _startTime = Time.time;
     }
 
-    private void OnDestroy()
+    private void OnEnable()
     {
-        _gameEvents.PlayerDied -= OnPlayerDied;
-        _gameEvents.PlayerFinished -= OnPlayerFinished;
+        if (_gameEvents)
+        {
+            _gameEvents.PlayerDied += OnPlayerDied;
+            _gameEvents.PlayerFinished += OnPlayerFinished;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_gameEvents)
+        {
+            _gameEvents.PlayerDied -= OnPlayerDied;
+            _gameEvents.PlayerFinished -= OnPlayerFinished;
+        }
     }
 }

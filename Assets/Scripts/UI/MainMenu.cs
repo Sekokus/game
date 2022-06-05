@@ -16,12 +16,6 @@ namespace UI
         {
             _sceneLoader = Container.Get<SceneLoader>();
             IsShown = true;
-
-            var lastLevel = SceneLoader.GetLastExitScene();
-            if (string.IsNullOrEmpty(lastLevel))
-            {
-                continueButton.interactable = false;
-            }
         }
 
         protected override void OnShow()
@@ -46,7 +40,7 @@ namespace UI
         [UsedImplicitly]
         public void LoadGame()
         {
-            _sceneLoader.ReplaceLastScene(SceneLoader.GetLastExitScene());
+            _sceneLoader.ReplaceLastScene(SceneLoader.HubScene);
         }
 
         [UsedImplicitly]

@@ -15,7 +15,7 @@ public class LevelGroupUi : MonoBehaviour
 
     public void OnLevelSelected(LevelData levelData)
     {
-        _sceneLoader.ReplaceLastScene(levelData.sceneName);
+        _sceneLoader.ReplaceLastScene(SceneLoader.GetBuildIndex(levelData.sceneName));
     }
 
     public void ShowFromLevelGroup(LevelGroup levelGroup)
