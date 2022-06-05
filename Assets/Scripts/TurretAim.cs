@@ -79,9 +79,9 @@ public class TurretAim : MonoBehaviour, ISwitchable
         var strength = 1f;
         var sign = -1;
         var lastTime = 0f;
-        Do.EveryFrameFor((deltaTime, fraction) =>
+        Do.EveryFrameFor(state =>
             {
-                var passedBlinkTime = aimTime * fraction % blinkTime;
+                var passedBlinkTime = aimTime * state.Fraction % blinkTime;
                 if (passedBlinkTime < lastTime)
                 {
                     sign *= -1;
@@ -89,15 +89,15 @@ public class TurretAim : MonoBehaviour, ISwitchable
                 
                 lastTime = passedBlinkTime;
                 
-                strength += sign * deltaTime / (blinkTime / 2);
+                strength += sign * state.DeltaTime / (blinkTime / 2);
                 laserBeam.SetStrength(strength);
             }, aimTime)
             .Start(this);
         
-        Do.EveryFrameFor((time, fraction) =>
+        Do.EveryFrameFor(state =>
             {
                 _currentRotationSpeed =
-                    aggroRotationSpeed - (aggroRotationSpeed - aimedRotationMinSpeed) * fraction;
+                    aggroRotationSpeed - (aggroRotationSpeed - aimedRotationMinSpeed) * state.Fraction;
             }, aimTime)
             .Action(OnShoot)
             .Start(this);

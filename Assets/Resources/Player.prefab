@@ -563,6 +563,9 @@ MonoBehaviour:
   contactPositionEpsilon: 0.025
   contactsBufferSize: 6
   isSpriteInitiallyFlipped: 1
+  cameraShakeTimeOnHit: 0.3
+  cameraShakeSpeedOnHit: 5
+  cameraShakeMagnitudeOnHit: 2
   cameraFollowSmoothness: 0.7
   slopeHorizontalDampening: 0.2
 --- !u!114 &7160953146846894358
@@ -639,6 +642,9 @@ MonoBehaviour:
   hitbox: {fileID: 1927317104266185964}
   inputWaitTime: 0.3
   onHitUpMomentum: 5
+  cameraShakeTimeOnHit: 0.2
+  cameraShakeSpeedOnHit: 7
+  cameraShakeMagnitudeOnHit: 1.2
 --- !u!1 &7160953147164352163
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,4 @@
-﻿using System;
-
-public enum LevelType
+﻿public enum LevelType
 {
     CollectAll,
     Hub

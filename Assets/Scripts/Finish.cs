@@ -7,7 +7,7 @@ namespace DefaultNamespace
     public class Finish : MonoBehaviour
     {
         private GameEvents _gameEvents;
-        
+
         [SerializeField] private PlayerTriggerEvents triggerEvents;
         [SerializeField] private GameObject portalBody;
         [SerializeField] private GameObject interactHint;
@@ -18,17 +18,30 @@ namespace DefaultNamespace
         private void Awake()
         {
             _gameEvents = Container.Get<GameEvents>();
-            _gameEvents.PlayerMinGoalCompleted += OnMinGoalCompleted;
-            _gameEvents.PlayerInteract += OnInteract;
-            
+
             triggerEvents.Entered += OnEntered;
             triggerEvents.Exited += OnExited;
+
+            portalBody.SetActive(false);
+            interactHint.SetActive(false);
         }
 
-        private void OnDestroy()
+        private void OnEnable()
         {
-            _gameEvents.PlayerMinGoalCompleted -= OnMinGoalCompleted;
-            _gameEvents.PlayerInteract -= OnInteract;
+            if (_gameEvents)
+            {
+                _gameEvents.PlayerMinGoalCompleted += OnMinGoalCompleted;
+                _gameEvents.PlayerInteract += OnInteract;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_gameEvents)
+            {
+                _gameEvents.PlayerMinGoalCompleted -= OnMinGoalCompleted;
+                _gameEvents.PlayerInteract -= OnInteract;
+            }
         }
 
         private void OnExited(PlayerCore obj)
@@ -54,7 +67,7 @@ namespace DefaultNamespace
             {
                 return;
             }
-            
+
             _gameEvents.PostFinishReached();
         }
 

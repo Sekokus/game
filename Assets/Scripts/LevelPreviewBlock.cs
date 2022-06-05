@@ -47,14 +47,14 @@ public class LevelPreviewBlock : MonoBehaviour
     private void SetLevelTexts()
     {
         levelNameTextMesh.text = _levelData.levelName;
-        if (!_levelData.IsFullyCompleted)
+        if (!_levelData.IsCompleted)
         {
             bestLevelTimeTextMesh.text = "--:--:--";
         }
         else
         {
             var time = _levelData.bestLevelTimeMs;
-            bestLevelTimeTextMesh.text = $"{time / (1000_000):D2}:{time / 1000:D2}:{time % 1000:D2}";
+            bestLevelTimeTextMesh.text = $"{time / 1000 / 60:D2}:{time / 1000 % 60:D2}:{time % 1000:D3}";
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 namespace Player
@@ -22,6 +23,7 @@ namespace Player
         public ResourcesModule Resources { get; private set; }
         public GameEvents GameEvents { get; private set; }
         public PlayerAnimationEvents AnimationEvents { get; private set; }
+        public CameraContainer CameraContainer { get; private set; }
 
         public BoxCollider2D BoxCollider => boxCollider;
 
@@ -52,6 +54,7 @@ namespace Player
         private void Awake()
         {
             GameEvents = Container.Get<GameEvents>();
+            CameraContainer = Container.Get<CameraContainer>();
             Movement = GetComponent<MovementModule>();
             Jump = GetComponent<JumpModule>();
             Dash = GetComponent<DashModule>();

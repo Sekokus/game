@@ -1,5 +1,4 @@
-﻿using System;
-using DefaultNamespace;
+﻿using DefaultNamespace;
 using Enemies;
 using Player;
 using UnityEngine;
@@ -38,6 +37,12 @@ public class Bootstrap : MonoBehaviour
         AddTimerRunner();
         AddCoroutineRunner();
         AddLevelGroupUi();
+        AddCameraContainer();
+    }
+
+    private void AddCameraContainer()
+    {
+        AddDelayedSceneSingleton<CameraContainer>();
     }
 
     private void AddLevelGroupUi()

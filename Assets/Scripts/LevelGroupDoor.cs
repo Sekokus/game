@@ -1,5 +1,4 @@
-﻿using System;
-using DefaultNamespace;
+﻿using DefaultNamespace;
 using Player;
 using UnityEngine;
 
@@ -33,7 +32,7 @@ public class LevelGroupDoor : MonoBehaviour
     
     private void OnInteracted()
     {
-        if (!_canInteract)
+        if (!_canInteract || _isShowingUi)
         {
             return;
         }

@@ -6,7 +6,21 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public delegate void DoEveryFrameCallback(float deltaTime, float fraction);
+    public readonly struct DoEveryFrameState
+    {
+        public readonly float DeltaTime;
+        public readonly float Fraction;
+        public readonly float PassedTime;
+
+        public DoEveryFrameState(float deltaTime, float fraction, float passedTime)
+        {
+            DeltaTime = deltaTime;
+            Fraction = fraction;
+            PassedTime = passedTime;
+        }
+    }
+
+    public delegate void DoEveryFrameCallback(DoEveryFrameState state);
 
     public static class Do
     {
@@ -60,7 +74,8 @@ namespace DefaultNamespace
                     lastUpdate = newUpdate;
 
                     passedTime = Mathf.Min(passedTime + deltaTime, time);
-                    action(deltaTime, passedTime / time);
+                    var state = new DoEveryFrameState(deltaTime, passedTime / time, passedTime);
+                    action(state);
                 } while (passedTime < time);
             }
 

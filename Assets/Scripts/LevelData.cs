@@ -15,7 +15,7 @@ public class LevelData : ScriptableObject
     public Sprite previewSprite;
     
     public bool IsCompleted => bestLevelCoinCount >= requiredCoinCount;
-    public bool IsFullyCompleted => bestLevelCoinCount == requiredCoinCount;
+    public bool IsFullyCompleted => bestLevelCoinCount == maxCoinCount;
     
     public float CompletionPercent => (float)bestLevelCoinCount / maxCoinCount;
 

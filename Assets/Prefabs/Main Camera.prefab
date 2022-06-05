@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 1201546773839055371}
   - component: {fileID: 1201546773839055364}
   - component: {fileID: 1201546773839055365}
+  - component: {fileID: 828743509495724089}
+  - component: {fileID: -3786520141452900888}
+  - component: {fileID: -3860975299182552372}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -59,7 +62,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.5
+  orthographic size: 2.28
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -83,3 +86,175 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201546773839055366}
   m_Enabled: 1
+--- !u!114 &828743509495724089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201546773839055366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 257b03500eb64093af139481f48aae55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: {fileID: -3860975299182552372}
+  shakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.054164886
+      value: 0.70755005
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.059577078
+      value: 0.9956693
+      inSlope: 0.2626805
+      outSlope: 0.2626805
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.515519
+      value: 0.999762
+      inSlope: 1.0341312
+      outSlope: 1.0341312
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.25310102
+    - serializedVersion: 3
+      time: 0.9106618
+      value: 0.79049486
+      inSlope: 0.83741736
+      outSlope: 0.83741736
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.5582659
+    - serializedVersion: 3
+      time: 1.1333313
+      value: -0.09434128
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  aberrationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0041656494
+      value: -0.002357483
+      inSlope: 6.9167657
+      outSlope: 6.9167657
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.05467838
+      value: 0.4046529
+      inSlope: 1.2381909
+      outSlope: 1.2381909
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.19165109
+    - serializedVersion: 3
+      time: 0.47143555
+      value: 0.81560135
+      inSlope: -0.0357264
+      outSlope: -0.0357264
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.832447
+      value: 0.43382636
+      inSlope: -0.76132506
+      outSlope: -0.76132506
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.27706903
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9750061
+      value: 0.002357483
+      inSlope: -3.0265963
+      outSlope: -3.0265963
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dashTimeMultiplier: 2
+  shakeTimeOnHitTaken: 0.3
+  shakeSpeedOnHitTaken: 5
+  shakeMagnitudeOnHitTaken: 2
+  shakeTimeOnHitInflicted: 0.15
+  shakeSpeedOnHitInflicted: 7
+  shakeMagnitudeOnHitInflicted: 1.2
+--- !u!114 &-3786520141452900888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201546773839055366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 2
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+--- !u!114 &-3860975299182552372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201546773839055366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 3d69d170e33793547ba2f7e28e509648, type: 2}

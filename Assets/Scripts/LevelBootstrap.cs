@@ -62,10 +62,17 @@ public class LevelBootstrap : MonoBehaviour
     private void UpdateCurrentLevelData()
     {
         var passedTime = Mathf.CeilToInt((Time.time - _startTime) * 1000);
-        levelData.bestLevelTimeMs =
-            levelData.IsFullyCompleted ? Mathf.Min(levelData.bestLevelTimeMs, passedTime) : passedTime;
-        
-        levelData.bestLevelCoinCount = Mathf.Max(levelData.bestLevelCoinCount, _counter.CurrentCount);
+        var newCoinCount = _counter.CurrentCount;
+
+        if (newCoinCount > levelData.bestLevelCoinCount)
+        {
+            levelData.bestLevelCoinCount = newCoinCount;
+            levelData.bestLevelTimeMs = passedTime;
+        }
+        else if (newCoinCount == levelData.bestLevelCoinCount)
+        {
+            levelData.bestLevelTimeMs = Mathf.Min(levelData.bestLevelTimeMs, passedTime);
+        }
     }
 
     private void Start()

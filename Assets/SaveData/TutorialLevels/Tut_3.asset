@@ -17,5 +17,6 @@ MonoBehaviour:
   bestLevelTimeMs: 0
   bestLevelCoinCount: 0
   requiredCoinCount: 6
-  maxCoinCount: 11
+  maxCoinCount: 13
   previewSprite: {fileID: 21300000, guid: 4c23f2a1bd3cae1429e7fe25143317bc, type: 3}
+  nextLevel: {fileID: 0}

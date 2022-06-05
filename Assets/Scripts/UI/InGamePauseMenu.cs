@@ -38,6 +38,7 @@ namespace UI
             }
             else
             {
+                Time.timeScale = 0;
                 Show();
             }
         }

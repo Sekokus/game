@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 5538896785609815010}
   - component: {fileID: 266272237655502822}
   m_Layer: 8
-  m_Name: Chainsaw
+  m_Name: Saw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

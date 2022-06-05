@@ -14,14 +14,12 @@ namespace Player
         [SerializeField] [Min(0)] private float dashEndDelay = 0.1f;
         [SerializeField] [Min(1)] private int dashFrames = 7;
 
-        private CoroutineRunner _coroutineRunner;
-        private CoroutineRunner.CoroutineContext _dashRoutine;
-        private PauseObserver _pauseObserver;
-
         public event Action<float> DashStarted;
         public event Action<float> DashEnded;
         public event Action<Vector2> DashFrameStart;
 
+        private bool _isDashing;
+        
         private bool TrySpendDashCharge()
         {
             var resource = Core.Resources.DashCharges;
@@ -40,24 +38,19 @@ namespace Player
 
             var hurtbox = GetComponentInChildren<Hurtbox>();
             hurtbox.HitReceived += OnHitReceived;
-
-            _coroutineRunner = Container.Get<CoroutineRunner>();
-            _pauseObserver = Container.Get<PauseService>().GetObserver(PauseSource.Any);
         }
 
         private void OnHitReceived(Hitbox obj)
         {
-            EndDashEarly();
+            if (_isDashing)
+            {
+                EndDashEarly();
+            }
         }
 
         private void EndDashEarly()
         {
-            if (_dashRoutine == null)
-            {
-                return;
-            }
-
-            _dashRoutine.Stop();
+            StopAllCoroutines();
             OnDashEnded();
         }
 
@@ -76,7 +69,7 @@ namespace Player
             var direction = GetWorldMousePosition() - Core.Rigidbody.position;
             RotateTowardsDashDirection(direction);
 
-            _dashRoutine = _coroutineRunner.Run(DashCoroutine(direction.normalized));
+            StartCoroutine(DashCoroutine(direction.normalized));
 
             void RotateTowardsDashDirection(Vector2 dashDirection)
             {
@@ -84,10 +77,10 @@ namespace Player
             }
         }
 
-        private static Vector2 GetWorldMousePosition()
+        private Vector2 GetWorldMousePosition()
         {
             var screenPosition = Mouse.current.position.ReadValue();
-            return Camera.main!.ScreenToWorldPoint(screenPosition);
+            return Core.CameraContainer.Camera.ScreenToWorldPoint(screenPosition);
         }
 
         private IEnumerator DashCoroutine(Vector2 direction)
@@ -95,10 +88,12 @@ namespace Player
             PushRestrictions(PlayerRestrictions.Move, PlayerRestrictions.Attack, PlayerRestrictions.Jump,
                 PlayerRestrictions.Dash);
 
+            _isDashing = true;
             Core.Velocity = Vector2.zero;
+            Core.CameraContainer.Effects.PlayDashEffect(dashFrames * Time.fixedDeltaTime);
 
             DashStarted?.Invoke(dashStartDelay);
-            
+
             for (var i = 1; i <= dashFrames; i++)
             {
                 var startPosition = Core.Rigidbody.position;
@@ -106,19 +101,14 @@ namespace Player
 
                 var distance = dashDistance / dashFrames;
                 var expectedEndPosition = startPosition + direction * distance;
-                
+
                 Core.Rigidbody.MovePosition(expectedEndPosition);
-                
+
                 yield return new WaitForFixedUpdate();
-                
-                if (_pauseObserver.IsPaused)
-                {
-                    yield return new WaitUntil(() => _pauseObserver.IsUnpaused);
-                }
             }
 
-            OnDashEnded();
             ApplyEndMomentum(direction);
+            OnDashEnded();
         }
 
         private void ApplyEndMomentum(Vector2 direction)
@@ -128,14 +118,9 @@ namespace Player
 
         private void OnDashEnded()
         {
+            _isDashing = false;
             DashEnded?.Invoke(dashEndDelay);
             PopRestrictions();
-            _dashRoutine = null;
-        }
-
-        private void OnDisable()
-        {
-            _dashRoutine?.Stop();
         }
     }
 }

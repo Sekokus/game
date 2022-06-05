@@ -1,5 +1,4 @@
-﻿using Enemies;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DefaultNamespace
 {

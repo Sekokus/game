@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DefaultNamespace;
 using UnityEngine;
 using Utilities;
 
@@ -42,13 +43,10 @@ namespace Player
 
         public bool IsGrounded { get; private set; }
 
-        private Camera _camera;
-
         private void Start()
         {
             _contacts = new RaycastHit2D[contactsBufferSize];
             _startPosition = Core.Transform.position;
-            _camera = Camera.main;
 
             var hurtbox = GetComponentInChildren<Hurtbox>();
             hurtbox.HitReceived += OnHitReceived;
@@ -58,6 +56,8 @@ namespace Player
 
         private void OnHitReceived(Hitbox obj)
         {
+            Core.CameraContainer.Effects.PlayHitTakenEffect();
+
             var pushDirection = GetPushDirection(obj);
             Push(pushDirection);
         }
@@ -82,28 +82,10 @@ namespace Player
             _coroutineRunner.RunAfter(PopRestrictions, pushTime);
         }
 
-        private bool _paused = false;
         [SerializeField, Range(0, 1)] private float slopeHorizontalDampening = 0.2f;
 
         private void FixedUpdate()
         {
-            if (PauseObserver.IsPaused)
-            {
-                if (!_paused)
-                {
-                    Core.Rigidbody.Sleep();
-                    _paused = true;
-                }
-
-                return;
-            }
-
-            if (_paused)
-            {
-                _paused = false;
-                Core.Rigidbody.WakeUp();
-            }
-
             ApplyGravity();
             CheckContacts();
 
@@ -157,11 +139,12 @@ namespace Player
 
         private void MoveCamera()
         {
-            var cameraPosition = _camera.transform.position;
+            var cameraBody = Core.CameraContainer.transform;
+            var cameraPosition = cameraBody.position;
             var player = Core.Rigidbody.position;
 
             var newCameraPos = Vector2.Lerp(cameraPosition, player, cameraFollowSmoothness);
-            _camera.transform.position = new Vector3(newCameraPos.x, newCameraPos.y, cameraPosition.z);
+            cameraBody.position = new Vector3(newCameraPos.x, newCameraPos.y, cameraPosition.z);
         }
 
         private void ApplyMoveInput()

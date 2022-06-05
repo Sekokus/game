@@ -1,4 +1,4 @@
-﻿using System;
+﻿using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utilities;
@@ -12,14 +12,8 @@ namespace Player
         private readonly TimedTrigger _inputTrigger = new TimedTrigger();
         [SerializeField] private float inputWaitTime = 1;
         [SerializeField] private float onHitUpMomentum = 3;
-        private Camera _camera;
-        private bool _isAttacking;
 
-        protected override void Awake()
-        {
-            base.Awake();
-            _camera = Camera.main;
-        }
+        private bool _isAttacking;
 
         private void OnEnable()
         {
@@ -43,6 +37,8 @@ namespace Player
 
         private void OnHitDamageable(Hurtbox obj)
         {
+            Core.CameraContainer.Effects.PlayHitInflictedEffect();
+
             Core.Resources.DashCharges.Restore(1);
             Core.Jump.RestoreOneJump();
 
@@ -81,7 +77,7 @@ namespace Player
         private void LookInCursorDirection()
         {
             var cursorScreen = Mouse.current.position.ReadValue();
-            var cursorWorld = _camera.ScreenToWorldPoint(cursorScreen);
+            var cursorWorld = Core.CameraContainer.Camera.ScreenToWorldPoint(cursorScreen);
             var direction = cursorWorld.x - Core.Transform.position.x;
             Core.Movement.LookInDirection(direction);
         }
