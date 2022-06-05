@@ -2,6 +2,7 @@
 {
     public enum EnemyType
     {
-        Turret
+        BulletTurret,
+        FireTurret
     }
 }
