@@ -4,6 +4,7 @@ using UnityEngine;
 public class LevelGroupUi : MonoBehaviour
 {
     [SerializeField] private LevelPreviewBlock levelBlockPrefab;
+    [SerializeField] private ScreenColorTint screenColorTint;
 
     private readonly List<LevelPreviewBlock> _createdBlocks = new List<LevelPreviewBlock>();
     private SceneLoader _sceneLoader;
@@ -20,6 +21,8 @@ public class LevelGroupUi : MonoBehaviour
 
     public void ShowFromLevelGroup(LevelGroup levelGroup)
     {
+        screenColorTint.Enable();
+        
         foreach (var levelData in levelGroup.GetLevelDatas())
         {
             var levelBlock = Instantiate(levelBlockPrefab, transform);
@@ -37,5 +40,6 @@ public class LevelGroupUi : MonoBehaviour
         }
 
         _createdBlocks.Clear();
+        screenColorTint.Disable();
     }
 }
