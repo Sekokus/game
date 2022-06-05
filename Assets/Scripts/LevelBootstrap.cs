@@ -54,9 +54,8 @@ public class LevelBootstrap : MonoBehaviour
         UpdateCurrentLevelData();
 
         var nextLevel = levelData.nextLevel;
-        var scenePath = "Assets/Scenes/" + nextLevel.sceneName + ".unity";
-        var nextLevelName = nextLevel != null ? SceneUtility.GetBuildIndexByScenePath(scenePath) : SceneLoader.HubScene;
-        _sceneLoader.ReplaceLastScene(nextLevelName);
+        var scene = nextLevel != null ? SceneLoader.GetBuildIndex(nextLevel.sceneName) : SceneLoader.HubScene;
+        _sceneLoader.ReplaceLastScene(scene);
     }
 
     private void UpdateCurrentLevelData()
