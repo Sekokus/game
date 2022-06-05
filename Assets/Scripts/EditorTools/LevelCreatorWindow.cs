@@ -74,7 +74,7 @@ namespace DefaultNamespace.EditorTools
             var levelData = CreateInstance<LevelData>();
             levelData.name = levelName;
             levelData.levelName = levelName;
-            var sceneName = "Scene_" + levelName;
+            var sceneName = $"{levelGroup.name}/Scene_{levelName}";
             levelData.sceneName = sceneName;
             levelGroup.levelDatas.Add(levelData);
 
@@ -83,7 +83,7 @@ namespace DefaultNamespace.EditorTools
             var template =
                 AssetDatabase.LoadAssetAtPath<SceneTemplateAsset>("Assets/Scenes/Level_Template.scenetemplate");
             var result = SceneTemplateService.Instantiate(template, false,
-                $"Assets/Scenes/{levelGroup.name}");
+                $"Assets/Scenes/{levelGroup.name}/{sceneName}.unity");
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();

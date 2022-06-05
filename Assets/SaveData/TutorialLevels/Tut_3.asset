@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tut_3
   m_EditorClassIdentifier: 
   levelName: 0-3
-  sceneName: Level_2
+  sceneName: Group_1/Level_2
   bestLevelTimeMs: 0
   bestLevelCoinCount: 0
   requiredCoinCount: 6
