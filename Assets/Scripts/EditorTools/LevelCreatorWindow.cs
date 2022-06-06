@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.SceneTemplate;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DefaultNamespace.EditorTools
 {
@@ -21,6 +22,8 @@ namespace DefaultNamespace.EditorTools
 
         private string _levelGroup = string.Empty;
         private string _levelName = string.Empty;
+
+        [SerializeField] private Scene lastCreatedScene;
 
         private void PopulateLevelGroups()
         {
@@ -39,17 +42,12 @@ namespace DefaultNamespace.EditorTools
 
         private void OnGUI()
         {
-            var richTextStyle = new GUIStyle(GUI.skin.label)
-            {
-                richText = true
-            };
-
             _levelGroup = EditorGUILayout.TextField("Group:", _levelGroup, GUILayout.ExpandWidth(false));
             _levelName = EditorGUILayout.TextField("Name:", _levelName, GUILayout.ExpandWidth(false));
 
             var existingLevelGroup = levelGroups.FirstOrDefault(lg => lg.name == _levelGroup);
             var existingLevelData = existingLevelGroup
-                ? existingLevelGroup.levelDatas.FirstOrDefault(data => data.levelName == _levelName)
+                ? existingLevelGroup.LevelDatas.FirstOrDefault(data => data.levelName == _levelName)
                 : null;
 
             GUI.enabled = existingLevelGroup == null && _levelGroup.Length >= 3;
@@ -67,6 +65,23 @@ namespace DefaultNamespace.EditorTools
             }
 
             GUI.enabled = true;
+
+            if (!lastCreatedScene.IsValid())
+            {
+                return;
+            }
+
+            var buildIndex = SceneLoader.GetBuildIndex(lastCreatedScene.name);
+            if (buildIndex >= 0)
+            {
+                return;
+            }
+
+            if (GUILayout.Button($"Add {lastCreatedScene.name} to build settings?"))
+            {
+                LevelControlPanel.AddToBuildSettings(lastCreatedScene.path);
+                lastCreatedScene = new Scene();
+            }
         }
 
         private void CreateLevel(LevelGroup levelGroup, string levelName)
@@ -76,14 +91,19 @@ namespace DefaultNamespace.EditorTools
             levelData.levelName = levelName;
             var sceneName = $"{levelGroup.name}/Scene_{levelName}";
             levelData.sceneName = sceneName;
-            levelGroup.levelDatas.Add(levelData);
+            levelGroup.AddLevelData(levelData);
 
             AssetDatabase.CreateAsset(levelData, $"Assets/SaveData/{levelGroup.name}/{levelName}.asset");
 
             var template =
                 AssetDatabase.LoadAssetAtPath<SceneTemplateAsset>("Assets/Scenes/Level_Template.scenetemplate");
-            var result = SceneTemplateService.Instantiate(template, false,
-                $"Assets/Scenes/{levelGroup.name}/{sceneName}.unity");
+            var result = SceneTemplateService.Instantiate(template, false);
+
+            lastCreatedScene = result.scene;
+            EditorSceneManager.SaveScene(lastCreatedScene, $"Assets/Scenes/{sceneName}.unity");
+
+            var bootstrap = FindObjectOfType<LevelBootstrap>();
+            bootstrap.levelData = levelData;
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();

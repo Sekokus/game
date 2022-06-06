@@ -3,13 +3,15 @@
 [CreateAssetMenu(menuName = "Levels/Level Data", fileName = "LevelData", order = 0)]
 public class LevelData : ScriptableObject
 {
+    public LevelGroup levelGroup;
+    
     public string levelName;
     public string sceneName;
 
     public int bestLevelTimeMs;
     public int bestLevelCoinCount;
 
-    public int requiredCoinCount;
+    public int requiredCoinCount; 
     public int maxCoinCount;
 
     public Sprite previewSprite;

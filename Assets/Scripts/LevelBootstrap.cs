@@ -2,7 +2,6 @@
 using DefaultNamespace;
 using Enemies;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(10)]
 public class LevelBootstrap : MonoBehaviour
@@ -21,7 +20,7 @@ public class LevelBootstrap : MonoBehaviour
     private EnemyMarker[] _enemyMarkers;
     private Collectable[] _collectables;
 
-    [SerializeField] private LevelData levelData;
+    public LevelData levelData;
 
     private float _startTime;
 

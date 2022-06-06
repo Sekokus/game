@@ -96,8 +96,8 @@ namespace DefaultNamespace.EditorTools
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
         }
-
-        private static void AddToBuildSettings(string fullScenePath)
+        
+        public static void AddToBuildSettings(string fullScenePath)
         {
             var prevScenes = EditorBuildSettings.scenes.ToList();
             prevScenes.Add(new EditorBuildSettingsScene(fullScenePath, true));
