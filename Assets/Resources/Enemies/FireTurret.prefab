@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1878473705682804149}
   - component: {fileID: 2553485111825421904}
   - component: {fileID: 2728177118866673035}
+  - component: {fileID: 8238883422444690563}
   m_Layer: 0
   m_Name: FireTurret
   m_TagString: Untagged
@@ -75,6 +76,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyedObjectPrefab: {fileID: 0}
+--- !u!114 &8238883422444690563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2339321624627200763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b161bf0aa8480f899acf56f4cf5da5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.7, g: 0.2, b: 0.2, a: 0.3}
+  enemyType: 1
+  marker: {fileID: 0}
 --- !u!1 &3868395735894809572
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +314,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlamethrowerHand (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2701252289852131296, guid: 27be45d3b48fca54ca146cca4d15b87b, type: 3}
+      propertyPath: colliderSize.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980430011613662257, guid: 27be45d3b48fca54ca146cca4d15b87b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7533960707842895914, guid: 27be45d3b48fca54ca146cca4d15b87b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -359,6 +383,14 @@ PrefabInstance:
     - target: {fileID: 2529193085010347125, guid: 27be45d3b48fca54ca146cca4d15b87b, type: 3}
       propertyPath: m_Name
       value: FlamethrowerHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701252289852131296, guid: 27be45d3b48fca54ca146cca4d15b87b, type: 3}
+      propertyPath: colliderSize.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980430011613662257, guid: 27be45d3b48fca54ca146cca4d15b87b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 7533960707842895914, guid: 27be45d3b48fca54ca146cca4d15b87b, type: 3}
       propertyPath: m_RootOrder

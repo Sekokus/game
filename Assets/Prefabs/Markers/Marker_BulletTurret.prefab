@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6379777274446929650}
   - component: {fileID: -2311066695687107761}
+  - component: {fileID: 6692992020440241370}
   m_Layer: 0
   m_Name: Marker_BulletTurret
   m_TagString: Untagged
@@ -45,3 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugColor: {r: 0.4811321, g: 0, b: 0.09023016, a: 1}
   enemyType: 0
+--- !u!114 &6692992020440241370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4217332323204085875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b161bf0aa8480f899acf56f4cf5da5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.7, g: 0.2, b: 0.2, a: 0.3}
+  enemyType: 0
+  marker: {fileID: -2311066695687107761}

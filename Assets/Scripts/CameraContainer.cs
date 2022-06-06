@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DefaultNamespace
 {
@@ -15,6 +16,7 @@ namespace DefaultNamespace
                 Debug.LogError("Camera is null");
                 return;
             }
+
             Effects = Camera.GetComponent<CameraEffects>();
         }
     }

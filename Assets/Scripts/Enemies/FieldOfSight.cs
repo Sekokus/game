@@ -96,12 +96,5 @@ namespace Enemies
                 }
             }
         }
-
-        private void OnDrawGizmos()
-        {
-            GizmosHelper.PushColor(new Color(0.8f, 0.8f, 0.4f, 0.2f));
-            Gizmos.DrawSphere(transform.position, detectRadius);
-            GizmosHelper.PopColor();
-        }
     }
 }

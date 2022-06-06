@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 7747793232511655841}
   - component: {fileID: 5203287284381788695}
   - component: {fileID: 1325643168432489009}
+  - component: {fileID: 4028749931131948215}
   m_Layer: 0
   m_Name: HomingTurret
   m_TagString: Untagged
@@ -311,6 +312,21 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4028749931131948215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939616174334447825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b161bf0aa8480f899acf56f4cf5da5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.7, g: 0.2, b: 0.2, a: 0.3}
+  enemyType: 2
+  marker: {fileID: 0}
 --- !u!1 &8932488722617240014
 GameObject:
   m_ObjectHideFlags: 0
