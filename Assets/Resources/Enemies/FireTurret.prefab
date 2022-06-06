@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 7079550311442534838}
   - component: {fileID: 9122521996148110257}
   - component: {fileID: 2989971847299875179}
+  - component: {fileID: 4614925292338180673}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -118,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 3868395735894809572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 7266741246916601164}
   m_RootOrder: 1
@@ -189,6 +190,26 @@ MonoBehaviour:
   color: {r: 1, g: 0.46568146, b: 0, a: 1}
   outlineSize: 10
   spriteRenderer: {fileID: 9122521996148110257}
+--- !u!114 &4614925292338180673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868395735894809572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b906f594c647f19d5caaeb94744ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 180
+  axis: {x: 0, y: 0, z: 1}
+  mode: 1
+  randomRotationMinWaitTime: 0.5
+  randomRotationMaxWaitTime: 1.5
+  randomRotationMinRotationTime: 0.5
+  randomRotationMaxRotationTime: 1.5
+  directionChangeChance: 0.5
 --- !u!1 &7430915116241540215
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +272,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.5
 --- !u!1 &8420220524283944086
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,8 +318,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b906f594c647f19d5caaeb94744ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 60
+  rotationSpeed: 40
   axis: {x: 0, y: 0, z: 1}
+  mode: 0
+  randomRotationMinWaitTime: 0.5
+  randomRotationMaxWaitTime: 1.5
+  randomRotationMinRotationTime: 0.5
+  randomRotationMaxRotationTime: 1.5
+  directionChangeChance: 0.5
 --- !u!1001 &5290717001626029434
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -41,9 +41,8 @@ namespace Enemies
 
         private void Shoot()
         {
-            var directionToPlayer = ((Vector2)(_target.position - transform.position)).normalized;
             var mass = Instantiate(homingMassPrefab, transform.position, Quaternion.identity);
-            mass.transform.right = directionToPlayer;
+            mass.transform.right = transform.right;
         }
 
         public void SwitchEnable()

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -15,9 +14,6 @@ namespace DefaultNamespace
         [SerializeField] private float shakeTimeOnHitTaken = 0.3f;
         [SerializeField] private float shakeSpeedOnHitTaken = 5;
         [SerializeField] private float shakeMagnitudeOnHitTaken = 2;
-        [SerializeField] private float shakeTimeOnHitInflicted = 0.15f;
-        [SerializeField] private float shakeSpeedOnHitInflicted = 7f;
-        [SerializeField] private float shakeMagnitudeOnHitInflicted = 1.2f;
 
         private Coroutine _routine;
         private Vector3 _startPosition;
@@ -31,6 +27,8 @@ namespace DefaultNamespace
         {
             StopShake();
             _startPosition = transform.localPosition;
+            var settingsFactor = GameSettings.Instance.cameraShakeStrength;
+
             _routine = Do.EveryFrameFor(state =>
                 {
                     var strength = state.PassedTime * speed;
@@ -39,7 +37,7 @@ namespace DefaultNamespace
 
                     var curveAffect = shakeCurve.Evaluate(state.Fraction);
 
-                    var shake = (shakeRight + shakeUp) * (curveAffect * magnitude);
+                    var shake = (shakeRight + shakeUp) * (curveAffect * magnitude * settingsFactor);
                     transform.localPosition = new Vector3(shake.x, shake.y, _startPosition.z);
                 }, time)
                 .Action(OnShakeEnded)
@@ -72,6 +70,7 @@ namespace DefaultNamespace
             }
 
             motionBlur.active = true;
+            motionBlur.intensity.value = GameSettings.Instance.motionBlurStrength;
 
             Do.After(() => { motionBlur.active = false; }, shakeTimeOnHitTaken)
                 .Start(this);
@@ -79,7 +78,7 @@ namespace DefaultNamespace
 
         public void PlayHitInflictedEffect()
         {
-            Shake(shakeTimeOnHitInflicted, shakeSpeedOnHitInflicted, shakeMagnitudeOnHitInflicted);
+            // TODO: пока ничего
         }
 
         public void PlayDashEffect(float dashTime)
@@ -91,9 +90,14 @@ namespace DefaultNamespace
             }
 
             chromaticAberration.active = true;
+            var settingsFactor = GameSettings.Instance.chromaticAberrationStrength;
 
             Do.EveryFrameFor(
-                    state => { chromaticAberration.intensity.value = aberrationCurve.Evaluate(state.Fraction); },
+                    state =>
+                    {
+                        var intensityValue = aberrationCurve.Evaluate(state.Fraction);
+                        chromaticAberration.intensity.value = intensityValue * settingsFactor;
+                    },
                     dashTime * dashTimeMultiplier)
                 .Action(() => { chromaticAberration.active = false; })
                 .Start(this);
