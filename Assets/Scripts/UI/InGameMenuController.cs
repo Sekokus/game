@@ -7,11 +7,36 @@ namespace UI
     public class InGameMenuController : MonoBehaviour, IMenuContext
     {
         [SerializeField] private AbstractMenu rootPauseMenu;
-        [SerializeField] private AbstractMenu rootInventoryMenu;
 
         private AbstractMenu _activeMenu;
         private InputBindings _bindings;
-        private PauseService _pauseService;
+        private GameState _gameState;
+
+        private void OnEnable()
+        {
+            _gameState.StateChanged += OnStateChanged;
+
+            _bindings.UI.Enable();
+            _bindings.UI.Menu.performed += OnMenu;
+        }
+
+        private void OnDisable()
+        {
+            _gameState.StateChanged -= OnStateChanged;
+            _bindings.UI.Menu.performed -= OnMenu;
+        }
+
+        private void OnStateChanged(GameStateType newState, GameStateType oldState)
+        {
+            if (newState == GameStateType.LevelSelectionOpened)
+            {
+                _bindings.UI.Menu.performed -= OnMenu;
+            }
+            else if (oldState == GameStateType.LevelSelectionOpened)
+            {
+                _bindings.UI.Menu.performed += OnMenu;
+            }
+        }
 
         private void Awake()
         {
@@ -20,22 +45,14 @@ namespace UI
 
         private void Construct()
         {
-            _pauseService = Container.Get<PauseService>();
-            
+            _gameState = Container.Get<GameState>();
             _bindings = Container.Get<PlayerBindings>().GetBindings();
-            _bindings.UI.Enable();
-            _bindings.UI.Menu.performed += OnMenu;
 
             var menus = GetComponentsInChildren<AbstractMenu>();
             foreach (var menu in menus)
             {
                 menu.SetMenuContext(this);
             }
-        }
-
-        private void OnDestroy()
-        {
-            _bindings.UI.Menu.performed -= OnMenu;
         }
 
         private void OnMenu(InputAction.CallbackContext context)
@@ -50,21 +67,8 @@ namespace UI
 
         public void SetActiveMenu(AbstractMenu menu)
         {
-            if (_activeMenu == null)
-            {
-                _pauseService.Pause(PauseSource.MenuOpened);
-            }
-            else if (menu == null)
-            {
-                _pauseService.Unpause(PauseSource.MenuOpened);
-            }
-
             _activeMenu = menu;
-        }
-
-        private void OnDisable()
-        {
-            _pauseService.Unpause(PauseSource.MenuOpened);
+            Time.timeScale = _activeMenu != null ? 0 : 1;
         }
     }
 }

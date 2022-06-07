@@ -21,7 +21,7 @@ namespace Player
         public InputModule Input { get; private set; }
         public AttackModule Attack { get; private set; }
         public ResourcesModule Resources { get; private set; }
-        public GameEvents GameEvents { get; private set; }
+        public GameState GameState { get; private set; }
         public PlayerAnimationEvents AnimationEvents { get; private set; }
         public CameraContainer CameraContainer { get; private set; }
 
@@ -53,7 +53,7 @@ namespace Player
 
         private void Awake()
         {
-            GameEvents = Container.Get<GameEvents>();
+            GameState = Container.Get<GameState>();
             CameraContainer = Container.Get<CameraContainer>();
             Movement = GetComponent<MovementModule>();
             Jump = GetComponent<JumpModule>();

@@ -26,7 +26,7 @@ namespace Player
             Health.Spend(1);
             if (Health.IsDepleted)
             {
-                Core.GameEvents.PostPlayerDied();
+                Core.GameState.PostPlayerDied();
             }
         }
 

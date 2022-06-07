@@ -6,12 +6,12 @@ namespace UI
     {
         [SerializeField] private GameObject menu;
         [SerializeField] private AbstractMenu settingsMenu;
-        private GameEvents _gameEvents;
+        private GameState _gameState;
         private SceneLoader _sceneLoader;
 
         private void Awake()
         {
-            _gameEvents = Container.Get<GameEvents>();
+            _gameState = Container.Get<GameState>();
             _sceneLoader = Container.Get<SceneLoader>();
         }
 
@@ -52,7 +52,7 @@ namespace UI
         public void Restart()
         {
             Close();
-            _gameEvents.PostPlayerDied();
+            _gameState.PostPlayerDied();
         }
 
         public override void OnChildClosed(AbstractMenu child)

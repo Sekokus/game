@@ -36,7 +36,7 @@ public class LevelPreviewBlock : MonoBehaviour
 
     private void SetCompletionPercentBar()
     {
-        levelCompletionBar.SetCompletionPercent(_levelData.CompletionPercent);
+        levelCompletionBar.SetCompletionPercent(_levelData);
     }
 
     private void SetPreviewSprite()

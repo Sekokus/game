@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ namespace UI
         private void Awake()
         {
             _sceneLoader = Container.Get<SceneLoader>();
+            
             IsShown = true;
         }
 

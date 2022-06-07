@@ -8,6 +8,7 @@ public class LevelBlockButtonClickHandler : MonoBehaviour, IPointerUpHandler, IP
     [SerializeField] private float tweenTime = 0.1f;
     [SerializeField] private float targetScale = 0.85f;
     [SerializeField] private Transform scaleTarget;
+    [SerializeField] private Canvas sortTarget;
     
     private Coroutine _routine;
 
@@ -27,6 +28,8 @@ public class LevelBlockButtonClickHandler : MonoBehaviour, IPointerUpHandler, IP
                 scaleTarget.localScale = new Vector3(scale, scale, scale);
             }, tweenTime)
             .Start(this);
+
+        sortTarget.sortingOrder = 10;
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -43,6 +46,8 @@ public class LevelBlockButtonClickHandler : MonoBehaviour, IPointerUpHandler, IP
                 scaleTarget.localScale = new Vector3(scale, scale, scale);
             }, tweenTime)
             .Start(this);
+        
+        sortTarget.sortingOrder = 11;
     }
 
     private void StopAnimation()

@@ -6,7 +6,7 @@ namespace DefaultNamespace
     public class Collectable : MonoBehaviour
     {
         private LevelGoalCounter _levelGoalCounter;
-        private GameEvents _gameEvents;
+        private GameState _gameState;
 
         [SerializeField] private SpriteOutline spriteOutline;
         [SerializeField] private GameObject hintText;
@@ -14,23 +14,23 @@ namespace DefaultNamespace
         private void Awake()
         {
             _levelGoalCounter = Container.Get<LevelGoalCounter>();
-            _gameEvents = Container.Get<GameEvents>();
+            _gameState = Container.Get<GameState>();
             SetCollectable(false);
         }
 
         private void OnEnable()
         {
-            if (_gameEvents)
+            if (_gameState)
             {
-                _gameEvents.PlayerInteract += OnInteract;
+                _gameState.PlayerInteract += OnInteract;
             }
         }
 
         private void OnDisable()
         {
-            if (_gameEvents)
+            if (_gameState)
             {
-                _gameEvents.PlayerInteract -= OnInteract;
+                _gameState.PlayerInteract -= OnInteract;
             }
         }
 

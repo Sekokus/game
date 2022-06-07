@@ -14,7 +14,7 @@ public class LevelBootstrap : MonoBehaviour
     [SerializeField] private string startText = "Collect enough Coins to proceed";
     [SerializeField] private bool startWithTimer;
 
-    private GameEvents _gameEvents;
+    private GameState _gameState;
     private LevelGoalCounter _counter;
     private SceneLoader _sceneLoader;
     private EnemyMarker[] _enemyMarkers;
@@ -26,7 +26,7 @@ public class LevelBootstrap : MonoBehaviour
 
     private void Awake()
     {
-        _gameEvents = Container.Get<GameEvents>();
+        _gameState = Container.Get<GameState>();
         _sceneLoader = Container.Get<SceneLoader>();
         _levelFactory = Container.Get<LevelFactory>();
         _counter = Container.Get<LevelGoalCounter>();
@@ -78,26 +78,26 @@ public class LevelBootstrap : MonoBehaviour
         var levelEntry = _levelFactory.CreateLevel(LevelType.CollectAll, playerMarker, _enemyMarkers);
         levelEntry.StartLevel(startWithTimer, startText);
 
-        _counter.ReachedMinCount += () => { _gameEvents.PostMinGoalCompleted(); };
+        _counter.ReachedMinCount += () => { _gameState.PostMinGoalCompleted(); };
 
         _startTime = Time.time;
     }
 
     private void OnEnable()
     {
-        if (_gameEvents)
+        if (_gameState)
         {
-            _gameEvents.PlayerDied += OnPlayerDied;
-            _gameEvents.PlayerFinished += OnPlayerFinished;
+            _gameState.PlayerDied += OnPlayerDied;
+            _gameState.PlayerFinished += OnPlayerFinished;
         }
     }
 
     private void OnDisable()
     {
-        if (_gameEvents)
+        if (_gameState)
         {
-            _gameEvents.PlayerDied -= OnPlayerDied;
-            _gameEvents.PlayerFinished -= OnPlayerFinished;
+            _gameState.PlayerDied -= OnPlayerDied;
+            _gameState.PlayerFinished -= OnPlayerFinished;
         }
     }
 }

@@ -6,7 +6,19 @@
 
         public InputBindings GetBindings()
         {
-            return _inputBindings ??= new InputBindings();
+            if (_inputBindings == null)
+            {
+                InitializeBindings();
+            }
+
+            return _inputBindings;
+        }
+
+        private void InitializeBindings()
+        {
+            _inputBindings = new InputBindings();
+            _inputBindings.UI.Enable();
+            _inputBindings.Player.Enable();
         }
     }
 }

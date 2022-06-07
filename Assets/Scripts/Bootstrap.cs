@@ -75,7 +75,7 @@ public class Bootstrap : MonoBehaviour
         Container.Add<EnemyFactory>(ServiceLifetime.PerScene);
     }
 
-    private void AddGameEvents() => AddSingletonFromScene<GameEvents>();
+    private void AddGameEvents() => AddSingletonFromScene<GameState>();
 
     private void AddDelayedSceneSingleton<TMonoBehaviour>() where TMonoBehaviour : MonoBehaviour
     {

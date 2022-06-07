@@ -8,7 +8,7 @@ namespace Player
     {
         private PauseService _pauseService;
         private PauseObserver _pauseObserver;
-        private GameEvents _gameEvents;
+        private GameState _gameState;
 
         protected override void Awake()
         {
@@ -18,7 +18,7 @@ namespace Player
 
         private void Construct()
         {
-            _gameEvents = Container.Get<GameEvents>();
+            _gameState = Container.Get<GameState>();
             _pauseService = Container.Get<PauseService>();
             _pauseObserver = _pauseService.GetObserver(PauseSource.Any);
         }
@@ -78,7 +78,7 @@ namespace Player
             
             if (context.action.IsPressed())
             {
-                _gameEvents.PostTryCollect();
+                _gameState.PostTryCollect();
             }
         }
     }

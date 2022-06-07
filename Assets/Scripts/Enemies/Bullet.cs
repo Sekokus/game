@@ -32,7 +32,7 @@ namespace Enemies
 
         private void Construct()
         {
-            var appEvents = Container.Get<GameEvents>();
+            var appEvents = Container.Get<GameState>();
             appEvents.Exiting += () => Destroy(gameObject);
 
             _bulletPool = Container.Get<BulletPool>();

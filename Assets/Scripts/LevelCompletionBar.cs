@@ -5,14 +5,26 @@ public class LevelCompletionBar : MonoBehaviour
 {
     [SerializeField] private Image fillBar;
 
+    [SerializeField] private Color levelNotCompletedColor = Color.white;
     [SerializeField] private Color levelCompletedBarColor = Color.yellow;
     [SerializeField] private Color levelFullyCompletedBarColor = Color.green;
 
-    public void SetCompletionPercent(float percent)
+    public void SetCompletionPercent(LevelData levelData)
     {
-        fillBar.fillAmount = percent;
+        Color color;
+        if (levelData.IsFullyCompleted)
+        {
+            color = levelFullyCompletedBarColor;
+        }
+        else if (levelData.IsCompleted)
+        {
+            color = levelCompletedBarColor;
+        }
+        else
+        {
+            color = levelNotCompletedColor;
+        }
 
-        var color = percent < 1 ? levelCompletedBarColor : levelFullyCompletedBarColor;
         fillBar.color = color;
     }
 }
