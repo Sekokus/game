@@ -1811,7 +1811,7 @@ MonoBehaviour:
   enemyMarkersParent: {fileID: 570962578}
   collectablesParent: {fileID: 551438442}
   startText: Collect enough Coins to proceed
-  startWithTimer: 1
+  startWithTimer: 0
   levelData: {fileID: 11400000, guid: 6fe25de08440b9c41b81b661921a22ea, type: 2}
 --- !u!4 &864946540
 Transform:
