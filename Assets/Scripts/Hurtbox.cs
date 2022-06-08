@@ -7,6 +7,7 @@ public class Hurtbox : MonoBehaviour
     [SerializeField] private float disableOnHitTime;
     [SerializeField] private Collider2D attachedCollider;
     [SerializeField] private Team team;
+    [SerializeField] private bool restoreHealthOnHit = false;
 
     public Team Team => team;
 
@@ -32,6 +33,8 @@ public class Hurtbox : MonoBehaviour
     }
 
     private bool IsEnabled => attachedCollider.enabled;
+
+    public bool RestoreHealthOnHit => restoreHealthOnHit;
 
     private IEnumerator DisableOnHitRoutine(float time)
     {

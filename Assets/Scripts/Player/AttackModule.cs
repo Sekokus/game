@@ -10,10 +10,14 @@ namespace Player
         [SerializeField] private Hitbox hitbox;
 
         private readonly TimedTrigger _inputTrigger = new TimedTrigger();
+
+        [SerializeField] private int killsToHeal = 4;
         [SerializeField] private float inputWaitTime = 1;
         [SerializeField] private float onHitUpMomentum = 3;
+        [SerializeField] private ParticleSystem healParticles;
 
         private bool _isAttacking;
+        private int _kills = 0;
 
         private void OnEnable()
         {
@@ -41,6 +45,20 @@ namespace Player
 
             Core.Resources.DashCharges.Restore(1);
             Core.Jump.RestoreOneJump();
+
+            if (obj.RestoreHealthOnHit)
+            {
+                _kills += 1;
+                if (_kills == killsToHeal)
+                {
+                    _kills = 0;
+                    if (Core.Resources.Health.Value < Core.Resources.Health.MaxValue)
+                    {
+                        Core.Resources.Health.Restore(1);
+                        healParticles.Play();
+                    }
+                }
+            }
 
             if (!Core.Movement.IsGrounded)
             {

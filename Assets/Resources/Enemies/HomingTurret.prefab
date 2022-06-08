@@ -227,6 +227,7 @@ MonoBehaviour:
   disableOnHitTime: 0
   attachedCollider: {fileID: 6376061227146956031}
   team: 1
+  restoreHealthOnHit: 1
 --- !u!58 &6376061227146956031
 CircleCollider2D:
   m_ObjectHideFlags: 0
