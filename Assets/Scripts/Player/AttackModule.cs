@@ -14,7 +14,7 @@ namespace Player
         [SerializeField] private int killsToHeal = 4;
         [SerializeField] private float inputWaitTime = 1;
         [SerializeField] private float onHitUpMomentum = 3;
-        [SerializeField] private ParticleSystem healParticles;
+        [SerializeField] private ParticlesGroup healParticles;
 
         private bool _isAttacking;
         private int _kills = 0;
@@ -48,21 +48,28 @@ namespace Player
 
             if (obj.RestoreHealthOnHit)
             {
-                _kills += 1;
-                if (_kills == killsToHeal)
-                {
-                    _kills = 0;
-                    if (Core.Resources.Health.Value < Core.Resources.Health.MaxValue)
-                    {
-                        Core.Resources.Health.Restore(1);
-                        healParticles.Play();
-                    }
-                }
+                IncreaseKillCount();
             }
 
             if (!Core.Movement.IsGrounded)
             {
                 Core.Velocity.y = onHitUpMomentum;
+            }
+        }
+
+        private void IncreaseKillCount()
+        {
+            _kills += 1;
+            if (_kills < killsToHeal)
+            {
+                return;
+            }
+
+            _kills = 0;
+            if (Core.Resources.Health.Value < Core.Resources.Health.MaxValue)
+            {
+                Core.Resources.Health.Restore(1);
+                healParticles.PlayOnce();
             }
         }
 

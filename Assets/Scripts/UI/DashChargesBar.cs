@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class DashChargesBar : WombImageResourceBar
+    public class DashChargesBar : CombImageResourceBar
     {
         [SerializeField] private Color rechargingColor = Color.gray;
 
@@ -14,9 +14,9 @@ namespace UI
             return player.Resources.DashCharges;
         }
 
-        protected override void OnWombFillChanged(float fillAmount, int wombIndex, IReadOnlyList<Image> wombImages)
+        protected override void OnCombFillChanged(float fillAmount, int combIndex, IReadOnlyList<Image> combImages)
         {
-            wombImages[wombIndex].color = Mathf.Approximately(fillAmount, 1) ? Color.white : rechargingColor;
+            combImages[combIndex].color = Mathf.Approximately(fillAmount, 1) ? Color.white : rechargingColor;
         }
     }
 }

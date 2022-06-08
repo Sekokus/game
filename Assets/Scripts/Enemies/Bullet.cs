@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Utilities;
 
 namespace Enemies
@@ -8,7 +9,7 @@ namespace Enemies
         [SerializeField] private BulletType bulletType;
         [SerializeField] [Min(0)] private float lifeTime = 5;
         [SerializeField] private Hitbox hitbox;
-        [SerializeField] private GameObject destroyParticles;
+        [SerializeField] private DestructionHandler destructionHandler;
 
         public BulletType BulletType => bulletType;
 
@@ -18,6 +19,7 @@ namespace Enemies
         private Timer _destroyTimer;
 
         private float _moveSpeed;
+        private GameState _gameState;
 
         private void Awake()
         {
@@ -32,12 +34,22 @@ namespace Enemies
 
         private void Construct()
         {
-            var appEvents = Container.Get<GameState>();
-            appEvents.Exiting += () => Destroy(gameObject);
+            _gameState = Container.Get<GameState>();
+            _gameState.Exiting += OnExiting;
 
             _bulletPool = Container.Get<BulletPool>();
             _pauseService = Container.Get<PauseService>();
             _pauseObserver = _pauseService.GetObserver(PauseSource.Any);
+        }
+
+        private void OnDestroy()
+        {
+            _gameState.Exiting -= OnExiting;
+        }
+
+        private void OnExiting()
+        {
+            Destroy(gameObject);
         }
 
         public void Shoot(Vector2 direction, float speed)
@@ -81,10 +93,7 @@ namespace Enemies
         private void Destroy()
         {
             _bulletPool.Add(this);
-            
-            var particles = Instantiate(destroyParticles, transform.position, transform.rotation, null);
-            particles.SetActive(true);
-            Destroy(particles, 1);
+            destructionHandler.ImitateDestruction();
         }
 
         private void OnDisable()

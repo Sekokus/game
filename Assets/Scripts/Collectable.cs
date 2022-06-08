@@ -1,4 +1,5 @@
-﻿using Player;
+﻿using Enemies;
+using Player;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -10,6 +11,7 @@ namespace DefaultNamespace
 
         [SerializeField] private SpriteOutline spriteOutline;
         [SerializeField] private GameObject hintText;
+        [SerializeField] private DestructionHandler destructionHandler;
 
         private void Awake()
         {
@@ -47,7 +49,7 @@ namespace DefaultNamespace
         private void Collect()
         {
             _levelGoalCounter.IncrementCounter();
-            Destroy(gameObject);
+            destructionHandler.Destroy();
         }
 
         private void OnTriggerEnter2D(Collider2D col)
