@@ -67,6 +67,14 @@ namespace UI
 
         public void SetActiveMenu(AbstractMenu menu)
         {
+            if (_activeMenu != null && menu == null)
+            {
+                _gameState.SetState(GameStateType.Default);
+            }
+            else if (_activeMenu == null && menu != null)
+            {
+                _gameState.SetState(GameStateType.MenuOpened);
+            }
             _activeMenu = menu;
             Time.timeScale = _activeMenu != null ? 0 : 1;
         }

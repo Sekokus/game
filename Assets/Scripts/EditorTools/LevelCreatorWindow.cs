@@ -47,7 +47,7 @@ namespace DefaultNamespace.EditorTools
 
             var existingLevelGroup = levelGroups.FirstOrDefault(lg => lg.name == _levelGroup);
             var existingLevelData = existingLevelGroup
-                ? existingLevelGroup.LevelDatas.FirstOrDefault(data => data.levelName == _levelName)
+                ? existingLevelGroup.LevelDatas?.FirstOrDefault(data => data.levelName == _levelName)
                 : null;
 
             GUI.enabled = existingLevelGroup == null && _levelGroup.Length >= 3;
@@ -100,6 +100,7 @@ namespace DefaultNamespace.EditorTools
             var result = SceneTemplateService.Instantiate(template, false);
 
             lastCreatedScene = result.scene;
+            AssetDatabase.CreateFolder("Assets/Scenes", levelGroup.name);
             EditorSceneManager.SaveScene(lastCreatedScene, $"Assets/Scenes/{sceneName}.unity");
 
             var bootstrap = FindObjectOfType<LevelBootstrap>();
@@ -118,7 +119,8 @@ namespace DefaultNamespace.EditorTools
             levelGroup.name = levelGroupName;
 
             AssetDatabase.CreateAsset(levelGroup, $"Assets/SaveData/{levelGroupName}.asset");
-            AssetDatabase.SaveAssetIfDirty(levelGroup);
+            AssetDatabase.CreateFolder("Assets/SaveData", levelGroupName);
+            AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             EditorUtility.FocusProjectWindow();
             Selection.activeObject = levelGroup;

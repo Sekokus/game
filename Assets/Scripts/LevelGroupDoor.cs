@@ -33,6 +33,20 @@ public class LevelGroupDoor : MonoBehaviour
     private void OnEnable()
     {
         _gameState.PlayerInteract += OnInteracted;
+        _gameState.StateChanged += OnStateChanged;
+    }
+
+    private void OnStateChanged(GameStateType newState, GameStateType oldState)
+    {
+        if (newState == GameStateType.MenuOpened)
+        {
+            _gameState.PlayerInteract -= OnInteracted;
+        }
+
+        if (oldState == GameStateType.MenuOpened)
+        {
+            _gameState.PlayerInteract += OnInteracted;
+        }
     }
 
     private bool _isShowingUi;

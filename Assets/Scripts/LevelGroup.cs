@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Levels/Level Group", fileName = "LevelGroup", order = 1)]
@@ -12,12 +10,21 @@ public class LevelGroup : ScriptableObject
 
     public void AddLevelData(LevelData levelData)
     {
+        EnsureInitialized();
+        
         levelDatas.Add(levelData);
         RevalidateData();
     }
 
+    private void EnsureInitialized()
+    {
+        levelDatas ??= new List<LevelData>();
+    }
+
     public void RemoveLevelData(LevelData levelData)
     {
+        EnsureInitialized();
+        
         levelDatas.Remove(levelData);
         RevalidateData();
     }
@@ -40,6 +47,7 @@ public class LevelGroup : ScriptableObject
 
     private void RevalidateData()
     {
+        EnsureInitialized();
         levelDatas.RemoveAll(ld => !ld);
 
         for (var i = 0; i < levelDatas.Count; i++)

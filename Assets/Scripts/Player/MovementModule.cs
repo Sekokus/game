@@ -164,6 +164,10 @@ namespace Player
         private void ApplyGravity()
         {
             Core.Velocity.y += gravity * Time.fixedDeltaTime;
+            if (IsGrounded)
+            {
+                Core.Velocity.y = Mathf.Max(Core.Velocity.y, -0.5f);
+            }
         }
 
         private void ApplyVelocityToRigidbody()
