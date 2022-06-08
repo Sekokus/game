@@ -668,6 +668,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 551438443}
     m_Modifications:
+    - target: {fileID: 1988417006041364909, guid: 3e594a019e178914cafafcdfc2a0fc17, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2381370697097071537, guid: 3e594a019e178914cafafcdfc2a0fc17, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -978,7 +982,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1072,6 +1076,10 @@ PrefabInstance:
     - target: {fileID: 8710288899891424570, guid: 88842acd11f7d8a46a99193f150dd612, type: 3}
       propertyPath: m_Name
       value: Finish
+      objectReference: {fileID: 0}
+    - target: {fileID: 8993755972657671592, guid: 88842acd11f7d8a46a99193f150dd612, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88842acd11f7d8a46a99193f150dd612, type: 3}
@@ -1803,7 +1811,7 @@ MonoBehaviour:
   enemyMarkersParent: {fileID: 570962578}
   collectablesParent: {fileID: 551438442}
   startText: Collect enough Coins to proceed
-  startWithTimer: 0
+  startWithTimer: 1
   levelData: {fileID: 11400000, guid: 6fe25de08440b9c41b81b661921a22ea, type: 2}
 --- !u!4 &864946540
 Transform:
@@ -2024,6 +2032,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 551438443}
     m_Modifications:
+    - target: {fileID: 1988417006041364909, guid: 3e594a019e178914cafafcdfc2a0fc17, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2381370697097071537, guid: 3e594a019e178914cafafcdfc2a0fc17, type: 3}
       propertyPath: m_RootOrder
       value: 2

@@ -53,7 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3493674681869203861, guid: 378e181df5ac5904c9effb6e396fd9af, type: 3}
       propertyPath: m_Name
-      value: HublLevelEntry
+      value: HubLevelEntry
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788429485957420591, guid: 378e181df5ac5904c9effb6e396fd9af, type: 3}
+      propertyPath: m_text
+      value: '- Hub -'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 378e181df5ac5904c9effb6e396fd9af, type: 3}

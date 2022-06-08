@@ -76,7 +76,7 @@ public class LevelBootstrap : MonoBehaviour
     private void Start()
     {
         var levelEntry = _levelFactory.CreateLevel(LevelType.CollectAll, playerMarker, _enemyMarkers);
-        levelEntry.StartLevel(startWithTimer, startText);
+        levelEntry.StartLevel(startWithTimer, startText, levelData.levelName);
 
         _counter.ReachedMinCount += () => { _gameState.PostMinGoalCompleted(); };
 

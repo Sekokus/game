@@ -19,7 +19,7 @@ namespace DefaultNamespace
             {
                 if (i >= levelCount)
                 {
-                    targets[i].maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                    targets[i].enabled = false;
                     continue;
                 }
                 var color = GetLevelColor(levelDatas[i]);

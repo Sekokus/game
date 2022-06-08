@@ -14,6 +14,7 @@ public class LevelStartCountdown : MonoBehaviour
     [SerializeField] private ScreenColorTint screenDarkener;
 
     [SerializeField] private TextMeshProUGUI textMesh;
+    [SerializeField] private TextMeshProUGUI nameTextMesh;
 
     private InputBindings _bindings;
 
@@ -21,6 +22,7 @@ public class LevelStartCountdown : MonoBehaviour
     private bool _canStartCountdown;
 
     public string startText = "Begin";
+    public string nameText = "";
 
     private void Awake()
     {
@@ -85,9 +87,13 @@ public class LevelStartCountdown : MonoBehaviour
     private void OnCountdownEnded()
     {
         textMesh.text = startText;
+        nameTextMesh.text = nameText;
         screenDarkener.Disable();
 
-        Do.After(() => textMesh.enabled = false, startTextHideTime)
+        Do.After(() => { 
+                textMesh.enabled = false;
+                nameTextMesh.enabled = false;
+            }, startTextHideTime)
             .Start(this);
         CountdownEnded?.Invoke();
     }

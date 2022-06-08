@@ -9,6 +9,7 @@ public class HubBootstrap : MonoBehaviour
 
     [SerializeField] private Marker playerMarker;
     [SerializeField] private string startText = "Collect enough Coins to proceed";
+    [SerializeField] private string nameText = "Hub";
     private GameState _gameState;
     private SceneLoader _sceneLoader;
 
@@ -34,6 +35,6 @@ public class HubBootstrap : MonoBehaviour
     {
         var levelEntry = _levelFactory.CreateLevel(LevelType.Hub, playerMarker, 
             Enumerable.Empty<EnemyMarker>());
-        levelEntry.StartLevel(false, startText);
+        levelEntry.StartLevel(false, startText, nameText);
     }
 }
