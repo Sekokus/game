@@ -15,8 +15,13 @@ namespace DefaultNamespace
             var levelDatas = levelGroup.LevelDatas;
             var levelCount = levelDatas.Count;
 
-            for (var i = 0; i < Mathf.Min(levelCount, targets.Length); i++)
+            for (var i = 0; i < targets.Length; i++)
             {
+                if (i >= levelCount)
+                {
+                    targets[i].maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                    continue;
+                }
                 var color = GetLevelColor(levelDatas[i]);
                 targets[i].color = color;
             }
