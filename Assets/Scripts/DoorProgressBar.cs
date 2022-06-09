@@ -21,7 +21,7 @@ namespace DefaultNamespace
             {
                 if (i >= levelCount)
                 {
-                    targets[i].enabled = false;
+                    targets[i].color = lockedColor;
                     continue;
                 }
 
