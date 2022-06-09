@@ -11,18 +11,18 @@ public enum Team
 public class Hitbox : MonoBehaviour
 {
     [SerializeField] private Collider2D[] ignored;
-    [SerializeField] private BoxOverlapTester overlapTester;
+    [SerializeField] private OverlapTester overlapTester;
     [SerializeField] private Team team;
 
     public Team Team => team;
 
     private HashSet<Collider2D> _ignored;
 
-    public BoxOverlapTester OverlapTester => overlapTester;
+    public OverlapTester OverlapTester => overlapTester;
 
     private void Reset()
     {
-        overlapTester = GetComponent<BoxOverlapTester>();
+        overlapTester = GetComponent<OverlapTester>();
     }
 
     private void Awake()

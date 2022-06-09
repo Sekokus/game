@@ -138,10 +138,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2668761790245350654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12fc1ed50ae84f28b8b6209aff01d0a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 48f6f5a8c7054a60afcbdc04e73218ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderSize: {x: 1, y: 1}
   collideWith:
     serializedVersion: 2
     m_Bits: 2304
@@ -149,6 +148,7 @@ MonoBehaviour:
   autoTest: 1
   debugColor: {r: 1, g: 0, b: 0.018810749, a: 0.5882353}
   debugColorWhenDisabled: {r: 0.5849056, g: 0.3724635, b: 0.44791022, a: 0.3137255}
+  colliderRadius: 0.4
 --- !u!1 &8396859978883023592
 GameObject:
   m_ObjectHideFlags: 0

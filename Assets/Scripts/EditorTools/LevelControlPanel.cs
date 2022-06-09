@@ -9,7 +9,7 @@ namespace DefaultNamespace.EditorTools
     public class LevelControlPanel : EditorWindow
     {
         [SerializeField] private List<LevelData> levelDatas = new List<LevelData>();
-        
+
         [MenuItem("Window/Levels/Level Control Panel")]
         public static void ShowWindow()
         {
@@ -33,7 +33,9 @@ namespace DefaultNamespace.EditorTools
         }
 
         private static string _levelSearch = string.Empty;
-
+        private static Vector2 _scrollPosition;
+        
+        
         private void OnGUI()
         {
             var richTextStyle = new GUIStyle(GUI.skin.label)
@@ -42,10 +44,15 @@ namespace DefaultNamespace.EditorTools
             };
 
             _levelSearch = EditorGUILayout.TextField("Search level", _levelSearch);
-            
+
             EditorGUILayout.Space();
+            _scrollPosition =
+                EditorGUILayout.BeginScrollView(_scrollPosition, GUILayout.Width(400), GUILayout.Height(640));
+            
             foreach (var levelData in levelDatas
-                         .Where(ld => ld.levelName.StartsWith(_levelSearch)))
+                         .Where(ld => ld.levelName.StartsWith(_levelSearch)
+                                      || ld.sceneName.StartsWith(_levelSearch)
+                                      || ld.sceneName.Split('/').Last().StartsWith(_levelSearch)))
             {
                 EditorGUILayout.LabelField($"Level name: <b>{levelData.levelName}</b>", richTextStyle);
                 DrawSceneInfo(levelData);
@@ -60,9 +67,10 @@ namespace DefaultNamespace.EditorTools
                     bootData.loadAfterBootScene = SceneLoader.GetBuildIndex(levelData.sceneName);
                     EditorApplication.EnterPlaymode();
                 }
-
                 EditorGUILayout.Space();
             }
+            
+            EditorGUILayout.EndScrollView();
         }
 
         private static void DrawSceneInfo(LevelData levelData)
@@ -77,26 +85,27 @@ namespace DefaultNamespace.EditorTools
             EditorGUILayout.LabelField("Scene name: " + sceneName, GUILayout.ExpandWidth(false));
             var fullPath = "Assets/Scenes/" + levelData.sceneName + ".unity";
             var buildIndex = SceneUtility.GetBuildIndexByScenePath(fullPath);
-            
+
             if (buildIndex < 0)
             {
-                EditorGUILayout.LabelField("<color=red>Not in build settings</color>", richTextStyle,
-                    GUILayout.ExpandWidth(false));
-                if (GUILayout.Button("Add to build settings"))
+                if (GUILayout.Button("<b><color=maroon>Not in build settings. Add?</color></b>", new GUIStyle(GUI.skin.button)
+                    {
+                        richText = true
+                    }))
                 {
                     AddToBuildSettings(fullPath);
                 }
             }
             else
             {
-                EditorGUILayout.LabelField("<color=green>In build settings</color>", richTextStyle,
+                EditorGUILayout.LabelField("<b><color=green>In build settings</color></b>", richTextStyle,
                     GUILayout.ExpandWidth(false));
             }
 
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
         }
-        
+
         public static void AddToBuildSettings(string fullScenePath)
         {
             var prevScenes = EditorBuildSettings.scenes.ToList();

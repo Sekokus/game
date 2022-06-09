@@ -56,10 +56,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2454776628387313044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12fc1ed50ae84f28b8b6209aff01d0a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 48f6f5a8c7054a60afcbdc04e73218ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderSize: {x: 1, y: 1}
   collideWith:
     serializedVersion: 2
     m_Bits: 2048
@@ -67,6 +66,7 @@ MonoBehaviour:
   autoTest: 1
   debugColor: {r: 0.8584906, g: 0.1201648, b: 0, a: 0.15686275}
   debugColorWhenDisabled: {r: 0.6603774, g: 0.3849499, b: 0.33953366, a: 0.23529412}
+  colliderRadius: 0.5
 --- !u!1 &3080155326048549393
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,6 +164,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 120
   axis: {x: 0, y: 0, z: 1}
+  mode: 0
+  randomRotationMinWaitTime: 0.5
+  randomRotationMaxWaitTime: 1.5
+  randomRotationMinRotationTime: 0.5
+  randomRotationMaxRotationTime: 1.5
+  directionChangeChance: 0.5
 --- !u!1 &7906081456030050206
 GameObject:
   m_ObjectHideFlags: 0

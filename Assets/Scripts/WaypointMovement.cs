@@ -21,7 +21,7 @@ namespace DefaultNamespace
         private int _incrementSign = 1;
         private bool _isWaiting;
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_isWaiting)
             {
@@ -74,7 +74,7 @@ namespace DefaultNamespace
         private void MoveToWaypoint(int currentWaypoint)
         {
             var waypoint = waypoints[currentWaypoint];
-            target.position = Vector3.MoveTowards(transform.position, waypoint.position,
+            target.position = Vector3.MoveTowards(target.position, waypoint.position,
                 moveSpeed * Time.deltaTime);
         }
 
