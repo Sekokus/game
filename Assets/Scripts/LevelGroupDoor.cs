@@ -146,9 +146,11 @@ public class LevelGroupDoor : MonoBehaviour
         _hint.SetActive(true);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _gameState.PlayerInteract -= OnInteracted;
         _bindings.UI.Menu.performed -= OnMenu;
+        
+        _gameState.SetState(GameStateType.Default);
     }
 }

@@ -24,6 +24,8 @@ namespace UI
         {
             _gameState.StateChanged -= OnStateChanged;
             _bindings.UI.Menu.performed -= OnMenu;
+            
+            _gameState.SetState(GameStateType.Default);
         }
 
         private void OnStateChanged(GameStateType newState, GameStateType oldState)
@@ -75,6 +77,7 @@ namespace UI
             {
                 _gameState.SetState(GameStateType.MenuOpened);
             }
+            
             _activeMenu = menu;
             Time.timeScale = _activeMenu != null ? 0 : 1;
         }

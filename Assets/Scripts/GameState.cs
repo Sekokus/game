@@ -9,6 +9,11 @@ public class GameState : MonoBehaviour
 
     public void SetState(GameStateType state)
     {
+        if (CurrentState == state)
+        {
+            return;
+        }
+
         var previousState = CurrentState;
         CurrentState = state;
         StateChanged?.Invoke(state, previousState);
