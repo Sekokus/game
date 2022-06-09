@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace DefaultNamespace
 {
@@ -16,10 +17,18 @@ namespace DefaultNamespace
         [SerializeField, Min(0)] private float waitTimeOnEachWaypoint = 2;
         [SerializeField] private Transform[] waypoints;
         [SerializeField] private Transform target;
+        [SerializeField] private float startMaxDelay;
 
         private int _currentWaypoint;
         private int _incrementSign = 1;
         private bool _isWaiting;
+
+        private void Awake()
+        {
+            _isWaiting = true;
+            var delay = Random.Range(0, startMaxDelay);
+            Do.After(() => { _isWaiting = false; }, delay).Start(this);
+        }
 
         private void FixedUpdate()
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DefaultNamespace;
 using Player;
 using UnityEngine;
@@ -7,12 +8,18 @@ using UnityEngine.InputSystem;
 public class LevelGroupDoor : MonoBehaviour
 {
     [SerializeField] private LevelGroup levelGroup;
-    [SerializeField] private GameObject hint;
+    [SerializeField] private GameObject hintInteract;
+    [SerializeField] private GameObject hintLocked;
+    [SerializeField] private GameObject lockedText;
+    [SerializeField] private float lockedTextDisappearTime = 2;
     [SerializeField] private PlayerTriggerEvents triggerEvents;
     [SerializeField] private DoorProgressBar progressBar;
+    [SerializeField] private SpriteRenderer[] changeColorIfAllCompleted;
+    [SerializeField] private Color completedPipeColor = Color.green;
 
     private GameState _gameState;
     private bool _canInteract;
+    private GameObject _hint;
     private LevelGroupUi _groupUi;
 
     private void Awake()
@@ -25,9 +32,28 @@ public class LevelGroupDoor : MonoBehaviour
         triggerEvents.Entered += OnEntered;
         triggerEvents.Exited += OnExited;
 
-        hint.SetActive(false);
+        hintInteract.SetActive(false);
+        hintLocked.SetActive(false);
+        lockedText.SetActive(false);
+
+        _hint = levelGroup.IsUnlocked() ? hintInteract : hintLocked;
 
         progressBar.FillFromLevelGroup(levelGroup);
+
+        SetPipesColor();
+    }
+
+    private void SetPipesColor()
+    {
+        if (changeColorIfAllCompleted == null || levelGroup.LevelDatas.Any(ld => !ld.IsCompleted))
+        {
+            return;
+        }
+
+        foreach (var spriteRenderer in changeColorIfAllCompleted)
+        {
+            spriteRenderer.color = completedPipeColor;
+        }
     }
 
     private void OnEnable()
@@ -59,8 +85,14 @@ public class LevelGroupDoor : MonoBehaviour
             return;
         }
 
+        if (!levelGroup.IsUnlocked())
+        {
+            InformGroupLocked();
+            return;
+        }
+
         _isShowingUi = true;
-        hint.SetActive(false);
+        _hint.SetActive(false);
         _groupUi.ShowFromLevelGroup(levelGroup);
 
         _bindings.UI.Menu.performed += OnMenu;
@@ -68,22 +100,29 @@ public class LevelGroupDoor : MonoBehaviour
         _gameState.SetState(GameStateType.LevelSelectionOpened);
     }
 
+    private void InformGroupLocked()
+    {
+        lockedText.SetActive(true);
+        StopAllCoroutines();
+        Do.After(() => { lockedText.SetActive(false); }, lockedTextDisappearTime).Start(this);
+    }
+
     private void OnMenu(InputAction.CallbackContext obj)
     {
         HideSelection();
-        hint.SetActive(true);
+        hintInteract.SetActive(true);
     }
 
     private void OnExited(PlayerCore obj)
     {
         _canInteract = false;
-        hint.SetActive(false);
-        
+        _hint.SetActive(false);
+
         if (!_isShowingUi)
         {
             return;
         }
-        
+
         HideSelection();
     }
 
@@ -104,7 +143,7 @@ public class LevelGroupDoor : MonoBehaviour
     private void OnEntered(PlayerCore obj)
     {
         _canInteract = true;
-        hint.SetActive(true);
+        _hint.SetActive(true);
     }
 
     private void OnDisable()

@@ -83,6 +83,7 @@ MonoBehaviour:
   - {fileID: 7411410949661610252}
   - {fileID: 8659109480479972499}
   target: {fileID: 7541944145960164789}
+  startMaxDelay: 3
 --- !u!1 &7453980337219392863
 GameObject:
   m_ObjectHideFlags: 0

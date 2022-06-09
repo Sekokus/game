@@ -6,6 +6,7 @@ namespace DefaultNamespace
     {
         [SerializeField] private SpriteRenderer[] targets;
 
+        [SerializeField] private Color lockedColor = Color.grey;
         [SerializeField] private Color notCompletedColor = Color.red;
         [SerializeField] private Color completedColor = Color.yellow;
         [SerializeField] private Color fullyCompletedColor = Color.green;
@@ -14,6 +15,7 @@ namespace DefaultNamespace
         {
             var levelDatas = levelGroup.LevelDatas;
             var levelCount = levelDatas.Count;
+            var isLocked = !levelGroup.IsUnlocked();
 
             for (var i = 0; i < targets.Length; i++)
             {
@@ -22,7 +24,8 @@ namespace DefaultNamespace
                     targets[i].enabled = false;
                     continue;
                 }
-                var color = GetLevelColor(levelDatas[i]);
+
+                var color = isLocked ? lockedColor : GetLevelColor(levelDatas[i]);
                 targets[i].color = color;
             }
         }

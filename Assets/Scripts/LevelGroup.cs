@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Levels/Level Group", fileName = "LevelGroup", order = 1)]
 public class LevelGroup : ScriptableObject
 {
     [SerializeField] private List<LevelData> levelDatas;
+    [SerializeField] private LevelGroup lockedBy;
 
     public IReadOnlyList<LevelData> LevelDatas => levelDatas;
 
@@ -55,5 +57,10 @@ public class LevelGroup : ScriptableObject
             levelDatas[i].nextLevel = i + 1 < levelDatas.Count ? levelDatas[i + 1] : null;
             levelDatas[i].levelGroup = this;
         }
+    }
+
+    public bool IsUnlocked()
+    {
+        return lockedBy == null || lockedBy.LevelDatas.All(ld => ld.IsCompleted);
     }
 }

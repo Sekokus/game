@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd7a5a0a2bc468c90921cd4ef540cda, type: 3}
   m_Name: G_1
   m_EditorClassIdentifier: 
-  levelDatas: []
+  levelDatas:
+  - {fileID: 11400000, guid: 2ee48912695373044a9fca64e594cafd, type: 2}
+  - {fileID: 11400000, guid: d8de4751bc1777949aae3b2b5766063b, type: 2}
+  - {fileID: 11400000, guid: 215876d5782d5184e85410883ad48020, type: 2}
+  lockedBy: {fileID: 11400000, guid: b615654b29550c04e804315a19c2c9aa, type: 2}

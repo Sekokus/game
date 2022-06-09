@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4246df1917784d608045d33b3f044854, type: 3}
-  m_Name: GameSettings
-  m_EditorClassIdentifier: 
-  version: 
-  cameraShakeStrength: 0
-  chromaticAberrationStrength: 0
-  motionBlurStrength: 0
+  m_Script: {fileID: 11500000, guid: 6ead24d26bca49fb8c32cb672610a4bb, type: 3}
+  m_Name: AutoBootData
+  m_EditorClassIdentifier: Assembly-CSharp:DefaultNamespace.EditorTools:AutoBootData
+  closedScenes: []
+  lastActiveScene: 
+  loadAfterBootScene: -1

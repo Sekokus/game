@@ -21,7 +21,7 @@ namespace DefaultNamespace.EditorTools
                 return _instance;
             }
 
-            return _instance = AssetDatabase.LoadAssetAtPath<AutoBootData>("Assets/SaveData/AutoBootData.asset");
+            return _instance = AssetDatabase.LoadAssetAtPath<AutoBootData>("Assets/LocalSaveData/AutoBootData.asset");
         }
     }
 }

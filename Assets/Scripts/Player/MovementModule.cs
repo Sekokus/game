@@ -37,6 +37,7 @@ namespace Player
         private RaycastHit2D[] _contacts;
         private Vector2 _startPosition;
         private CoroutineRunner _coroutineRunner;
+        private BloodSplashFactory _bloodSplashFactory;
 
         public event Action Landed;
         public event Action TookOffGround;
@@ -52,10 +53,12 @@ namespace Player
             hurtbox.HitReceived += OnHitReceived;
 
             _coroutineRunner = Container.Get<CoroutineRunner>();
+            _bloodSplashFactory = Container.Get<BloodSplashFactory>();
         }
 
         private void OnHitReceived(Hitbox obj)
         {
+            _bloodSplashFactory.CreateBloodSplashAt(Core.Transform.position);
             Core.CameraContainer.Effects.PlayHitTakenEffect();
 
             var pushDirection = GetPushDirection(obj);

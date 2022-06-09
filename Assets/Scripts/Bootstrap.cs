@@ -53,6 +53,12 @@ public class Bootstrap : MonoBehaviour
         AddCoroutineRunner();
         AddLevelGroupUi();
         AddCameraContainer();
+        AddBloodSplashFactory();
+    }
+
+    private void AddBloodSplashFactory()
+    {
+        AddDelayedSceneSingleton<BloodSplashFactory>();
     }
 
     private void AddCameraContainer()

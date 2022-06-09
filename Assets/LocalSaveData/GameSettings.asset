@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edd7a5a0a2bc468c90921cd4ef540cda, type: 3}
-  m_Name: G_2
+  m_Script: {fileID: 11500000, guid: 4246df1917784d608045d33b3f044854, type: 3}
+  m_Name: GameSettings
   m_EditorClassIdentifier: 
-  levelDatas:
-  - {fileID: 11400000, guid: c8e59b65d66ec874d8ed034c3fbf2929, type: 2}
-  lockedBy: {fileID: 11400000, guid: bbc5282f970e2ab47ab947aff34ee566, type: 2}
+  cameraShakeStrength: 0
+  chromaticAberrationStrength: 0
+  motionBlurStrength: 0
