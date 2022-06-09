@@ -6,8 +6,6 @@ namespace Player
 {
     public class InputModule : PlayerModule
     {
-        private PauseService _pauseService;
-        private PauseObserver _pauseObserver;
         private GameState _gameState;
 
         protected override void Awake()
@@ -19,9 +17,9 @@ namespace Player
         private void Construct()
         {
             _gameState = Container.Get<GameState>();
-            _pauseService = Container.Get<PauseService>();
-            _pauseObserver = _pauseService.GetObserver(PauseSource.Any);
         }
+
+        private InputBindings _bindings;
 
         public Vector2 MoveInput { get; private set; }
 
@@ -31,17 +29,12 @@ namespace Player
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            if (_pauseObserver.IsPaused)
-            {
-                return;
-            }
-
             MoveInput = context.ReadValue<Vector2>();
         }
 
         public void OnJump(InputAction.CallbackContext context)
         {
-            if (_pauseObserver.IsPaused || context.performed)
+            if (_gameState.CurrentState == GameStateType.MenuOpened || context.performed)
             {
                 return;
             }
@@ -51,7 +44,7 @@ namespace Player
 
         public void OnDash(InputAction.CallbackContext context)
         {
-            if (_pauseObserver.IsPaused || context.performed)
+            if (_gameState.CurrentState == GameStateType.MenuOpened || context.performed)
             {
                 return;
             }
@@ -61,7 +54,7 @@ namespace Player
 
         public void OnAttack(InputAction.CallbackContext context)
         {
-            if (_pauseObserver.IsPaused || context.performed)
+            if (_gameState.CurrentState != GameStateType.Default || context.performed)
             {
                 return;
             }
@@ -71,11 +64,11 @@ namespace Player
 
         public void OnCollect(InputAction.CallbackContext context)
         {
-            if (_pauseObserver.IsPaused || context.performed)
+            if (_gameState.CurrentState != GameStateType.Default || context.performed)
             {
                 return;
             }
-            
+
             if (context.action.IsPressed())
             {
                 _gameState.PostTryCollect();
