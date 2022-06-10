@@ -4,12 +4,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace DefaultNamespace.EditorTools
+namespace DefaultNamespace.Editor
 {
     public class LevelControlPanel : EditorWindow
     {
         [SerializeField] private List<LevelData> levelDatas = new List<LevelData>();
-
+        
         [MenuItem("Window/Levels/Level Control Panel")]
         public static void ShowWindow()
         {
@@ -34,8 +34,8 @@ namespace DefaultNamespace.EditorTools
 
         private static string _levelSearch = string.Empty;
         private static Vector2 _scrollPosition;
-        
-        
+
+
         private void OnGUI()
         {
             var richTextStyle = new GUIStyle(GUI.skin.label)
@@ -48,7 +48,7 @@ namespace DefaultNamespace.EditorTools
             EditorGUILayout.Space();
             _scrollPosition =
                 EditorGUILayout.BeginScrollView(_scrollPosition, GUILayout.Width(400), GUILayout.Height(640));
-            
+
             foreach (var levelData in levelDatas
                          .Where(ld => ld.levelName.StartsWith(_levelSearch)
                                       || ld.sceneName.StartsWith(_levelSearch)
@@ -63,14 +63,21 @@ namespace DefaultNamespace.EditorTools
                         },
                         GUILayout.ExpandWidth(false)))
                 {
-                    var bootData = AutoBootData.GetInstance();
-                    bootData.loadAfterBootScene = SceneLoader.GetBuildIndex(levelData.sceneName);
-                    EditorApplication.EnterPlaymode();
+                    EnterPlaymodeWithSelectedScene(levelData.sceneName);
                 }
+
                 EditorGUILayout.Space();
             }
-            
+
             EditorGUILayout.EndScrollView();
+        }
+
+        private static void EnterPlaymodeWithSelectedScene(string sceneName)
+        {
+            var bootData = AutoBootOnPlay.LoadBootData();
+            bootData.afterBootScene = SceneLoader.GetBuildIndex(sceneName);
+
+            EditorApplication.EnterPlaymode();
         }
 
         private static void DrawSceneInfo(LevelData levelData)
@@ -88,10 +95,11 @@ namespace DefaultNamespace.EditorTools
 
             if (buildIndex < 0)
             {
-                if (GUILayout.Button("<b><color=maroon>Not in build settings. Add?</color></b>", new GUIStyle(GUI.skin.button)
-                    {
-                        richText = true
-                    }))
+                if (GUILayout.Button("<b><color=maroon>Not in build settings. Add?</color></b>",
+                        new GUIStyle(GUI.skin.button)
+                        {
+                            richText = true
+                        }))
                 {
                     AddToBuildSettings(fullPath);
                 }

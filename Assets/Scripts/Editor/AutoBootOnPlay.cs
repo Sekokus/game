@@ -2,10 +2,9 @@
 using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace DefaultNamespace.EditorTools
+namespace DefaultNamespace.Editor
 {
     [InitializeOnLoad]
     public static class AutoBootOnPlay
@@ -25,8 +24,18 @@ namespace DefaultNamespace.EditorTools
                     break;
                 case PlayModeStateChange.EnteredEditMode:
                     OpenClosedScenes();
+                    var bootData = LoadBootData();
+                    bootData.afterBootScene = SceneLoader.HubScene;
                     break;
             }
+        }
+
+        public static BootData LoadBootData()
+        {
+            var bootDataGuid = AssetDatabase.FindAssets($"t:{nameof(BootData)}").First();
+            var bootDataPath = AssetDatabase.GUIDToAssetPath(bootDataGuid);
+            var bootData = AssetDatabase.LoadAssetAtPath<BootData>(bootDataPath);
+            return bootData;
         }
 
         private static void OpenClosedScenes()
@@ -50,7 +59,7 @@ namespace DefaultNamespace.EditorTools
         {
             var bootData = AutoBootData.GetInstance();
             bootData.closedScenes.Clear();
-            
+
             bootData.lastActiveScene = SceneManager.GetActiveScene().path;
 
             var loadedCount = SceneManager.sceneCount;
@@ -66,6 +75,8 @@ namespace DefaultNamespace.EditorTools
                 bootData.closedScenes.Add(loadedScene.path);
             }
 
+            EditorUtility.SetDirty(bootData);
+            AssetDatabase.SaveAssetIfDirty(bootData);
             EditorSceneManager.OpenScene("Assets/Scenes/Boot.unity", OpenSceneMode.Single);
         }
     }

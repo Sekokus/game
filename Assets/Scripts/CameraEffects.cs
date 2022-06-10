@@ -27,7 +27,7 @@ namespace DefaultNamespace
         {
             StopShake();
             _startPosition = transform.localPosition;
-            var settingsFactor = GameSettings.Instance.cameraShakeStrength;
+            var settingsFactor = GameSettings.Instance.CameraShakeStrength;
 
             _routine = Do.EveryFrameFor(state =>
                 {
@@ -70,7 +70,7 @@ namespace DefaultNamespace
             }
 
             motionBlur.active = true;
-            motionBlur.intensity.value = GameSettings.Instance.motionBlurStrength;
+            motionBlur.intensity.value = GameSettings.Instance.MotionBlurStrength;
 
             Do.After(() => { motionBlur.active = false; }, shakeTimeOnHitTaken)
                 .Start(this);
@@ -90,7 +90,7 @@ namespace DefaultNamespace
             }
 
             chromaticAberration.active = true;
-            var settingsFactor = GameSettings.Instance.chromaticAberrationStrength;
+            var settingsFactor = GameSettings.Instance.ChromaticAberrationStrength;
 
             Do.EveryFrameFor(
                     state =>

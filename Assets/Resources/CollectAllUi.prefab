@@ -3331,6 +3331,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -32.65341
       objectReference: {fileID: 0}
+    - target: {fileID: 3462496235586007416, guid: 57c96ca304cc9054f9928136531d2d0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8883448842573258906}
+    - target: {fileID: 3462496235586007416, guid: 57c96ca304cc9054f9928136531d2d0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Close
+      objectReference: {fileID: 0}
     - target: {fileID: 3462496235597311746, guid: 57c96ca304cc9054f9928136531d2d0b, type: 3}
       propertyPath: m_Name
       value: SettingsMenuUI

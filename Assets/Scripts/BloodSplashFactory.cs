@@ -21,6 +21,9 @@ namespace DefaultNamespace
 
         private void Awake()
         {
+            GameSettings.Instance.PropertyValueChanged += OnSettingsUpdated;
+            _isBloodEnabled = GameSettings.Instance.BloodEnabled;
+
             _sprites = new Sprite[atlas.spriteCount];
             atlas.GetSprites(_sprites);
 
@@ -34,6 +37,40 @@ namespace DefaultNamespace
             {
                 RecreateBloodSplashesFromLastSession();
             }
+        }
+
+        private void OnDestroy()
+        {
+            GameSettings.Instance.PropertyValueChanged -= OnSettingsUpdated;
+        }
+
+        private void OnSettingsUpdated(string updatedProperty)
+        {
+            var settings = GameSettings.Instance;
+            if (updatedProperty != nameof(settings.BloodEnabled))
+            {
+                return;
+            }
+
+            _isBloodEnabled = settings.BloodEnabled;
+            if (!_isBloodEnabled)
+            {
+                DestroyActiveBlood();
+            }
+        }
+
+        private bool _isBloodEnabled;
+
+        private void DestroyActiveBlood()
+        {
+            foreach (var spriteRenderer in _createdSplashes.Values.ToArray())
+            {
+                Destroy(spriteRenderer.gameObject);
+            }
+
+            _createdSplashes.Clear();
+            savedBloodSplashes.Clear();
+            _id = 0;
         }
 
         private void OnApplicationQuit()
@@ -54,7 +91,10 @@ namespace DefaultNamespace
 
         public void CreateBloodSplashAt(Vector2 position)
         {
-            CreateBloodSplashAtInternal(position, true);
+            if (_isBloodEnabled)
+            {
+                CreateBloodSplashAtInternal(position, true);
+            }
         }
 
         private void CreateBloodSplashAtInternal(Vector2 position, bool addInfo,

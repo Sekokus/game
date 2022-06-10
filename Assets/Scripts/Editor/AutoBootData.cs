@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace DefaultNamespace.EditorTools
+namespace DefaultNamespace.Editor
 {
     [CreateAssetMenu(menuName = "Other/AutoBootData", fileName = "AutoBootData", order = 0)]
     public class AutoBootData : ScriptableObject
     {
         public List<string> closedScenes;
         public string lastActiveScene;
-        public int loadAfterBootScene = -1;
 
         private static AutoBootData _instance;
 

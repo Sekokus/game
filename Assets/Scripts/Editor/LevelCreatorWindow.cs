@@ -7,7 +7,7 @@ using UnityEditor.SceneTemplate;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace DefaultNamespace.EditorTools
+namespace DefaultNamespace.Editor
 {
     public class LevelCreatorWindow : EditorWindow
     {
