@@ -1,11 +1,13 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DefaultNamespace
 {
     public class LevelGoalCounterText : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI textMesh;
+        [FormerlySerializedAs("textMesh")] [SerializeField] private TextMeshProUGUI countTextMesh; 
+        [SerializeField] private TextMeshProUGUI typeTextMesh;
         private LevelGoalCounter _counter;
 
         private void Awake()
@@ -13,6 +15,7 @@ namespace DefaultNamespace
             _counter = Container.Get<LevelGoalCounter>();
 
             _counter.ValueChanged += OnValueChanged;
+            typeTextMesh.text = _counter.Type.ToString();
             OnValueChanged();
         }
 
@@ -24,15 +27,15 @@ namespace DefaultNamespace
 
             if (currentCount < minCount)
             {
-                textMesh.text = WithColor(currentCount.ToString(), "red") + "/" + maxCount;
+                countTextMesh.text = WithColor(currentCount.ToString(), "red") + "/" + maxCount;
             }
             else if (currentCount < maxCount)
             {
-                textMesh.text = currentCount + "/" + maxCount;
+                countTextMesh.text = currentCount + "/" + maxCount;
             }
             else
             {
-                textMesh.text = WithColor(currentCount + "/" + maxCount, "green");
+                countTextMesh.text = WithColor(currentCount + "/" + maxCount, "green");
             }
         }
 
