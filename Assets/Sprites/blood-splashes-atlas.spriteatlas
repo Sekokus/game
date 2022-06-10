@@ -39,14 +39,6 @@ SpriteAtlas:
     - {fileID: 1957392424897946118, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
     - {fileID: -1217423942598982054, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
     - {fileID: -5883808354676607829, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-    - {fileID: 6583637321979190749, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-    - {fileID: -8584556313471113591, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-    - {fileID: -2236237838992883640, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-    - {fileID: -7770890489013246032, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-    - {fileID: 4663092781203843444, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-    - {fileID: 399799711089545852, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-    - {fileID: 2172751336421250280, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-    - {fileID: -1947525672642069033, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -57,34 +49,18 @@ SpriteAtlas:
   - {fileID: -7715450151584447262, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
   - {fileID: 7676383262876364017, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
   - {fileID: 9059786350122096282, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-  - {fileID: -2236237838992883640, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-  - {fileID: -7770890489013246032, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-  - {fileID: 4663092781203843444, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-  - {fileID: 399799711089545852, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-  - {fileID: 2172751336421250280, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-  - {fileID: -1947525672642069033, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
   - {fileID: 1957392424897946118, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
   - {fileID: -1217423942598982054, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
   - {fileID: -5883808354676607829, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-  - {fileID: -8584556313471113591, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
-  - {fileID: 6583637321979190749, guid: 94462fbf921810342b8fa5dda0d9a8b0, type: 3}
   m_PackedSpriteNamesToIndex:
   - blood-splashes_8
   - blood-splashes_3
   - blood-splashes_0
   - blood-splashes_1
   - blood-splashes_4
-  - blood-splashes_20
-  - blood-splashes_21
-  - blood-splashes_23
-  - blood-splashes_25
-  - blood-splashes_26
-  - blood-splashes_27
   - blood-splashes_11
   - blood-splashes_12
   - blood-splashes_14
-  - blood-splashes_19
-  - blood-splashes_18
   m_RenderDataMap: {}
   m_Tag: blood-splashes-atlas
   m_IsVariant: 0

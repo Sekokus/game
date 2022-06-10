@@ -50,6 +50,30 @@ TextureImporter:
   - first:
       213: -1947525672642069033
     second: blood-splashes_27
+  - first:
+      213: -946678670331364983
+    second: blood-splashes_2
+  - first:
+      213: 1634539091202474158
+    second: blood-splashes_5
+  - first:
+      213: 4978231316486464154
+    second: blood-splashes_6
+  - first:
+      213: -7716219085846600583
+    second: blood-splashes_7
+  - first:
+      213: -1404535604886111056
+    second: blood-splashes_9
+  - first:
+      213: 6582972404293191252
+    second: blood-splashes_10
+  - first:
+      213: -6935737250074926955
+    second: blood-splashes_13
+  - first:
+      213: -6053033724121541097
+    second: blood-splashes_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -94,7 +118,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 45
+  spritePixelsToUnits: 450
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -135,6 +159,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -142,10 +178,10 @@ TextureImporter:
       name: blood-splashes_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 154
-        width: 43
-        height: 31
+        x: 0
+        y: 1425
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,10 +199,10 @@ TextureImporter:
       name: blood-splashes_1
       rect:
         serializedVersion: 2
-        x: 92
-        y: 147
-        width: 52
-        height: 41
+        x: 475
+        y: 1425
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +220,10 @@ TextureImporter:
       name: blood-splashes_3
       rect:
         serializedVersion: 2
-        x: 145
-        y: 157
-        width: 45
-        height: 27
+        x: 1425
+        y: 1425
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +241,10 @@ TextureImporter:
       name: blood-splashes_4
       rect:
         serializedVersion: 2
-        x: 1
-        y: 151
-        width: 46
-        height: 32
+        x: 0
+        y: 950
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,9 +263,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 101
-        width: 48
-        height: 32
+        y: 475
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,10 +283,10 @@ TextureImporter:
       name: blood-splashes_11
       rect:
         serializedVersion: 2
-        x: 50
-        y: 101
-        width: 42
-        height: 36
+        x: 1425
+        y: 475
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,10 +304,10 @@ TextureImporter:
       name: blood-splashes_12
       rect:
         serializedVersion: 2
-        x: 93
-        y: 96
-        width: 51
-        height: 46
+        x: 0
+        y: 0
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,10 +325,10 @@ TextureImporter:
       name: blood-splashes_14
       rect:
         serializedVersion: 2
-        x: 145
-        y: 100
-        width: 45
-        height: 39
+        x: 950
+        y: 0
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,13 +343,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood-splashes_18
+      name: blood-splashes_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 52
-        width: 49
-        height: 36
+        x: 950
+        y: 1425
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,20 +357,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dddd2924347cd5b50800000000000000
-      internalID: 6583637321979190749
+      spriteID: 989b57ad3c8bcd2f0800000000000000
+      internalID: -946678670331364983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood-splashes_19
+      name: blood-splashes_5
       rect:
         serializedVersion: 2
-        x: 49
-        y: 54
-        width: 52
-        height: 35
+        x: 475
+        y: 950
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -342,20 +378,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 986a73d04878dd880800000000000000
-      internalID: -8584556313471113591
+      spriteID: ea00d9ea4ac0fa610800000000000000
+      internalID: 1634539091202474158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood-splashes_20
+      name: blood-splashes_6
       rect:
         serializedVersion: 2
-        x: 102
-        y: 51
-        width: 41
-        height: 34
+        x: 950
+        y: 950
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -363,20 +399,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 840ca85988947f0e0800000000000000
-      internalID: -2236237838992883640
+      spriteID: a92a6eca10b361540800000000000000
+      internalID: 4978231316486464154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood-splashes_21
+      name: blood-splashes_7
       rect:
         serializedVersion: 2
-        x: 152
-        y: 46
-        width: 26
-        height: 50
+        x: 1425
+        y: 950
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -384,20 +420,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b767eda540482490800000000000000
-      internalID: -7770890489013246032
+      spriteID: 974260baf9b7ae490800000000000000
+      internalID: -7716219085846600583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood-splashes_23
+      name: blood-splashes_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 6
-        width: 53
-        height: 38
+        x: 475
+        y: 475
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -405,20 +441,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 479e75aad22a6b040800000000000000
-      internalID: 4663092781203843444
+      spriteID: 0bcff541f46128ce0800000000000000
+      internalID: -1404535604886111056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood-splashes_25
+      name: blood-splashes_10
       rect:
         serializedVersion: 2
-        x: 55
-        y: 7
-        width: 38
-        height: 36
+        x: 950
+        y: 475
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -426,20 +462,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c72dbc018bf5c8500800000000000000
-      internalID: 399799711089545852
+      spriteID: 456481c068a6b5b50800000000000000
+      internalID: 6582972404293191252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood-splashes_26
+      name: blood-splashes_13
       rect:
         serializedVersion: 2
-        x: 104
+        x: 475
         y: 0
-        width: 34
-        height: 48
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,20 +483,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e4d4a824d9272e10800000000000000
-      internalID: 2172751336421250280
+      spriteID: 590e6d9d7bf4fbf90800000000000000
+      internalID: -6935737250074926955
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blood-splashes_27
+      name: blood-splashes_15
       rect:
         serializedVersion: 2
-        x: 144
-        y: 16
-        width: 44
-        height: 23
+        x: 1425
+        y: 0
+        width: 475
+        height: 475
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -468,8 +504,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7dd373b18bff8f4e0800000000000000
-      internalID: -1947525672642069033
+      spriteID: 7169644f5ed4ffba0800000000000000
+      internalID: -6053033724121541097
       vertices: []
       indices: 
       edges: []
