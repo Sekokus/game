@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DefaultNamespace;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Levels/Level Data", fileName = "LevelData", order = 0)]
 public class LevelData : ScriptableObject
@@ -11,15 +12,16 @@ public class LevelData : ScriptableObject
     public int bestLevelTimeMs;
     public int bestLevelCoinCount;
 
-    public int requiredCoinCount; 
-    public int maxCoinCount;
+    public int requiredCount; 
+    public int maxCount;
+    public CountType countType;
 
     public Sprite previewSprite;
     
-    public bool IsCompleted => bestLevelCoinCount >= requiredCoinCount;
-    public bool IsFullyCompleted => bestLevelCoinCount == maxCoinCount;
+    public bool IsCompleted => bestLevelCoinCount >= requiredCount;
+    public bool IsFullyCompleted => bestLevelCoinCount == maxCount;
     
-    public float CompletionPercent => (float)bestLevelCoinCount / maxCoinCount;
+    public float CompletionPercent => (float)bestLevelCoinCount / maxCount;
 
     public LevelData nextLevel;
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2553485111825421904}
   - component: {fileID: 2728177118866673035}
   - component: {fileID: 8238883422444690563}
+  - component: {fileID: 678939938742088836}
   m_Layer: 0
   m_Name: FireTurret
   m_TagString: Untagged
@@ -93,6 +94,19 @@ MonoBehaviour:
   color: {r: 0.7, g: 0.2, b: 0.2, a: 0.3}
   enemyType: 1
   marker: {fileID: 0}
+--- !u!114 &678939938742088836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2339321624627200763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0c023007a94264b210c0c96cbb3312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hurtbox: {fileID: 1593928430763707759}
 --- !u!1 &3868395735894809572
 GameObject:
   m_ObjectHideFlags: 0
