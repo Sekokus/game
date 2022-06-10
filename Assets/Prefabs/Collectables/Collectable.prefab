@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 946140068117756965}
   - component: {fileID: 8541545701538524849}
   - component: {fileID: 8947872775528123462}
+  - component: {fileID: 6026689340004606085}
   m_Layer: 0
   m_Name: Collectable
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteOutline: {fileID: 6484137246931088378}
   hintText: {fileID: 6134931089227856189}
-  destructionHandler: {fileID: 8540550450844768435}
+  destructionHandler: {fileID: 6026689340004606085}
 --- !u!114 &946140068117756965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +95,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cff84ecf27190439e42300554c208c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6026689340004606085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5077434323124949176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9fe61beae64e398b448ee01b049d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyedObjectPrefab: {fileID: 7235772288971437234}
+  destroyTempObjectAfter: 3
 --- !u!1 &7235772288971437232
 GameObject:
   m_ObjectHideFlags: 0
@@ -9807,7 +9822,7 @@ PrefabInstance:
     - target: {fileID: 7702518997715740349, guid: 3fcb1dc02da82044a851bfac8209aaf8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+      objectReference: {fileID: 2100000, guid: 874cf254ec46e1243935fb0d41fff89c, type: 2}
     - target: {fileID: 8264090235302972044, guid: 3fcb1dc02da82044a851bfac8209aaf8, type: 3}
       propertyPath: m_Name
       value: Gears
@@ -9829,11 +9844,6 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7702518997715740349, guid: 3fcb1dc02da82044a851bfac8209aaf8, type: 3}
   m_PrefabInstance: {fileID: 5715058103880321572}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3753608325340501126 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8888005540066598562, guid: 3fcb1dc02da82044a851bfac8209aaf8, type: 3}
-  m_PrefabInstance: {fileID: 5715058103880321572}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2328516667327427551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8007253364224145915, guid: 3fcb1dc02da82044a851bfac8209aaf8, type: 3}
@@ -9852,19 +9862,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0.98823535, g: 0.8235295, b: 0.15686275, a: 1}
-  outlineSize: 10
+  outlineSize: 12
   spriteRenderer: {fileID: 2714315045609303193}
---- !u!114 &8540550450844768435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3753608325340501126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f9fe61beae64e398b448ee01b049d02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyedObjectPrefab: {fileID: 7235772288971437234}
-  destroyTempObjectAfter: 3
