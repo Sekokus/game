@@ -34,13 +34,26 @@ public class LevelBootstrap : MonoBehaviour
         _enemyMarkers = enemyMarkersParent.GetComponentsInChildren<EnemyMarker>();
         _collectables = collectablesParent.GetComponentsInChildren<Collectable>();
 
-        if (levelData.maxCoinCount != _collectables.Length)
+        switch (levelData.countType)
         {
-            Debug.LogWarning("Level Data coin count != collectables count.");
-            levelData.maxCoinCount = _collectables.Length;
+            case CountType.Collectables:
+                if (levelData.maxCount != _collectables.Length)
+                {
+                    Debug.LogWarning("Level Data coin count != collectables count.");
+                    levelData.maxCount = _collectables.Length;
+                }
+                break;
+            case CountType.Enemies:
+                if (levelData.maxCount != _enemyMarkers.Length)
+                {
+                    Debug.LogWarning("Level Data enemies count != enemies count.");
+                    levelData.maxCount = _enemyMarkers.Length;
+                }
+                break;
         }
+        
 
-        _counter.SetCounts(levelData.requiredCoinCount, levelData.maxCoinCount);
+        _counter.SetCounts(levelData.requiredCount, levelData.maxCount, levelData.countType);
     }
 
     private void OnPlayerDied()

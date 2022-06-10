@@ -48,7 +48,7 @@ namespace DefaultNamespace
 
         private void Collect()
         {
-            _levelGoalCounter.IncrementCounter();
+            _levelGoalCounter.IncrementCounter(CountType.Collectables);
             destructionHandler.Destroy();
         }
 

@@ -9,20 +9,27 @@ namespace DefaultNamespace
         public int MaxCount { get; private set; }
 
         public int CurrentCount { get; private set; }
+        
+        public CountType Type { get; private set; }
 
         public event Action ValueChanged;
         public event Action ReachedMinCount;
         public event Action ReachedMaxCount;
 
 
-        public void SetCounts(int minCount, int maxCount)
+        public void SetCounts(int minCount, int maxCount, CountType type)
         {
             MinCount = minCount;
             MaxCount = maxCount;
+            Type = type;
         }
 
-        public void IncrementCounter()
+        public void IncrementCounter(CountType type)
         {
+            if (type != Type)
+            {
+                return;
+            }
             CurrentCount = Mathf.Min(CurrentCount + 1, MaxCount);
             
             ValueChanged?.Invoke();
@@ -41,5 +48,11 @@ namespace DefaultNamespace
         {
             CurrentCount = 0;
         }
+    }
+
+    public enum CountType
+    {
+        Collectables,
+        Enemies
     }
 }

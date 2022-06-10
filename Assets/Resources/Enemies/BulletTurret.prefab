@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 1563661820797495404}
   - component: {fileID: 6221836606740520903}
   - component: {fileID: 2288527376750594442}
+  - component: {fileID: 2368749114826505851}
   m_Layer: 0
   m_Name: BulletTurret
   m_TagString: Untagged
@@ -254,6 +255,19 @@ MonoBehaviour:
   color: {r: 0.7, g: 0.2, b: 0.2, a: 0.3}
   enemyType: 0
   marker: {fileID: 0}
+--- !u!114 &2368749114826505851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001977717007388510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0c023007a94264b210c0c96cbb3312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hurtbox: {fileID: 2288144436821442762}
 --- !u!1 &4355147031785969217
 GameObject:
   m_ObjectHideFlags: 0
