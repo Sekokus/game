@@ -7,6 +7,8 @@ namespace Enemies
         [SerializeField] private GameObject destroyedObjectPrefab;
         [SerializeField] private float destroyTempObjectAfter = 3;
 
+        [SerializeField] private GameObject destroyObjectKotoriyNeDestroyCherezTempVremya;
+
         public void Destroy()
         {
             ImitateDestruction();
@@ -15,14 +17,19 @@ namespace Enemies
 
         public void ImitateDestruction()
         {
-            if (!destroyedObjectPrefab)
+            if (destroyedObjectPrefab)
             {
-                return;
+                var obj = Instantiate(destroyedObjectPrefab, transform.position, transform.rotation);
+                obj.SetActive(true);
+                Destroy(obj, destroyTempObjectAfter);
             }
 
-            var obj = Instantiate(destroyedObjectPrefab, transform.position, transform.rotation);
-            obj.SetActive(true);
-            Destroy(obj, destroyTempObjectAfter);
+            if (destroyObjectKotoriyNeDestroyCherezTempVremya)
+            {
+                var obj = Instantiate(destroyObjectKotoriyNeDestroyCherezTempVremya, transform.position,
+                    transform.rotation);
+                obj.SetActive(true);
+            }
         }
     }
 }
