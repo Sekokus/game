@@ -18,9 +18,7 @@ namespace Player
 
         [SerializeField] [Min(1)] private int maxLinePointsPerFrame = 4;
 
-        [Space] [Header("Controller components")] [SerializeField]
-        private SpriteRenderer animationRenderer;
-
+        [Space] [Header("Controller components")]
         [SerializeField] private LineRenderer lineRenderer;
 
         private Coroutine _activeAnimationCoroutine;
@@ -29,7 +27,6 @@ namespace Player
 
         private void Awake()
         {
-            animationRenderer.enabled = false;
             _linePositions = new Queue<Vector3>(maxLinePointsPerFrame);
 
             var dashModule = GetComponentInParent<DashModule>();
@@ -87,8 +84,7 @@ namespace Player
             {
                 yield break;
             }
-
-            animationRenderer.enabled = true;
+            
             var scale = startScale;
             var time = 0f;
 
@@ -102,7 +98,6 @@ namespace Player
             }
 
             lineRenderer.positionCount = 0;
-            animationRenderer.enabled = false;
         }
     }
 }
