@@ -20,5 +20,5 @@ MonoBehaviour:
   requiredCount: 2
   maxCount: 2
   countType: 0
-  previewSprite: {fileID: 0}
+  previewSprite: {fileID: 21300000, guid: 33249c08cf75b3d4788d10e269fc2e56, type: 3}
   nextLevel: {fileID: 11400000, guid: c8b981275abe2d44fbccdef61f8f0dcf, type: 2}

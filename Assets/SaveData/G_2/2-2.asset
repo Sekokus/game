@@ -17,7 +17,8 @@ MonoBehaviour:
   sceneName: G_2/Scene_2-2
   bestLevelTimeMs: 0
   bestLevelCoinCount: 0
-  requiredCoinCount: 4
-  maxCoinCount: 6
-  previewSprite: {fileID: 0}
+  requiredCount: 0
+  maxCount: 6
+  countType: 0
+  previewSprite: {fileID: 21300000, guid: 058fb05acce87a045823ce8c54ffd807, type: 3}
   nextLevel: {fileID: 0}
