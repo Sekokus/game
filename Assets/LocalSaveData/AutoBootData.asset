@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ead24d26bca49fb8c32cb672610a4bb, type: 3}
   m_Name: AutoBootData
   m_EditorClassIdentifier: Assembly-CSharp:DefaultNamespace.EditorTools:AutoBootData
-  closedScenes: []
-  lastActiveScene: Assets/Scenes/Boot.unity
+  closedScenes:
+  - Assets/Scenes/G_0/Scene_0-3.unity
+  lastActiveScene: Assets/Scenes/G_0/Scene_0-3.unity

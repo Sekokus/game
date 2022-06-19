@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674685a0bfef4a55b4bac5712ca5b55c, type: 3}
   m_Name: BootData
   m_EditorClassIdentifier: 
-  afterBootScene: 1
+  afterBootScene: 2

@@ -225,7 +225,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 0, b: 0.83413935, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.7924528, g: 0, b: 0.42231953, a: 0.41568628}
+        key0: {r: 0.7434373, g: 0, b: 0.7921569, a: 0.41568628}
         key1: {r: 0.4706312, g: 0, b: 0.6052392, a: 0.44705883}
         key2: {r: 0.48081347, g: 0, b: 0.6132076, a: 0.53333336}
         key3: {r: 0.19149248, g: 0, b: 0.38679248, a: 0.53333336}
@@ -14646,10 +14646,10 @@ ParticleSystem:
       maxColor: {r: 1, g: 0, b: 0.83413935, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.7924528, g: 0, b: 0.42231953, a: 1}
-        key1: {r: 0.4706312, g: 0, b: 0.6052392, a: 0.654902}
-        key2: {r: 0.48081347, g: 0, b: 0.6132076, a: 0.7764706}
-        key3: {r: 0.3814973, g: 0, b: 0.5566038, a: 0}
+        key0: {r: 0.7434373, g: 0, b: 0.7921569, a: 0.41568628}
+        key1: {r: 0.4706312, g: 0, b: 0.6052392, a: 0.44705883}
+        key2: {r: 0.48081347, g: 0, b: 0.6132076, a: 0.53333336}
+        key3: {r: 0.19149248, g: 0, b: 0.38679248, a: 0.53333336}
         key4: {r: 0.9339623, g: 0, b: 0.4003424, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -14665,7 +14665,7 @@ ParticleSystem:
         atime0: 0
         atime1: 15420
         atime2: 65535
-        atime3: 0
+        atime3: 65535
         atime4: 0
         atime5: 0
         atime6: 0
@@ -34071,10 +34071,10 @@ ParticleSystem:
       maxColor: {r: 1, g: 0, b: 0.83413935, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.7924528, g: 0, b: 0.42231953, a: 1}
-        key1: {r: 0.4706312, g: 0, b: 0.6052392, a: 1}
-        key2: {r: 0.48081347, g: 0, b: 0.6132076, a: 1}
-        key3: {r: 0.3814973, g: 0, b: 0.5566038, a: 0}
+        key0: {r: 0.7434373, g: 0, b: 0.7921569, a: 0.41568628}
+        key1: {r: 0.4706312, g: 0, b: 0.6052392, a: 0.44705883}
+        key2: {r: 0.48081347, g: 0, b: 0.6132076, a: 0.53333336}
+        key3: {r: 0.19149248, g: 0, b: 0.38679248, a: 0.53333336}
         key4: {r: 0.9339623, g: 0, b: 0.4003424, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -34087,10 +34087,10 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 193
+        atime0: 0
         atime1: 15420
         atime2: 65535
-        atime3: 0
+        atime3: 65535
         atime4: 0
         atime5: 0
         atime6: 0
@@ -38745,8 +38745,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hint2
       objectReference: {fileID: 0}
-    - target: {fileID: 6878661706547455179, guid: 4aa93cb19bbcaf3418374815eb22d2ac, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 7463822046075693192, guid: 4aa93cb19bbcaf3418374815eb22d2ac, type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -38761,14 +38761,3 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6878661706547455179, guid: 4aa93cb19bbcaf3418374815eb22d2ac, type: 3}
   m_PrefabInstance: {fileID: 2327282669543434445}
   m_PrefabAsset: {fileID: 0}
---- !u!210 &5399737342543722531
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9167570865961356294}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
