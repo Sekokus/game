@@ -9,12 +9,14 @@ namespace UI
     {
         [SerializeField, HideInInspector] private MultiImageButtonGraphics graphics;
 
+#if UNITY_EDITOR
         protected override void OnValidate()
         {
             base.OnValidate();
 
             graphics = GetComponent<MultiImageButtonGraphics>();
         }
+#endif
 
         protected override void DoStateTransition(SelectionState state, bool instant)
         {

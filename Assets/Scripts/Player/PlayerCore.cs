@@ -8,8 +8,8 @@ namespace Player
     [DefaultExecutionOrder(-2)]
     public class PlayerCore : MonoBehaviour
     {
-        [SerializeField] private new Rigidbody2D rigidbody2D;
-        [SerializeField] private new Transform transform;
+        [SerializeField] private Rigidbody2D rigidbody2D;
+        [SerializeField] private Transform transform;
         [SerializeField] private Animator animator;
         [SerializeField] private BoxCollider2D boxCollider;
         public Animator Animator => animator;
