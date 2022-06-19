@@ -4,6 +4,7 @@ using DefaultNamespace;
 using Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class LevelStartCountdown : MonoBehaviour
@@ -14,6 +15,7 @@ public class LevelStartCountdown : MonoBehaviour
     [SerializeField] private ScreenColorTint screenDarkener;
 
     [SerializeField] private TextMeshProUGUI textMesh;
+    [SerializeField] private Image background;
     [SerializeField] private TextMeshProUGUI nameTextMesh;
 
     private InputBindings _bindings;
@@ -93,6 +95,7 @@ public class LevelStartCountdown : MonoBehaviour
         Do.After(() => { 
                 textMesh.enabled = false;
                 nameTextMesh.enabled = false;
+                background.enabled = false;
             }, startTextHideTime)
             .Start(this);
         CountdownEnded?.Invoke();
