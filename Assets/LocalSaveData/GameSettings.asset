@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4246df1917784d608045d33b3f044854, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  cameraShakeStrength: 0
-  chromaticAberrationStrength: 0
-  motionBlurStrength: 0
+  cameraShakeStrength: 0.5
+  chromaticAberrationStrength: 0.5
+  motionBlurStrength: 0.5
+  bloodEnabled: 1
