@@ -19,7 +19,7 @@ namespace Enemies
             hitbox.HitDamageable += _ => Destroy();
             hitbox.HitNonDamageable += hit =>
             {
-                if (ignorePossibleHits && hit.GetComponent<CanIgnoreHit>())
+                if (ignorePossibleHits && hit.GetComponent<ProjectilesCanPassThrough>())
                 {
                     return;
                 }

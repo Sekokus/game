@@ -607,7 +607,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1628520772566184693, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
       propertyPath: contactWith.m_Bits
-      value: 2304
+      value: 4352
       objectReference: {fileID: 0}
     - target: {fileID: 4687624911582788864, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
       propertyPath: m_Name

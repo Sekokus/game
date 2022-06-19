@@ -49,7 +49,7 @@ public class PlayerRaycaster : MonoBehaviour
             var objectLayerMask = 1 << hit.collider.gameObject.layer;
             if ((objectLayerMask & obstaclesLayerMask) != 0)
             {
-                if (ignorePossibleObstacles && hit.collider.GetComponent<CanIgnoreHit>())
+                if (ignorePossibleObstacles && hit.collider.GetComponent<CanIgnoreRaycastHit>())
                 {
                     continue;
                 }
