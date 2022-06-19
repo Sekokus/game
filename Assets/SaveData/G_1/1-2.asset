@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d596c1521a4ca29e9669c7f3235adf, type: 3}
   m_Name: 1-2
   m_EditorClassIdentifier: 
-  levelGroup: {fileID: 11400000, guid: bbc5282f970e2ab47ab947aff34ee566, type: 2}
+  levelGroup: {fileID: 11400000, guid: df6569809bc5441419364917ec681ee3, type: 2}
   levelName: 1-2
   sceneName: G_1/Scene_1-2
   bestLevelTimeMs: 0
   bestLevelCoinCount: 0
   requiredCount: 4
-  maxCount: 6
+  maxCount: 7
   countType: 0
   previewSprite: {fileID: 0}
-  nextLevel: {fileID: 11400000, guid: 215876d5782d5184e85410883ad48020, type: 2}
+  nextLevel: {fileID: 0}
