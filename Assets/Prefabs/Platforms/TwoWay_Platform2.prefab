@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6359515109879994378}
   - component: {fileID: 6359515109879994379}
   - component: {fileID: 6359515109879994376}
+  - component: {fileID: 2472216158394354936}
   m_Layer: 8
   m_Name: TwoWay_Platform2
   m_TagString: Untagged
@@ -126,3 +127,15 @@ MonoBehaviour:
   platformCollider: {fileID: 6359515109879994379}
   sunckPadding: 0.01
   passThroughTime: 0.1
+--- !u!114 &2472216158394354936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6359515109879994380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4c7087fd4f4341af03da10c715c89c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

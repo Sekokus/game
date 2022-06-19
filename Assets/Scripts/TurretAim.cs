@@ -2,10 +2,15 @@ using DefaultNamespace;
 using Enemies;
 using Player;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class TurretAim : MonoBehaviour, ISwitchable
 {
     private PlayerCore _player;
+
+    [SerializeField] private Light2D headLight;
+    [SerializeField] private float enabledIntensity;
+    [SerializeField] private float disabledIntensity;
 
     [SerializeField] private float aggroRotationSpeed = 5;
     [SerializeField] private float idleRotationSpeed = 3;
@@ -86,14 +91,14 @@ public class TurretAim : MonoBehaviour, ISwitchable
                 {
                     sign *= -1;
                 }
-                
+
                 lastTime = passedBlinkTime;
-                
+
                 strength += sign * state.DeltaTime / (blinkTime / 2);
                 laserBeam.SetStrength(strength);
             }, aimTime)
             .Start(this);
-        
+
         Do.EveryFrameFor(state =>
             {
                 _currentRotationSpeed =
@@ -148,10 +153,12 @@ public class TurretAim : MonoBehaviour, ISwitchable
     public void SwitchEnable()
     {
         _rotateToPlayer = true;
+        headLight.intensity = enabledIntensity;
     }
 
     public void SwitchDisable()
     {
         _rotateToPlayer = false;
+        headLight.intensity = disabledIntensity;
     }
 }

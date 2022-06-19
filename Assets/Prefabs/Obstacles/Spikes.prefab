@@ -59,7 +59,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fc1ed50ae84f28b8b6209aff01d0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderSize: {x: 1, y: 0.46}
   collideWith:
     serializedVersion: 2
     m_Bits: 2048
@@ -67,6 +66,7 @@ MonoBehaviour:
   autoTest: 1
   debugColor: {r: 1, g: 0.08688849, b: 0, a: 0.1764706}
   debugColorWhenDisabled: {r: 0.5943396, g: 0.30999988, b: 0.28315237, a: 0.29803923}
+  colliderSize: {x: 1, y: 0.46}
 --- !u!1 &7611537596317161697
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 2774079846680773185}
   - component: {fileID: 7016658404339021157}
   - component: {fileID: 7456926591070597410}
+  - component: {fileID: 7201216149551996247}
   m_Layer: 8
   m_Name: Spikes
   m_TagString: Untagged
@@ -177,3 +178,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &7201216149551996247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611537596317161697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4c7087fd4f4341af03da10c715c89c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

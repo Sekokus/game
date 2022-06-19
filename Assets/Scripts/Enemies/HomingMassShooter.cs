@@ -1,10 +1,14 @@
-﻿using Player;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Enemies
 {
     public class HomingMassShooter : MonoBehaviour, ISwitchable
     {
+        [SerializeField] private Light2D headLight;
+        [SerializeField] private float enabledIntensity;
+        [SerializeField] private float disabledIntensity;
+        
         [SerializeField] private GameObject homingMassPrefab;
         [SerializeField] private float shootInterval;
         [SerializeField] private float firstShotDelay;
@@ -12,12 +16,10 @@ namespace Enemies
         private bool _isShooting;
         private float _passedTime;
         private float _currentInterval;
-        private Transform _target;
+        private float _currentHeadRotationSpeed;
 
         private void Awake()
         {
-            Container.Get<PlayerFactory>().WhenPlayerAvailable(player => { _target = player.Transform; });
-            
             SwitchDisable();
         }
 
@@ -48,6 +50,7 @@ namespace Enemies
         public void SwitchEnable()
         {
             _isShooting = true;
+            headLight.intensity = enabledIntensity;
         }
 
         public void SwitchDisable()
@@ -55,6 +58,7 @@ namespace Enemies
             _passedTime = 0;
             _currentInterval = firstShotDelay;
             _isShooting = false;
+            headLight.intensity = disabledIntensity;
         }
     }
 }

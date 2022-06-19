@@ -6,6 +6,7 @@ namespace Enemies
     {
         [SerializeField] private DestructionHandler destructionHandler;
         [SerializeField] private Hitbox hitbox;
+        [SerializeField] private bool ignorePossibleHits;
 
         private void Reset()
         {
@@ -16,7 +17,15 @@ namespace Enemies
         private void Awake()
         {
             hitbox.HitDamageable += _ => Destroy();
-            hitbox.HitNonDamageable += _ => Destroy();
+            hitbox.HitNonDamageable += hit =>
+            {
+                if (ignorePossibleHits && hit.GetComponent<CanIgnoreHit>())
+                {
+                    return;
+                }
+
+                Destroy();
+            };
         }
 
         private void Destroy() => destructionHandler.Destroy();

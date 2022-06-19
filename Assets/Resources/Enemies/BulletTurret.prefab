@@ -57,7 +57,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6870583707107204985}
   - component: {fileID: 8271769860780227850}
-  - component: {fileID: 6828051648854856551}
   m_Layer: 0
   m_Name: WeaponSprite
   m_TagString: Untagged
@@ -98,7 +97,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 874cf254ec46e1243935fb0d41fff89c, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -130,21 +129,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6828051648854856551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402192804451533118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2043d7f7811948bab06301601988c250, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 1, g: 0, b: 0, a: 1}
-  outlineSize: 10
-  spriteRenderer: {fileID: 8271769860780227850}
 --- !u!1 &3001977717007388510
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +144,7 @@ GameObject:
   - component: {fileID: 6221836606740520903}
   - component: {fileID: 2288527376750594442}
   - component: {fileID: 2368749114826505851}
+  - component: {fileID: 3003038235107034657}
   m_Layer: 0
   m_Name: BulletTurret
   m_TagString: Untagged
@@ -223,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdcfbbf0a27440a92bf23463d033563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectRadius: 5
+  playerRaycaster: {fileID: 3003038235107034657}
   scanInterval: 0.3
   deaggroTime: 1
 --- !u!114 &6221836606740520903
@@ -240,6 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyedObjectPrefab: {fileID: 672488757868455586}
   destroyTempObjectAfter: 3
+  destroyObjectKotoriyNeDestroyCherezTempVremya: {fileID: 0}
 --- !u!114 &2288527376750594442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +254,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hurtbox: {fileID: 2288144436821442762}
+--- !u!114 &3003038235107034657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001977717007388510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83e15e588754c22ba8a2abb1e5c7a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contactBufferSize: 8
+  maxDistance: 5
+  autoTest: 0
+  respectObstacles: 1
+  obstaclesLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  ignorePossibleObstacles: 1
 --- !u!1 &4355147031785969217
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +469,7 @@ GameObject:
   - component: {fileID: 8619698777507556579}
   - component: {fileID: 1109080765713347736}
   - component: {fileID: 3443142962421238756}
+  - component: {fileID: 965602454691734943}
   m_Layer: 0
   m_Name: WeaponAnchor
   m_TagString: Untagged
@@ -497,6 +504,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1f32d23c86c8645a63c6b9f77fe43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  headLight: {fileID: 965602454691734943}
+  enabledIntensity: 2
+  disabledIntensity: 0.5
   aggroRotationSpeed: 90
   idleRotationSpeed: 30
   idleRotationDirectionChangeHitDistance: 2
@@ -541,6 +551,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contactBufferSize: 8
   maxDistance: 5
+  autoTest: 1
+  respectObstacles: 1
+  obstaclesLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  ignorePossibleObstacles: 1
+--- !u!114 &965602454691734943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9008742693768237363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 0
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0.7075472, g: 0.27033645, b: 0.27033645, a: 1}
+  m_Intensity: 1
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 6
+  m_ShapeLightParametricAngleOffset: 30
+  m_ShapeLightParametricRadius: 0.1
+  m_ShapeLightFalloffSize: 0
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1001 &7276981526741165970
 PrefabInstance:
   m_ObjectHideFlags: 0

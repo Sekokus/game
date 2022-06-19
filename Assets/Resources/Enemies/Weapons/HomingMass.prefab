@@ -42782,6 +42782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destructionHandler: {fileID: 8018614610089064242}
   hitbox: {fileID: 7578312764761806653}
+  ignorePossibleHits: 1
 --- !u!114 &8018614610089064242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42796,6 +42797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyedObjectPrefab: {fileID: 3616186331953621059}
   destroyTempObjectAfter: 3
+  destroyObjectKotoriyNeDestroyCherezTempVremya: {fileID: 0}
 --- !u!1 &5533957587118665850
 GameObject:
   m_ObjectHideFlags: 0

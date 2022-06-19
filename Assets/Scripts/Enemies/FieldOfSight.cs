@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Player;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace Enemies
 
     public class FieldOfSight : MonoBehaviour
     {
-        [SerializeField] private float detectRadius;
+        [SerializeField] private PlayerRaycaster playerRaycaster;
         [SerializeField] private float scanInterval = 0.3f;
         [SerializeField] private float deaggroTime = 1f;
 
@@ -21,6 +22,11 @@ namespace Enemies
         private PlayerCore _player;
 
         private Coroutine _deaggroRoutine;
+
+        private void Reset()
+        {
+            playerRaycaster = GetComponent<PlayerRaycaster>();
+        }
 
         private void Awake()
         {
@@ -41,9 +47,9 @@ namespace Enemies
                 return;
             }
 
-            var distance = Vector3.Distance(_player.Transform.position, transform.position);
-            var detected = distance <= detectRadius;
-            SetDetectedState(detected);
+            var directionToPlayer = ((Vector2)(_player.Transform.position - transform.position)).normalized;
+            var (hit, _) = playerRaycaster.Raycast(directionToPlayer);
+            SetDetectedState(hit);
         }
 
         private bool _detected = false;
