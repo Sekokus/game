@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: AutoBootData
   m_EditorClassIdentifier: Assembly-CSharp:DefaultNamespace.EditorTools:AutoBootData
   closedScenes:
-  - Assets/Scenes/G_2/Scene_2-2.unity
-  lastActiveScene: Assets/Scenes/G_2/Scene_2-2.unity
+  - Assets/Scenes/G_1/Scene_1-1.unity
+  - Assets/Scenes/G_1/Scene_1-3.unity
+  - Assets/Scenes/G_1/Scene_1-2.unity
+  lastActiveScene: Assets/Scenes/G_1/Scene_1-1.unity
