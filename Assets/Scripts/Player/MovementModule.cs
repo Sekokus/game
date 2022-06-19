@@ -121,7 +121,7 @@ namespace Player
                 return;
             }
 
-            if (hit.normal.y < 1 && Core.Velocity.x * hit.normal.x >= 0)
+            if (hit.normal.y < 0.95f && Core.Velocity.x * hit.normal.x >= 0)
             {
                 Core.Velocity.y = Mathf.Abs(Core.Velocity.x) > 1e-1 ? -hit.normal.y * 5 : 0;
                 Core.Velocity.x *= 1 - slopeHorizontalDampening;

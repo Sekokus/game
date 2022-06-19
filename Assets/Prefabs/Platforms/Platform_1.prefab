@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7712537953089698044, guid: fd52343e60f0e0149a84522d9ce01419, type: 3}
       propertyPath: m_Name
-      value: PlatformBase
+      value: Platform_1
       objectReference: {fileID: 0}
     - target: {fileID: 7712537953089698046, guid: fd52343e60f0e0149a84522d9ce01419, type: 3}
       propertyPath: m_RootOrder
