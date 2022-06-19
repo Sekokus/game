@@ -2750,7 +2750,7 @@ MonoBehaviour:
   playerMarker: {fileID: 1675543387}
   enemyMarkersParent: {fileID: 2020308520}
   collectablesParent: {fileID: 434044365}
-  startText: Collect enough Coins to proceed
+  startText: It's better be... Wait, diagonal void rectangles?
   startWithTimer: 0
   levelData: {fileID: 11400000, guid: 11172b3fc465d804e81be162ef518759, type: 2}
 --- !u!4 &423076067
@@ -7896,7 +7896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6820300501519650969, guid: 88842acd11f7d8a46a99193f150dd612, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 46.807
+      value: 47.21
       objectReference: {fileID: 0}
     - target: {fileID: 6820300501519650969, guid: 88842acd11f7d8a46a99193f150dd612, type: 3}
       propertyPath: m_LocalPosition.z

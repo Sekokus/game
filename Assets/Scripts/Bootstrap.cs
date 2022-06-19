@@ -16,8 +16,15 @@ public class Bootstrap : MonoBehaviour
 
     private void Start()
     {
+        ApplyGraphicsSettings();
+        
         var sceneLoader = Container.Get<SceneLoader>();
         sceneLoader.LoadScene(bootData.afterBootScene);
+    }
+
+    private void ApplyGraphicsSettings()
+    {
+        QualitySettings.vSyncCount = 1;
     }
 
     private void Initialize()

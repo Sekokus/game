@@ -1056,7 +1056,7 @@ MonoBehaviour:
   playerMarker: {fileID: 1129582959}
   enemyMarkersParent: {fileID: 1129172524}
   collectablesParent: {fileID: 321417643}
-  startText: Collect enough Coins to proceed
+  startText: "Shocking tip \u2014 avoid dying"
   startWithTimer: 0
   levelData: {fileID: 11400000, guid: 215876d5782d5184e85410883ad48020, type: 2}
 --- !u!4 &276747293
@@ -2091,7 +2091,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679750177}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.572647, y: 30.03649, z: 0}
+  m_LocalPosition: {x: 10.45, y: 30.03649, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1587965820}
@@ -3290,7 +3290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6782613073286703329, guid: 80f0a40ffb40950439000209e0b7551a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 21.53383
+      value: 21.585512
       objectReference: {fileID: 0}
     - target: {fileID: 6782613073286703329, guid: 80f0a40ffb40950439000209e0b7551a, type: 3}
       propertyPath: m_LocalScale.y
@@ -3302,7 +3302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6782613073286703329, guid: 80f0a40ffb40950439000209e0b7551a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.3144
+      value: -9.2882
       objectReference: {fileID: 0}
     - target: {fileID: 6782613073286703329, guid: 80f0a40ffb40950439000209e0b7551a, type: 3}
       propertyPath: m_LocalPosition.y

@@ -16,7 +16,7 @@ MonoBehaviour:
   levelName: 1-1
   sceneName: G_1/Scene_1-1
   bestLevelTimeMs: 0
-  bestLevelCoinCount: 0
+  bestLevelCoinCount: 8
   requiredCount: 5
   maxCount: 8
   countType: 0

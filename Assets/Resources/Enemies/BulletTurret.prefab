@@ -605,6 +605,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4280959635387031066}
     m_Modifications:
+    - target: {fileID: 1628520772566184693, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
+      propertyPath: contactWith.m_Bits
+      value: 2304
+      objectReference: {fileID: 0}
     - target: {fileID: 4687624911582788864, guid: aec3334bef8d41d418002be6f6127a66, type: 3}
       propertyPath: m_Name
       value: LaserBeam

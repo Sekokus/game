@@ -614,6 +614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 264819550}
+  - component: {fileID: 264819551}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
@@ -641,6 +642,17 @@ Transform:
   m_Father: {fileID: 340841483}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &264819551
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264819549}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
 --- !u!1001 &265035793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -937,7 +949,7 @@ MonoBehaviour:
   playerMarker: {fileID: 1675543387}
   enemyMarkersParent: {fileID: 2020308520}
   collectablesParent: {fileID: 434044365}
-  startText: Collect enough Coins to proceed
+  startText: Watch your steps
   startWithTimer: 0
   levelData: {fileID: 11400000, guid: c8b981275abe2d44fbccdef61f8f0dcf, type: 2}
 --- !u!4 &423076067

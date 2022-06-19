@@ -25,7 +25,7 @@ namespace DefaultNamespace.Editor
                 case PlayModeStateChange.EnteredEditMode:
                     OpenClosedScenes();
                     var bootData = LoadBootData();
-                    bootData.afterBootScene = SceneLoader.HubScene;
+                    bootData.afterBootScene = SceneLoader.MenuScene;
                     break;
             }
         }
