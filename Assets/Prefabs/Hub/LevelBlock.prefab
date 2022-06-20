@@ -420,8 +420,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillBar: {fileID: 5076003556064772065}
   levelNotCompletedColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
-  levelCompletedBarColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  levelFullyCompletedBarColor: {r: 0, g: 1, b: 0, a: 1}
+  levelCompletedBarColor: {r: 0.745, g: 0.6856375, b: 0, a: 1}
+  levelFullyCompletedBarColor: {r: 0.096074, g: 0.794, b: 0.096074, a: 1}
 --- !u!1 &3732576139199609604
 GameObject:
   m_ObjectHideFlags: 0

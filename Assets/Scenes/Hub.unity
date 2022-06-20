@@ -388,6 +388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 62324219}
   - component: {fileID: 62324220}
+  - component: {fileID: 62324221}
   m_Layer: 0
   m_Name: blood-splashes_12 (1)
   m_TagString: Untagged
@@ -460,6 +461,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &62324221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62324218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 62324220}
 --- !u!1001 &65457929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1038,6 +1052,7 @@ GameObject:
   m_Component:
   - component: {fileID: 197729248}
   - component: {fileID: 197729249}
+  - component: {fileID: 197729250}
   m_Layer: 0
   m_Name: blood-splashes_18 (1)
   m_TagString: Untagged
@@ -1110,6 +1125,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &197729250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197729247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 197729249}
 --- !u!1 &270976766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 270976767}
   - component: {fileID: 270976768}
+  - component: {fileID: 270976769}
   m_Layer: 0
   m_Name: blood-splashes_14
   m_TagString: Untagged
@@ -1192,6 +1221,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &270976769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270976766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 270976768}
 --- !u!1 &285743153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 285743154}
   - component: {fileID: 285743155}
+  - component: {fileID: 285743156}
   m_Layer: 0
   m_Name: blood-splashes_12
   m_TagString: Untagged
@@ -1274,6 +1317,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &285743156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285743153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 285743155}
 --- !u!1 &321630392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,6 +1408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 335646485}
   - component: {fileID: 335646486}
+  - component: {fileID: 335646487}
   m_Layer: 0
   m_Name: blood-splashes_8 (2)
   m_TagString: Untagged
@@ -1424,6 +1481,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &335646487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335646484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 335646486}
 --- !u!1 &354225458
 GameObject:
   m_ObjectHideFlags: 0
@@ -2455,6 +2525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 688764101}
   - component: {fileID: 688764100}
+  - component: {fileID: 688764102}
   m_Layer: 0
   m_Name: blood-splashes_27
   m_TagString: Untagged
@@ -2527,6 +2598,19 @@ Transform:
   m_Father: {fileID: 913848445}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &688764102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688764099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 688764100}
 --- !u!1001 &696015382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2852,6 +2936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 821469007}
   - component: {fileID: 821469006}
+  - component: {fileID: 821469008}
   m_Layer: 0
   m_Name: blood-splashes_8
   m_TagString: Untagged
@@ -2924,6 +3009,19 @@ Transform:
   m_Father: {fileID: 913848445}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &821469008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821469005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 821469006}
 --- !u!4 &878599222
 Transform:
   m_ObjectHideFlags: 0
@@ -2948,6 +3046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 883998859}
   - component: {fileID: 883998860}
+  - component: {fileID: 883998861}
   m_Layer: 0
   m_Name: blood-splashes_25
   m_TagString: Untagged
@@ -3020,6 +3119,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &883998861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883998858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 883998860}
 --- !u!1 &901417308
 GameObject:
   m_ObjectHideFlags: 0
@@ -3677,6 +3789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1122283786}
   - component: {fileID: 1122283785}
+  - component: {fileID: 1122283787}
   m_Layer: 0
   m_Name: blood-splashes_8 (1)
   m_TagString: Untagged
@@ -3749,6 +3862,19 @@ Transform:
   m_Father: {fileID: 913848445}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1122283787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122283784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1122283785}
 --- !u!1001 &1137602850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4254,6 +4380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1348129825}
   - component: {fileID: 1348129826}
+  - component: {fileID: 1348129827}
   m_Layer: 0
   m_Name: blood-splashes_26
   m_TagString: Untagged
@@ -4326,6 +4453,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1348129827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348129824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1348129826}
 --- !u!1001 &1349569853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4822,6 +4962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1465623972}
   - component: {fileID: 1465623973}
+  - component: {fileID: 1465623974}
   m_Layer: 0
   m_Name: blood-splashes_20
   m_TagString: Untagged
@@ -4894,6 +5035,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1465623974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465623971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1465623973}
 --- !u!1 &1514826683
 GameObject:
   m_ObjectHideFlags: 0
@@ -4904,6 +5058,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1514826685}
   - component: {fileID: 1514826684}
+  - component: {fileID: 1514826686}
   m_Layer: 0
   m_Name: blood-splashes_0
   m_TagString: Untagged
@@ -4976,6 +5131,19 @@ Transform:
   m_Father: {fileID: 913848445}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1514826686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514826683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1514826684}
 --- !u!1 &1516854781
 GameObject:
   m_ObjectHideFlags: 0
@@ -5345,6 +5513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1689706723}
   - component: {fileID: 1689706724}
+  - component: {fileID: 1689706725}
   m_Layer: 0
   m_Name: blood-splashes_4
   m_TagString: Untagged
@@ -5417,6 +5586,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1689706725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689706722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1689706724}
 --- !u!1 &1736550481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5925,6 +6107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1977211755}
   - component: {fileID: 1977211756}
+  - component: {fileID: 1977211757}
   m_Layer: 0
   m_Name: blood-splashes_18
   m_TagString: Untagged
@@ -5997,6 +6180,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1977211757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977211754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1977211756}
 --- !u!1001 &1989168568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6093,6 +6289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2022960260}
   - component: {fileID: 2022960261}
+  - component: {fileID: 2022960262}
   m_Layer: 0
   m_Name: blood-splashes_18 (2)
   m_TagString: Untagged
@@ -6165,6 +6362,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2022960262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022960259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2022960261}
 --- !u!1001 &2037284554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6425,6 +6635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2097828005}
   - component: {fileID: 2097828006}
+  - component: {fileID: 2097828007}
   m_Layer: 0
   m_Name: blood-splashes_4 (1)
   m_TagString: Untagged
@@ -6497,6 +6708,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2097828007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097828004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5c9935d89b78f43a42949d76ea2830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2097828006}
 --- !u!1001 &1811364863955218627
 PrefabInstance:
   m_ObjectHideFlags: 0

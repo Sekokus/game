@@ -21,6 +21,7 @@ public class LevelGroupDoor : MonoBehaviour
     private bool _canInteract;
     private GameObject _hint;
     private LevelGroupUi _groupUi;
+    private bool _isSubbed;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class LevelGroupDoor : MonoBehaviour
     private void OnEnable()
     {
         _gameState.PlayerInteract += OnInteracted;
+        _isSubbed = true;
         _gameState.StateChanged += OnStateChanged;
     }
 
@@ -67,10 +69,12 @@ public class LevelGroupDoor : MonoBehaviour
         if (newState == GameStateType.MenuOpened)
         {
             _gameState.PlayerInteract -= OnInteracted;
+            _isSubbed = false;
         }
 
-        if (oldState == GameStateType.MenuOpened)
+        if (oldState == GameStateType.MenuOpened && !_isSubbed)
         {
+            _isSubbed = true; 
             _gameState.PlayerInteract += OnInteracted;
         }
     }
@@ -149,6 +153,7 @@ public class LevelGroupDoor : MonoBehaviour
     private void OnDestroy()
     {
         _gameState.PlayerInteract -= OnInteracted;
+        _isSubbed = false;
         _bindings.UI.Menu.performed -= OnMenu;
         
         _gameState.SetState(GameStateType.Default);
